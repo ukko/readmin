@@ -1,6 +1,11 @@
 #! /usr/bin/env php
 <?php
-
+/**
+ * Redis dump keys and values in stdin or file
+ *
+ * @author  Max Kamashev <max.kamashev@gmail.com>
+ * @link    https://github.com/ukko/readmin
+ */
 
 $redump = new Redump();
 foreach ( $redump->getPatterns() as $pattern )
@@ -8,18 +13,13 @@ foreach ( $redump->getPatterns() as $pattern )
     $redump->dump($pattern);
 }
 
-/**
- * Redis dump keys and values in stdin or file
- *
- * @author  Max Kamashev <max.kamashev@gmail.com>
- * @link    https://github.com/ukko
- */
 class Redump
 {
     /**
      * @var Redis
      */
     protected $redis        = null;
+    protected $version      = null;
 
     // Default values
     protected $host         = '127.0.0.1';
@@ -66,7 +66,7 @@ class Redump
     {
         if ( ! class_exists( 'Redis' ) )
         {
-            die("Requires installed extension phpredis\n[https://github.com/nicolasff/phpredis]\n");
+            die("Requires installed extension phpredis\nhttps://github.com/nicolasff/phpredis\n");
         }
 
         if (PHP_SAPI == "cli")
@@ -77,6 +77,9 @@ class Redump
         {
             die("Please, use this script in cli interface\n");
         }
+
+        $info          = $this->getRedis()->info();
+        $this->version = $info['redis_version'];
     }
 
     /**
@@ -155,46 +158,54 @@ class Redump
         }
     }
 
+    /**
+     * Dump data
+     *
+     * @param   string  $pattern
+     * @return void
+     */
     public function dump( $pattern )
     {
         foreach ( $this->getRedis()->keys( $pattern ) as $key )
         {
-            $data = '';
+            $data   = '';
+            $key    = addslashes( $key );
 
             switch( $this->getRedis()->type( $key ) )
             {
                 case Redis::REDIS_STRING :
                 {
-                    $data = 'SET "' . $key . '" "' . $this->getRedis()->get( $key ) . '"' . PHP_EOL;
+                    $data = 'SET "' . $key . '" "' . $this->sanity( $this->getRedis()->get( $key ) ) . '"' . PHP_EOL;
                     break;
                 }
                 case Redis::REDIS_SET :
                 {
-                    $data = 'SADD "' . $key . '" "' . implode( '" "', $this->getRedis()->sMembers( $key ) ) . '"' . PHP_EOL;
+                    $sMembers   = implode( '" "', $this->sanity( $this->getRedis()->sMembers( $key ) ) );
+                    $data       = 'SADD "' . $key . '" "' . $sMembers . '"' . PHP_EOL;
                     break;
                 }
                 case Redis::REDIS_LIST :
                 {
-                    $data = 'RPUSH "' . $key . '" "' . implode( '" "', $this->getRedis()->lRange( $key, 0, -1 ) ) . '"' . PHP_EOL;
+                    $list = implode( '" "', $this->sanity( $this->getRedis()->lRange( $key, 0, -1 ) ) );
+                    $data = 'RPUSH "' . $key . '" "' . $list . '"' . PHP_EOL;
                     break;
                 }
                 case Redis::REDIS_ZSET :
                 {
-                    foreach ($this->getRedis()->zRange($key, 0, -1, true) as $member => $score)
-                    {
-                        $data .= 'ZADD "' . $key . '" "' . $score . '" "' . $member . '"' . PHP_EOL;
-                    }
+                    $data = $this->dumpZset( $key );
                     break;
                 }
                 case Redis::REDIS_HASH :
                 {
+                    $data = 'HMSET "' . $key . '"';
                     foreach ( $this->getRedis()->hGetAll($key) as $field => $value )
                     {
                         if ( $value )
                         {
-                            $data .= 'HMSET "' . $key . '" "' . $field . '" "' . $this->sanity( $value ) . '"' . PHP_EOL;
+                            $data .= ' "'. $this->sanity( $field ) . '" "' . $this->sanity( $value ) . '"';
                         }
                     }
+                    $data .= PHP_EOL;
                     break;
                 }
                 default :
@@ -216,6 +227,37 @@ class Redump
             }
         }
 
+    }
+
+    /**
+     * Dump zset-struct
+     *
+     * @param   string  $key
+     * @return  string
+     */
+    private function dumpZset( $key )
+    {
+        $i          = 1;
+        $command    = 'ZADD "' . $key . '"';
+        $data       = $command;
+        $maxLen     = 10000;
+
+        foreach ($this->getRedis()->zRange($key, 0, -1, true) as $member => $score)
+        {
+            // Split command by ~10000 chars
+            // 4354 > 10000 -
+            // 9000 > 10000 -
+            // 13000 > 10000 +
+            // 13000 * 2 >
+            if ( strlen( $data ) > ( $maxLen * $i ) )
+            {
+                $data .= PHP_EOL . $command;
+                $i++;
+            }
+
+            $data .= ' '. (float) $score . ' "' . $this->sanity( $member ) . '"';
+        }
+        return $data .= PHP_EOL;
     }
 
     /**
@@ -250,10 +292,29 @@ Example:
         }
     }
 
-    private function sanity( $value )
+    /**
+     * Sanitization values
+     *
+     * @param $data
+     * @return string
+     */
+    private function sanity( $data )
     {
-        $value = str_replace("\r", ' ', str_replace("\n", ' ', $value));
-        return htmlentities($value, ENT_QUOTES);
+//        $value = str_replace("\r", ' ', str_replace("\n", ' ', $value));
+        $result = array();
+        if ( is_array( $data ) )
+        {
+            foreach ( $data as $value )
+            {
+                $result[] = addslashes( $value );
+            }
+        }
+        else
+        {
+            $result = addslashes( $data );
+        }
+
+        return $result;
     }
 
     public function setSocket($socket)
