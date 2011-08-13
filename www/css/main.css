@@ -1,0 +1,97 @@
+/*
+    Document   : main
+    Created on : 17.05.2011, 23:01:45
+    Author     : ukko
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+div.header {
+    padding: 10px;
+}
+
+div.footer{
+    padding: 5px;
+}
+
+div.footer>ul>li {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div.footer>ul>li {
+    border-left-style: solid;
+    border-left-color: #0066CC;
+    border-left-width: thin;
+}
+
+div.footer>ul>li:first-child {
+    border-left-style: none;
+}
+
+select#database {
+    font-size: 1.5em;
+}
+
+div.command {
+    text-align: center;
+    padding: 5px;
+}
+input.command {
+    width: 85%;
+}
+
+div.result table {
+    table-layout: fixed;
+}
+div.result th:first {
+    width: 25px;
+}
+
+table>caption {
+ font-size: 1.5em;
+}
+
+thead tr {
+   background: none repeat scroll 0 0 wheat;
+   font-size: 1.5em;
+}
+
+
+thead td.num {
+    width: 25px;
+}
+
+thead td.check {
+	width: 25px;
+}
+thead td.type {
+    width: 25px;
+}
+
+div.help div.group div {
+    display: block;
+    border: #0066CC;
+    border-style: dashed;
+    width: 50%;
+}
+
+div.message {
+    margin-top: 20px;
+    padding: 0 .7em;
+}
+
+ul.pager li {
+    display: inline;
+    padding: 3px;
+}
+
+ul.pager a.active {
+    background-color: #c6d880;
+}
