@@ -17,7 +17,7 @@ class Paginator
         $current    = (int)abs($current);
         $limit      = (int)abs($limit);
 
-        $total = ceil($total / $limit);
+        $total = ceil($total / $limit) - 1;
 
         if ($total <= 1)
         {

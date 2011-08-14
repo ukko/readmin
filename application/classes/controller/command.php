@@ -125,6 +125,7 @@ class Controller_Command extends Controller_Base
                             'type'  => $this->getType( $key ),
             );
         }
+
         $total  = R::factory()->lSize( $lKey );
 
         $dataUrl = array(
