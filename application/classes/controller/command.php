@@ -71,6 +71,16 @@ class Controller_Command extends Controller_Base
         }
     }
 
+    private function bookmark_add( $key )
+    {
+
+    }
+
+    private function bookmark_del( $key )
+    {
+
+    }
+
     private function getType( $key )
     {
         $types = array(
@@ -115,7 +125,7 @@ class Controller_Command extends Controller_Base
             R::factory()->expire( $lKey, 300 );
         }
 
-        $start  = $this->page * Config::get( 're_limit' );
+        $start  = ($this->page - 1) * Config::get( 're_limit' );
         $end    = $start + Config::get( 're_limit' );
         $keys   = array();
         foreach ( R::factory()->lRange( $lKey, $start, $end ) as $key )

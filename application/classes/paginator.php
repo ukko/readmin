@@ -13,11 +13,11 @@ class Paginator
      */
     public static function parsePaginator($total, $current, $url, $limit = 10)
     {
-        $total      = (int)abs($total);
-        $current    = (int)abs($current);
-        $limit      = (int)abs($limit);
+        $total      = abs( (int)$total );
+        $current    = abs( (int)$current );
+        $limit      = abs( (int)$limit );
 
-        $total = floor($total / $limit);
+        $total = ceil($total / $limit);
 
         if ($total <= 1)
         {

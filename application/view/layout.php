@@ -13,12 +13,10 @@
             <div class="main">
                 <div class="content">
 
-                    <div class="message column append-10 ui-state-highlight ui-corner-all">
-                    </div>
-
+                    <div style="display: none;" class="message column append-10 ui-state-highlight ui-corner-all"></div>
 
                     <div class="command span-24 last">
-                        <image id="loader" src="/i/ajax-loader.gif" style="display:none;" />
+                        <img id="icon" src="" alt="">
                         <input type="text" class="command title" value="<?= $cmd ?>"/>
                         <input type="button" id="command"  class="" value="Execute" />
                     </div>

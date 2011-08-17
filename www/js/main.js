@@ -10,6 +10,13 @@ $(document).ready(function ()
         return false;
     }
 
+    History.Adapter.bind(window, 'statechange', function()
+    {
+        var State = History.getState();
+        History.log(State.data, State.title, State.url);
+        loadData( State.url, {} );
+    });
+
     commands = [
     {
         value: "INFO",
@@ -43,27 +50,39 @@ $(document).ready(function ()
     $('input.command').keypress(function(e){
         if ( e.which == 13 )
         {
-            command($('input.command').val());
+            $('#command').button().click();
         }
     });
 
-    $('#command').button().click(function(){
-        command($('input.command').val());
+    $('#command').button().click(function()
+    {
+        var href = $(this).attr('href');
+        var params = {
+                        'cmd'   : $('input.command').val(),
+                        'db'    : $('#database').val(),
+                        'page'  : 1
+                    };
+
+        loadData( href, params );
+        History.pushState({state: href }, 'Re:admin ' + $('input.command').val(), href);
+        return false;
     });
+
 
     $('a.cmd').live('click', function()
     {
         var href = $(this).attr('href');
-        loadData( href, {} );
+        loadData( href, {});
+        History.pushState({state: href }, 'Re:admin ' + $('input.command').val(), href);
         return false;
     });
 
-    History.Adapter.bind(window, 'statechange', function()
+    $('#icon').click(function()
     {
-        var State = History.getState();
-//        History.log(State.data, State.title, State.url);
-        loadData( State.url, {} );
+        setIcon('bookmark_add');
     });
+
+    // ------ FUNCTION -------
 
     /**
      * Ajax load data
@@ -73,7 +92,7 @@ $(document).ready(function ()
      */
     function loadData( href, params )
     {
-        $('#loader').show();
+        setIcon('loader');
 
         if ( params == 'undefined' )
         {
@@ -85,7 +104,7 @@ $(document).ready(function ()
             params,
             function( data )
             {
-                $('#loader').hide();
+                setIcon('auto');
 
                 if (data.table && data.table.length > 0)
                 {
@@ -100,44 +119,7 @@ $(document).ready(function ()
                     notice(data.error);
                 }
 
-                History.pushState({state: href }, 'Re:admin ' + $('input.command').val(), href);
                 $("input.command").flushCache();
-                //                commands.push({value: cmd, desc: ""});
-
-            },
-            'json'
-        );
-    }
-
-    function command( cmd )
-    {
-        $('#loader').show();
-
-        $.get(
-            '/command/',
-            {
-                'cmd' : cmd,
-                'db':   $('#database').val(),
-                'page': 1,
-            },
-            function( data )
-            {
-                $('#loader').hide();
-                if (data.table && data.table.length > 0)
-                {
-                    $('div.result').html(data.table);
-                }
-                if (data.notice && data.notice.length > 0)
-                {
-                    notice(data.error);
-                }
-                if (data.error && data.error.length > 0)
-                {
-                    notice(data.error);
-                }
-
-                $("input.command").flushCache();
-                commands.push({value: cmd, desc: ""});
             },
             'json'
         );
@@ -148,6 +130,29 @@ $(document).ready(function ()
         html = '<p><span style="float: left; margin-right: .3em; vertical-align:'
              + 'middle;" class="ui-icon ui-icon-info"></span>' + text + '</p>';
         $('div.message').html(html);
+    }
+
+    /**
+     * @param string icon
+     */
+    function setIcon( icon )
+    {
+        if (icon == 'loader')
+        {
+            $('#icon').attr('src', '/i/ajax-loader.gif');
+        }
+        else if ( icon =='auto' )
+        {
+            $('#icon').attr('src', '/i/32x32/emblems/emblem-new.png');
+        }
+        else if ( icon == 'bookmark_add' )
+        {
+            $('#icon').attr('src', '/i/32x32/actions/bookmark_add.png');
+        }
+        else if ( icon == 'bookmark_add' )
+        {
+
+        }
     }
 });
 
