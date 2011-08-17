@@ -1,12 +1,4 @@
 /*
-    Document   : main
-    Created on : 17.05.2011, 23:01:45
-    Author     : ukko
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-/*
    TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
@@ -74,6 +66,14 @@ thead td.check {
 thead td.type {
     width: 25px;
 }
+thead td.key {
+
+}
+
+thead td.action {
+    float: right;
+    width: 40px;
+}
 
 div.help div.group div {
     display: block;
@@ -90,8 +90,17 @@ div.message {
 ul.pager li {
     display: inline;
     padding: 3px;
+    cursor: default;
+
+    text-decoration: none;
+}
+ul.pager>li>a
+{
+    width: 23px;
+    height: 40px;
 }
 
-ul.pager a.active {
+ul.pager a.active
+{
     background-color: #c6d880;
 }
