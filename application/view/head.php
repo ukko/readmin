@@ -1,6 +1,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Re:admin</title>
+	<link href='/favicon.ico' rel='shortcut icon' />
 
         <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
         <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />

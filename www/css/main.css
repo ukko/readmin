@@ -11,6 +11,11 @@ div.footer{
     padding: 5px;
 }
 
+#icon {
+ padding-top: 9px;
+float: left;
+}
+
 div.footer>ul>li {
     display: inline;
     padding-left: 10px;
@@ -56,23 +61,23 @@ thead tr {
 }
 
 
-thead td.num {
-    width: 25px;
-}
-
 thead td.check {
-	width: 25px;
+	width: 20px;
 }
 thead td.type {
-    width: 25px;
+    width: 35px;
 }
 thead td.key {
-
+    width: 80%;
 }
 
 thead td.action {
     float: right;
     width: 40px;
+}
+
+table td {
+	word-wrap: break-word;
 }
 
 div.help div.group div {

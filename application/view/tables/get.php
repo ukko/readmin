@@ -1,5 +1,5 @@
 <table>
-	<caption><?= $key ?></caption>
+	<caption>GET <?= $key ?></caption>
 	<thead>
 		<tr>
 			<td>value</td>
