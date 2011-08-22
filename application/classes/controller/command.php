@@ -104,6 +104,107 @@ class Controller_Command extends Controller_Base
         }
     }
 
+    public function getValue( $key, $type )
+    {
+        $size   = 0;
+        $value  = ' ';
+        $max    = 120;
+
+        if ( $type == 'string' )
+        {
+            $size = R::factory()->strlen( $key );
+            $value = R::factory()->getRange( $key, 0, $max );
+            if (strlen($value) > $size)
+            {
+                $value .= '..';
+            }
+        }
+        elseif ( $type == 'set' )
+        {
+            $size = R::factory()->sCard( $key );
+            $value = '';
+            foreach ( R::factory()->sMembers( $key ) as $member )
+            {
+                if ( strlen( $value ) < ($max - 5) )
+                {
+                    if ( ! empty($value) )
+                    {
+                        $value .= ', ';
+                    }
+                    $value .= $member;
+                } else {
+                    $value .= ', ..';
+                    break;
+                }
+            }
+            $value = '[ ' . $value . ' ]';
+        }
+        elseif ( $type == 'zset' )
+        {
+            $size = R::factory()->zCard( $key );
+            $value = '';
+            foreach ( R::factory()->zRange( $key, 0, 100, true ) as $score => $item )
+            {
+                if ( strlen( $value ) < ($max - 5) )
+                {
+                    if ( ! empty($value) )
+                    {
+                        $value .= ', ';
+                    }
+
+                    $value .= $score . ':' .  $item;
+
+                } else {
+                    $value .= ', ..';
+                    break;
+                }
+            }
+            $value = '[ ' . $value . ' ]';
+        }
+        elseif ( $type == 'list' )
+        {
+            $size = R::factory()->lSize( $key );
+            $value = '';
+            foreach ( R::factory()->lRange( $key, 0, 100 ) as $item )
+            {
+                if ( strlen( $value ) < ($max - 5) )
+                {
+                    if ( ! empty($value) )
+                    {
+                        $value .= ', ';
+                    }
+                    $value .= $item;
+                } else {
+                    $value .= ', ..';
+                    break;
+                }
+            }
+            $value = '[ ' . $value . ' ]';
+        }
+        elseif ( $type == 'hash' )
+        {
+            $size = R::factory()->hLen( $key );
+            $value = '';
+            foreach ( R::factory()->hKeys( $key ) as $item )
+            {
+                if ( strlen( $value ) < ($max - 5) )
+                {
+                    if ( ! empty($value) )
+                    {
+                        $value .= ', ';
+                    }
+                    $value .= $item;
+                } else {
+                    $value .= ', ..';
+                    break;
+                }
+            }
+            $value = '[ ' . $value . ' ]';
+        }
+
+        return array($size, $value);
+    }
+
     // KEYS -------------------------
 
     /**
@@ -131,9 +232,10 @@ class Controller_Command extends Controller_Base
         foreach ( R::factory()->lRange( $lKey, $start, $end ) as $key )
         {
             $keys[] = array(
-                            'key'   => $key,
-                            'type'  => $this->getType( $key ),
-            );
+                                'key'   => $key,
+                                'type'  => $this->getType( $key ),
+                                'value' => $this->getValue( $key, $this->getType($key) )
+                            );
         }
 
         $total  = R::factory()->lSize( $lKey );

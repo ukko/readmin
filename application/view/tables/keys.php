@@ -15,7 +15,10 @@
         <tr>
             <td><input type="checkbox" id="<?= $item['key'] ?>" /></td>
             <td><?= $item['type'] ?></td>
-            <td><?= Helper_Keys::anchorKey( $item['key'], $item['type'] ) ?></td>
+            <td>
+                <?= Helper_Keys::anchorKey( $item['key'], $item['type'] ) ?>
+                <?= Helper_Keys::value($item['value']) ?>
+            </td>
             <td>
                 <?= Helper_Keys::anchorAction( $item['key'], $item['type'], 'delete' ) ?>
             </td>

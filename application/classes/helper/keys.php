@@ -52,4 +52,11 @@ class Helper_Keys
         }
         return '<a>Edit</a>';
     }
+
+    public static function value( $params )
+    {
+
+        list( $size, $value ) = $params;
+        return '<span class="preview"> ( ' . (int)$size . ' ) '  . $value . '</span>';
+    }
 }

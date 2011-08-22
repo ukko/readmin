@@ -109,3 +109,8 @@ ul.pager a.active
 {
     background-color: #c6d880;
 }
+
+.preview {
+    float: right;
+    color: #999999;
+}

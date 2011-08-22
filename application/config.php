@@ -4,14 +4,15 @@
  */
 return array(
     // Connection
-    'host'      => '127.0.0.1',
+    //'host'      => '127.0.0.1',
+    'host'      => '192.168.2.157',
     'port'      => '6379',
 
     // Params
-    'databases' => 16, // @FIXME
+    'databases' => 17, // @FIXME
 
     // db for service data re:admin
-    're_db'     => 0,
+    're_db'     => 16,
 
     // UI
     're_lang'   => 'ru', // @TODO
