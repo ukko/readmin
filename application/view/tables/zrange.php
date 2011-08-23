@@ -1,6 +1,6 @@
 <div>
     <table>
-        <caption><?= $key ?></caption>
+        <caption>ZRANGE <?= $key ?> 0 -1</caption>
         <thead>
             <tr>
                 <th>value</th>

@@ -1,6 +1,6 @@
 <div>
     <table>
-        <caption><?= $key ?></caption>
+        <caption>HGETALL <?= $key ?></caption>
 	<thead>
 		<tr>
 			<td>field</td>

@@ -7,7 +7,7 @@
 <html>
     <?= View::factory('head') ?>
     <body>
-        <div class="container showgrid1">
+        <div class="container showgrid">
             <?= View::factory('header', array('currentdb' => $currentdb)) ?>
             <hr/>
             <div class="main">
@@ -17,8 +17,8 @@
 
                     <div class="command span-24 last">
                         <img id="icon" src="" alt="">
-                        <input type="text" class="command title" value="<?= $cmd ?>"/>
-                        <input type="button" id="command"  class="" value="Execute" />
+                        <input type="text" id="command" class="command title" value="<?= $cmd ?>"/>
+                        <input type="button" class="" id="execute" value="Execute" />
                     </div>
                     <hr/>
                     <div class="result column span-24">

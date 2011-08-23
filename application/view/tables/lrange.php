@@ -1,6 +1,6 @@
 <div>
     <table>
-        <caption><?= $key ?></caption>
+        <caption>LRANGE <?= $key ?> 0 -1</caption>
         <thead>
             <tr>
                 <th>index</th>
