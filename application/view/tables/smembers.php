@@ -1,6 +1,6 @@
 <div>
     <table>
-        <caption><?= $key ?></caption>
+        <caption>SMEMBERS <?= $key ?></caption>
         <?php foreach( $value as $k => $v ) : ?>
         <tr>
             <td><?= $v ?></td>

@@ -3,10 +3,10 @@
      <caption><?= $command ?></caption>
     <thead>
         <tr>
-            <td class="check"><input type="checkbox" /></td>
-            <td class="type">type</td>
-            <td class="key">key</td>
-            <td class="actions">actions</td>
+            <td class="column span-1"><input type="checkbox" /></td>
+            <td class="column span-2">type</td>
+            <td class="">key</td>
+            <td class="column span-2 last">actions</td>
         </tr>
     </thead>
     <tbody>

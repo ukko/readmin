@@ -5,6 +5,8 @@ var commands = [];
 
 $(document).ready(function ()
 {
+    setIcon('start');
+
     var History = window.History;
     if ( ! History.enabled ) {
         return false;
@@ -28,15 +30,15 @@ $(document).ready(function ()
     },
     ];
 
-    $( "input.command" ).autocomplete({
+    $( "#command" ).autocomplete({
         minLength: 0,
         source: commands,
         focus: function( event, ui ) {
-            $( "inut.command" ).val( ui.item.value );
+            $( "#command" ).val( ui.item.value );
             return false;
         },
         select: function( event, ui ) {
-            $( "input.command" ).val( ui.item.value );
+            $( "#command" ).val( ui.item.value );
             return false;
         }
     })
@@ -47,24 +49,24 @@ $(document).ready(function ()
         .appendTo( ul );
     };
 
-    $('input.command').keypress(function(e){
+    $('#command').keypress(function(e){
         if ( e.which == 13 )
         {
-            $('#command').button().click();
+            $('#execute').button().click();
         }
     });
 
-    $('#command').button().click(function()
+    $('#execute').button().click(function()
     {
         var href = $(this).attr('href');
         var params = {
-                        'cmd'   : $('input.command').val(),
+                        'cmd'   : $('#command').val(),
                         'db'    : $('#database').val(),
                         'page'  : 1
                     };
 
         loadData( href, params );
-        History.pushState({state: href }, 'Re:admin ' + $('input.command').val(), href);
+        History.pushState({state: href }, 'Re:admin ' + $('#command').val(), href);
         return false;
     });
 
@@ -73,16 +75,38 @@ $(document).ready(function ()
     {
         var href = $(this).attr('href');
         loadData( href, {});
-        History.pushState({state: href }, 'Re:admin ' + $('input.command').val(), href);
+        History.pushState({state: href }, 'Re:admin ' + $('#command').val(), href);
         return false;
     });
 
     $('#icon').click(function()
     {
-        setIcon('bookmark_add');
+        setIcon('loader');
+        $.post(
+                '/bookmark/',
+                {
+                    'command': $('#command').val()
+                },
+                function(data)
+                {
+                    if (data.success = 'del') {
+                        setIcon('bookmark_del');
+                    }
+                    else
+                    {
+                        setIcon('bookmark_add');
+                    }
+                },
+                'json'
+        );
     });
 
     // ------ FUNCTION -------
+
+    function addHistory(type, command, hint)
+    {
+
+    }
 
     /**
      * Ajax load data
@@ -119,7 +143,11 @@ $(document).ready(function ()
                     notice(data.error);
                 }
 
-                $("input.command").flushCache();
+//                $("#command").flushCache();
+
+                if ( data.command.length > 0) {
+                    $('#command').val( data.command );
+                }
             },
             'json'
         );
@@ -137,21 +165,19 @@ $(document).ready(function ()
      */
     function setIcon( icon )
     {
+        $('#icon').attr('src', '/i/32x32/actions/document-new.png');
+
         if (icon == 'loader')
         {
             $('#icon').attr('src', '/i/ajax-loader.gif');
-        }
-        else if ( icon =='auto' )
-        {
-            $('#icon').attr('src', '/i/32x32/emblems/emblem-new.png');
         }
         else if ( icon == 'bookmark_add' )
         {
             $('#icon').attr('src', '/i/32x32/actions/bookmark_add.png');
         }
-        else if ( icon == 'bookmark_add' )
+        else if ( icon == 'bookmark_del' )
         {
-
+            $('#icon').attr('src', '/i/32x32/actions/document-new.png');
         }
     }
 });

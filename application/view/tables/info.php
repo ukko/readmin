@@ -1,9 +1,10 @@
 <?php
 /**
- * 
+ *
  */
 ?>
 <table>
+    <caption>INFO</caption>
     <thead>
         <tr>
             <th>name</th>
@@ -16,7 +17,7 @@
         <tr>
             <td><?= $name ?></td>
             <td><?= $value ?></td>
-        </tr>        
+        </tr>
         <?php endforeach; ?>
         <?php endif; ?>
     </tbody>
