@@ -147,6 +147,7 @@ $(document).ready(function ()
 
                 if ( data.command.length > 0) {
                     $('#command').val( data.command );
+                    $('title').text( 'Re:admin ' + data.command );
                 }
             },
             'json'

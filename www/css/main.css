@@ -6,6 +6,11 @@
 div.header {
     padding: 10px;
 }
+div.header a {
+    text-decoration: none;
+    color: #000000;
+}
+
 
 div.footer{
     padding: 5px;

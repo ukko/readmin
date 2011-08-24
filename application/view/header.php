@@ -1,6 +1,6 @@
 <div class="header">
-    <div class="span-5">
-        <h1>Re:admin</h1>
+    <div class="span-5 logo">
+        <h1><a href="">Re:admin</a></h1>
     </div>
     <div class="right span-4 last ui-widget">
         <label for="">Database:</label>
