@@ -15,8 +15,8 @@
         <?php if(isset($items)) : ?>
         <?php foreach ($items as $name => $value) : ?>
         <tr>
-            <td><?= $name ?></td>
-            <td><?= $value ?></td>
+            <td><?= htmlspecialchars($name, ENT_QUOTES) ?></td>
+            <td><?= htmlspecialchars($value, ENT_QUOTES) ?></td>
         </tr>
         <?php endforeach; ?>
         <?php endif; ?>

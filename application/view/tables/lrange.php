@@ -1,9 +1,9 @@
 <div>
     <table>
-        <caption>LRANGE <?= $key ?> 0 -1</caption>
+        <caption>LRANGE <?= htmlspecialchars($key, ENT_QUOTES) ?> 0 -1</caption>
         <thead>
             <tr>
-                <th>index</th>
+                <th class="column span-4">index</th>
                 <th>value</th>
             </tr>
         </thead>
@@ -11,7 +11,7 @@
             <?php foreach( $value as $k => $v ) : ?>
             <tr>
                 <td><?= $k ?></td>
-                <td><?= $v ?></td>
+                <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

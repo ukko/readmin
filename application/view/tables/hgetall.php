@@ -1,17 +1,17 @@
 <div>
     <table>
-        <caption>HGETALL <?= $key ?></caption>
+        <caption>HGETALL <?= htmlspecialchars($key, ENT_QUOTES) ?></caption>
 	<thead>
 		<tr>
-			<td>field</td>
+			<td class="column span-4">field</td>
 			<td>value</td>
 		</tr>
 	<thead>
 	<tbody>
 		<?php foreach( $value as $k => $v ) : ?>
 		<tr>
-		    <td><?= $k ?></td>
-		    <td><?= $v ?></td>
+		    <td><?= htmlspecialchars($k, ENT_QUOTES) ?></td>
+		    <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>

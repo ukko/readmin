@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ *
  */
 ?>
 <table>
@@ -18,9 +18,9 @@
         <tr>
             <td><input type="checkbox" /></td>
             <td>S</td>
-            <td><?= $name ?></td>
-            <td><?= $value ?></td>
-        </tr>        
+            <td><?= htmlspecialchars($name, ENT_QUOTES) ?></td>
+            <td><?= htmlspecialchars($value, ENT_QUOTES) ?></td>
+        </tr>
         <?php endforeach; ?>
         <?php endif; ?>
     </tbody>

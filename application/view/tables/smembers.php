@@ -1,9 +1,9 @@
 <div>
     <table>
-        <caption>SMEMBERS <?= $key ?></caption>
+        <caption>SMEMBERS <?= htmlspecialchars($key, ENT_QUOTES) ?></caption>
         <?php foreach( $value as $k => $v ) : ?>
         <tr>
-            <td><?= $v ?></td>
+            <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
         </tr>
         <?php endforeach; ?>
     </table>

@@ -7,7 +7,7 @@
 <html>
     <?= View::factory('head') ?>
     <body>
-        <div class="container showgrid">
+        <div class="container showgrid1">
             <?= View::factory('header', array('currentdb' => $currentdb)) ?>
             <hr/>
             <div class="main">

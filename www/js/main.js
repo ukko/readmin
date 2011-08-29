@@ -64,7 +64,6 @@ $(document).ready(function ()
                         'db'    : $('#database').val(),
                         'page'  : 1
                     };
-
         loadData( href, params );
         History.pushState({state: href }, 'Re:admin ' + $('#command').val(), href);
         return false;

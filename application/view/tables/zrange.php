@@ -3,7 +3,7 @@
         <caption>ZRANGE <?= $key ?> 0 -1</caption>
         <thead>
             <tr>
-                <th class="column span-2">id</th>
+                <th class="column span-2">rank</th>
                 <th class="column span-3">value</th>
                 <th>score</th>
             </tr>

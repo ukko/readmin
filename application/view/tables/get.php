@@ -1,5 +1,5 @@
 <table>
-	<caption>GET <?= $key ?></caption>
+	<caption>GET <?= htmlspecialchars($key, ENT_QUOTES) ?></caption>
 	<thead>
 		<tr>
 			<td>value</td>
@@ -7,7 +7,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><?= $value ?></td>
+			<td><?= htmlspecialchars($value, ENT_QUOTES) ?></td>
 		</tr>
 	</tbody>
 </table>
