@@ -3,21 +3,13 @@
  */
 var commands = [];
 
+
+
+
 $(document).ready(function ()
 {
     setIcon('start');
-
-    var History = window.History;
-    if ( ! History.enabled ) {
-        return false;
-    }
-
-    History.Adapter.bind(window, 'statechange', function()
-    {
-        var State = History.getState();
-        History.log(State.data, State.title, State.url);
-        loadData( State.url, {} );
-    });
+    $('#command').focus();
 
     commands = [
     {
@@ -56,25 +48,32 @@ $(document).ready(function ()
         }
     });
 
+    $(window).bind('popstate', function (event)
+    {
+        loadData(history.state.url);
+    });
+
     $('#execute').button().click(function()
     {
-        var href = $(this).attr('href');
-        var params = {
-                        'cmd'   : $('#command').val(),
-                        'db'    : $('#database').val(),
-                        'page'  : 1
-                    };
-        loadData( href, params );
-        History.pushState({state: href }, 'Re:admin ' + $('#command').val(), href);
+        var href    = window.location.protocol + '//' + window.location.host
+                    + '/?db=' + $( '#database' ).val()
+                    + '&cmd=' + $( '#command' ).val().replace(' ', '+');
+        var title   = 'Re:admin "' + $('#command').val() + '"';
+        var state   = { url: href, title: title };
+
+        history.pushState( state, title, href);
+        loadData(href);
         return false;
     });
 
 
     $('a.cmd').live('click', function()
     {
-        var href = $(this).attr('href');
-        loadData( href, {});
-        History.pushState({state: href }, 'Re:admin ' + $('#command').val(), href);
+        var href    = $(this).attr('href');
+        var title   = 'Re:admin "' + $('#command').val() + '"';
+
+        history.pushState( {'url': href, 'title': title }, title, href);
+        loadData(href);
         return false;
     });
 
@@ -116,11 +115,6 @@ $(document).ready(function ()
     function loadData( href, params )
     {
         setIcon('loader');
-
-        if ( params == 'undefined' )
-        {
-            params = {};
-        }
 
         $.get(
             href,
@@ -181,5 +175,4 @@ $(document).ready(function ()
         }
     }
 });
-
 
