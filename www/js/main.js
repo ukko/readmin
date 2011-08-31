@@ -59,7 +59,6 @@ $(document).ready(function ()
         var state   = { url: href, title: title };
 
         History.pushState( state, title, href);
-        loadData(href);
         return false;
     });
 
@@ -70,7 +69,6 @@ $(document).ready(function ()
         var title   = 'Re:admin "' + $('#command').val() + '"';
 
         History.pushState( {'url': href, 'title': title }, title, href);
-        loadData(href);
         return false;
     });
 
