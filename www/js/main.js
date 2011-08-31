@@ -3,11 +3,10 @@
  */
 var commands = [];
 
-
-
-
 $(document).ready(function ()
 {
+    var History = window.History;
+
     setIcon('start');
     $('#command').focus();
 
@@ -48,20 +47,18 @@ $(document).ready(function ()
         }
     });
 
-    $(window).bind('popstate', function (event)
-    {
-        loadData(history.state.url);
+    History.Adapter.bind( window, 'statechange', function(){
+        var State = History.getState();
+        loadData(State.url);
     });
 
     $('#execute').button().click(function()
     {
-        var href    = window.location.protocol + '//' + window.location.host
-                    + '/?db=' + $( '#database' ).val()
-                    + '&cmd=' + $( '#command' ).val().replace(' ', '+');
+        var href    = window.location.protocol + '//' + window.location.host + '/?db=' + $( '#database' ).val() + '&cmd=' + $( '#command' ).val().replace(' ', '+');
         var title   = 'Re:admin "' + $('#command').val() + '"';
         var state   = { url: href, title: title };
 
-        history.pushState( state, title, href);
+        History.pushState( state, title, href);
         loadData(href);
         return false;
     });
@@ -72,7 +69,7 @@ $(document).ready(function ()
         var href    = $(this).attr('href');
         var title   = 'Re:admin "' + $('#command').val() + '"';
 
-        history.pushState( {'url': href, 'title': title }, title, href);
+        History.pushState( {'url': href, 'title': title }, title, href);
         loadData(href);
         return false;
     });
