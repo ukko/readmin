@@ -10,15 +10,40 @@ $(document).ready(function ()
     setIcon('start');
     $('#command').focus();
 
-    commands = [
-    {
-        value: "INFO",
-        desc: "Get information and statistics about the server",
-    },
-    {
-        value: "KEYS *",
-        desc: "Find all keys matching the given pattern",
-    },
+    commands =
+    [
+        {
+            value:  "INFO",
+            desc:   "Get information and statistics about the server"
+        },
+        {
+            value: "KEYS pattern*",
+            desc:   "Find all keys matching the given pattern"
+        },
+        {
+            value: "GET key",
+            desc:   "Get the value of a key"
+        },
+        {
+            value: "HGETALL key",
+            desc:   "Get all the fields and values in a hash"
+        },
+        {
+            value:  "SMEMBERS key",
+            desc:   "Get all the members in a set"
+        },
+        {
+            value:  "ZRANGE key start stop [WITHSCORES]",
+            desc:   "Return a range of members in a sorted set, by index"
+        },
+        {
+            value:  "LRANGE key start stop",
+            desc:   "Get a range of elements from a list"
+        },
+        {
+            value:  "DEL key [key ...]",
+            desc:   "Delete a key"
+        },
     ];
 
     $( "#command" ).autocomplete({
