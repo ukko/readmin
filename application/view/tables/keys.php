@@ -17,7 +17,7 @@
             <td><?= $item['type'] ?></td>
             <td>
                 <div>
-                    <?= Helper_Keys::anchorKey( $item['key'], $item['type'] ) ?>
+                    <?= Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
                     <?= Helper_Keys::value( $item['value'] ) ?>
                 </div>
             </td>

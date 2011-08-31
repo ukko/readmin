@@ -11,7 +11,7 @@ return array(
     'databases' => 17, // @FIXME
 
     // db for service data re:admin
-    're_db'     => 16,
+    're_db'     => 0,
 
     // UI
     're_lang'   => 'ru', // @TODO

@@ -12,10 +12,10 @@ class Helper_Keys
      * @param   string  $type
      * @return  string
      */
-    public static function anchorKey( $key, $type )
+    public static function anchorKey( $key, $type, $db )
     {
         $data = array(
-            'db' => 0,
+            'db' => $db,
         );
 
         if ($type == 'string')
@@ -50,7 +50,6 @@ class Helper_Keys
         {
             return '<a href="/?db='.$db.'&DEL+'.$key.'">Delete</a>';
         }
-        return '<a>Edit</a>';
     }
 
     public static function value( $params )

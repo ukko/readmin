@@ -20,9 +20,30 @@ class Controller_Command extends Controller_Base
 
     public function action_index()
     {
-        $this->cmd          = isset( $_GET['cmd'] )  ? trim($_GET['cmd'])  : NULL;
-        $this->db           = isset( $_GET['db'] )   ? (int) $_GET['db']   : Conf::get('re_db');
-        $this->page         = isset( $_GET['page'] ) ? (int) $_GET['page'] : 1;
+        $options    = array(
+            'options' => array (
+                'default'   => Config::get('re_db'),
+                'min_range' => 0,
+                'max_range' => 1000,
+            )
+        );
+        $this->cmd  = filter_input( INPUT_GET, 'cmd');
+        $this->db   = filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $options );
+
+        $options    = array(
+            'options' => array (
+                'default'   => 1,
+                'min_range' => 1,
+            )
+        );
+        $this->page = filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $options );
+
+//        $commands = array(
+//            'keys' => array(
+//                'info'      => 'Find all keys matching the given pattern',
+//                'pattern'   => 'KEYS *',
+//            ),
+//        );
 
         try
         {
@@ -244,10 +265,11 @@ class Controller_Command extends Controller_Base
             'cmd'   => $this->cmd,
             'db'    => $this->db,
         );
-        $url    = '/?'. http_build_query($dataUrl) . '&page=:id:';
+        $url    = '/?'. http_build_query( $dataUrl ) . '&page=:id:';
         $paginator = Paginator::parsePaginator( $total, $this->page, $url, Config::get( 're_limit' ) );
 
         $data = array(
+                        'db'        => $this->db,
                         'paginator' => $paginator,
                         'keys'      => $keys,
                         'command'   => $this->cmd
@@ -319,8 +341,6 @@ class Controller_Command extends Controller_Base
 
         $this->notice = 'Delete ' . $del . ' keys';
     }
-
-
 
     public function info()
     {
