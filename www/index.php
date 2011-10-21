@@ -5,7 +5,7 @@
 error_reporting(E_ALL);
 define('APPPATH', dirname(__DIR__) . '/application');
 
-require_once APPPATH . '/classes/exceptions.php';
+require_once APPPATH . '/classes/Exceptions.php';
 
 $uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 $uri = substr($uri, 1);
@@ -21,13 +21,15 @@ if ( method_exists( $controller, $method ) )
 }
 else
 {
-    throw new ExceptionRouter('Not a valid URL');
+    throw new ExceptionRouter('Not a valid URL : ' . $uri);
 }
 
 function __autoload($className)
 {
-    $path = str_replace('_', '/', strtolower($className)) . '.php';
-    if (file_exists(APPPATH . '/classes/' . $path)) {
+    $path = str_replace('_', '/', $className) . '.php';
+
+    if ( file_exists(APPPATH . '/classes/' . $path) )
+    {
         require_once APPPATH . '/classes/' . $path;
     }
 }

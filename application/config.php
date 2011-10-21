@@ -3,12 +3,13 @@
  * Config file
  */
 return array(
-    // Connection
-    'host'      => '192.168.2.157',
-    'port'      => '6379',
+    // Redis connection
+    'host'      => '127.0.0.1', // Redis host
+    'port'      => '6379',      // Redis port
+    'timeout'   => 3,           // Redis timeout connect
 
-    // Params
-    'databases' => 17, // @FIXME
+    // Max count databases
+    'databases' => 17,
 
     // db for service data re:admin
     're_db'     => 0,

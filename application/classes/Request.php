@@ -33,16 +33,17 @@ class Request
             )
         );
 
-        $this->setUrl( filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL ) );
-        $this->setMethod( filter_input( INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING ) );
+        $this->setUrl(      filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL ) );
+        $this->setMethod(   filter_input( INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING ) );
         $this->setReferrer( filter_input( INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_URL ) );
-        $this->setIp( filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_SANITIZE_STRING ) );
-        $this->setAjax( filter_input( INPUT_SERVER, 'HTTP_X_REQUESTED_WITH', FILTER_SANITIZE_STRING ) == 'XMLHttpRequest' );
-        $this->setScheme( filter_input( INPUT_SERVER, 'SERVER_PROTOCOL', FILTER_SANITIZE_STRING ) );
+        $this->setIp(       filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_SANITIZE_STRING ) );
+        $this->setAjax(     filter_input( INPUT_SERVER, 'HTTP_X_REQUESTED_WITH', FILTER_SANITIZE_STRING ) == 'XMLHttpRequest' );
+        $this->setScheme(   filter_input( INPUT_SERVER, 'SERVER_PROTOCOL', FILTER_SANITIZE_STRING ) );
         $this->setUserAgent( filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING ) );
-        $this->setDb( filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
-        $this->setCmd( filter_input( INPUT_GET, 'cmd') );
-        $this->setPage( filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
+
+        $this->setCmd(      filter_input( INPUT_GET, 'cmd', FILTER_SANITIZE_STRING ) );
+        $this->setDb(       filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
+        $this->setPage(     filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
     }
 
     public function setAjax($ajax)
