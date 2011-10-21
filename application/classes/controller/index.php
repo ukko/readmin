@@ -16,7 +16,6 @@ class Controller_Index extends Controller_Base
             'dbkeys'    => $this->getDbKeys(),
         );
 
-
         echo View::factory('layout', $data);
     }
 

@@ -315,12 +315,26 @@ class Controller_Command extends Controller_Base
 
     public function zrange( $key, $start = 0, $end = -1 )
     {
-       $value = R::factory()->zRange( $key, $start, $end, true );
+        $total = R::factory()->zCard( $key );
+        $value = R::factory()->zRange( $key, $start, $end, true );
 
         $data = array(
                         'key'   => $key,
                         'value' => $value,
                     );
+        $data['paginator']  = '';
+        if ( $total > Config::get('re_limit') )
+        {
+            $cmd = 'ZRANGE ' . $key . ' ' . ($start + Config::get('re_limit')) . ' ' . ($end + Config::get('re_limit'));
+            $dataUrl = array(
+                            'db'    => $this->db,
+                            'cmd'   => $cmd
+                            );
+
+            $url    = '/?'. http_build_query( $dataUrl ) . '&page=:id:';
+            $data['paginator'] = Paginator::parsePaginator( $total, $this->page, $url, Config::get( 're_limit' ) );
+        }
+
         $this->table = View::factory('tables/zrange', $data);
     }
 

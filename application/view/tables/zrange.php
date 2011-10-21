@@ -1,4 +1,5 @@
 <div>
+    <?= $paginator ?>
     <table>
         <caption>ZRANGE <?= $key ?> 0 -1</caption>
         <thead>
@@ -20,4 +21,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?= $paginator ?>
 </div>
