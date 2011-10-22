@@ -16,7 +16,11 @@ class Request
     protected $cmd          = null;
     protected $page         = null;
 
-    public function __construct()
+    protected static $instance = null;
+
+    private function __construct() {}
+
+    private function before()
     {
         $dbOptions = array (
             'options' => array (
@@ -44,6 +48,21 @@ class Request
         $this->setCmd(      filter_input( INPUT_GET, 'cmd', FILTER_SANITIZE_STRING ) );
         $this->setDb(       filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
         $this->setPage(     filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
+    }
+
+    /**
+     * Return Request instance
+     * @return Request
+     */
+    public static function factory()
+    {
+        if ( ! self::$instance )
+        {
+            self::$instance = new Request;
+            self::$instance->before();
+        }
+
+        return self::$instance;
     }
 
     public function setAjax($ajax)

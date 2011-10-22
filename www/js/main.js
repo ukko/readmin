@@ -143,9 +143,9 @@ $(document).ready(function ()
             {
                 setIcon('auto');
 
-                if (data.table && data.table.length > 0)
+                if (data.content && data.content.length > 0)
                 {
-                    $('div.result').html(data.table);
+                    $('div.result').html(data.content);
                 }
                 if (data.notice && data.notice.length > 0)
                 {

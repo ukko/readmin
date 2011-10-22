@@ -7,7 +7,7 @@ define('APPPATH', dirname(__DIR__) . '/application');
 
 require_once APPPATH . '/classes/Exceptions.php';
 
-$uri = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+$uri = parse_url( Request::factory()->getUrl(), PHP_URL_PATH );
 $uri = substr($uri, 1);
 
 $controller = ucfirst(strstr($uri, '/', true));
