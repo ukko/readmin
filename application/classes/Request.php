@@ -14,7 +14,10 @@ class Request
     protected $userAgent    = null;
     protected $db           = null;
     protected $cmd          = null;
+    protected $serverName   = null;
     protected $page         = null;
+
+    protected $back         = null;
 
     protected static $instance = null;
 
@@ -48,6 +51,8 @@ class Request
         $this->setCmd(      filter_input( INPUT_GET, 'cmd', FILTER_SANITIZE_STRING ) );
         $this->setDb(       filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
         $this->setPage(     filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
+        $this->setServerName( filter_input( INPUT_SERVER, 'SERVER_NAME' ) );
+        $this->setBack(     $this->getCmd() );
     }
 
     /**
@@ -163,5 +168,35 @@ class Request
     public function getUserAgent()
     {
         return $this->userAgent;
+    }
+
+    public function setBack($back)
+    {
+        if ( ! $back )
+        {
+            return $this->back = "INFO";
+        }
+
+        $action = explode(' ', $back);
+        $action = strtoupper( $action[0] );
+        if ( in_array($action, array('KEYS')) )
+        {
+            return $this->back = $back;
+        }
+    }
+
+    public function getBack()
+    {
+        return $this->back;
+    }
+
+    public function setServerName($serverName)
+    {
+        $this->serverName = $serverName;
+    }
+
+    public function getServerName()
+    {
+        return $this->serverName;
     }
 }

@@ -170,10 +170,17 @@ class Helper_Keys
 
     public static function anchorAction( $key, $type, $action )
     {
-        $db = 0;
         if ( $action == 'delete' )
         {
-            return '<a href="/?db='.$db.'&DEL+'.$key.'">Delete</a>';
+            $params = array(
+                'db'    => Request::factory()->getDb(),
+                'cmd'   => 'DEL ' . $key,
+                'back'  => Request::factory()->getBack(),
+            );
+
+            $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query($params);
+
+            return '<a href="' . $url . '">Delete</a>';
         }
     }
 

@@ -61,9 +61,30 @@ class Controller_Command extends Controller_Base
 
     public function del($args)
     {
-        $del = R::factory()->del($args);
+        $back = filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING );
 
-        $this->notice = 'Delete ' . $del . ' keys';
+        Command_Keys::del( urldecode($args) );
+
+        if ( $back )
+        {
+            $args = explode(' ', $back);
+            $action = array_shift( $args );
+
+            if ( method_exists( $this, $action ) )
+            {
+                Request::factory()->setCmd( $back );
+                if (is_array($back))
+                {
+                    return call_user_func_array(array( $this, $action ), $back);
+                }
+                else
+                {
+                    return call_user_func(array( $this, $action ), $back);
+                }
+            }
+        }
+
+        return $this->info();
     }
 
     public function info()

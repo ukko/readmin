@@ -4,7 +4,7 @@
  */
 return array(
     // Redis connection
-    'host'      => '127.0.0.1', // Redis host
+    'host'      => '192.168.2.157', // Redis host
     'port'      => '6379',      // Redis port
     'timeout'   => 3,           // Redis timeout connect
 
@@ -22,4 +22,7 @@ return array(
 
     // limit items on page
     're_limit'  => 20,
+
+    // limit time store key (sec.)
+    're_store_time' => 1500,
 );

@@ -2,17 +2,22 @@
 
 class Command_Keys
 {
-    public static function keys( $args )
+    /**
+     *
+     * @param $pattern
+     * @return void
+     */
+    public static function keys( $pattern )
     {
-        $lKey = Config::get( 're_prefix' ) . sha1( $args );
+        $lKey = Config::get( 're_prefix' ) . sha1( $pattern );
 
         if ( ! R::factory()->exists( $lKey ) )
         {
-            foreach ( R::factory()->keys( $args ) as $key )
+            foreach ( R::factory()->keys( $pattern ) as $key )
             {
                 R::factory()->rPush( $lKey, $key );
             }
-            R::factory()->expire( $lKey, 300 );
+            R::factory()->expire( $lKey, Config::get('re_store_time') );
         }
 
         $start  = (Request::factory()->getPage() - 1) * Config::get( 're_limit' );
@@ -44,5 +49,14 @@ class Command_Keys
                     );
 
         return View::factory( 'tables/keys', $data );
+    }
+
+    /**
+     * @param $key
+     * @return int
+     */
+    public static function del( $key )
+    {
+        return R::factory()->del( $key );
     }
 }
