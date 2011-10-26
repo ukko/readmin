@@ -9,6 +9,12 @@ class Command_Keys
      */
     public static function keys( $pattern )
     {
+        if ( is_array( $pattern ) )
+        {
+            $pattern = implode(' ', $pattern);
+
+        }
+
         $lKey = Config::get( 're_prefix' ) . sha1( $pattern );
 
         if ( ! R::factory()->exists( $lKey ) )
@@ -20,9 +26,9 @@ class Command_Keys
             R::factory()->expire( $lKey, Config::get('re_store_time') );
         }
 
-        $start  = (Request::factory()->getPage() - 1) * Config::get( 're_limit' );
-        $end    = $start + Config::get( 're_limit' );
-        $keys   = array();
+        $start      = (Request::factory()->getPage() - 1) * Config::get( 're_limit' );
+        $end        = $start + Config::get( 're_limit' );
+        $keys       = array();
         foreach ( R::factory()->lRange( $lKey, $start, $end ) as $key )
         {
             $keys[] = array(
@@ -32,14 +38,14 @@ class Command_Keys
                             );
         }
 
-        $total  = R::factory()->lSize( $lKey );
+        $total      = R::factory()->lSize( $lKey );
 
         $dataUrl = array(
             'cmd'   => Request::factory()->getCmd(),
             'db'    => Request::factory()->getDb(),
         );
-        $url    = '/?'. http_build_query( $dataUrl ) . '&page=:id:';
-        $paginator = Paginator::parsePaginator( $total, Request::factory()->getPage(), $url, Config::get( 're_limit' ) );
+        $url        = '/?'. http_build_query( $dataUrl ) . '&page=:id:';
+        $paginator  = Paginator::parsePaginator( $total, Request::factory()->getPage(), $url, Config::get( 're_limit' ) );
 
         $data = array(
                         'db'        => Request::factory()->getDb(),

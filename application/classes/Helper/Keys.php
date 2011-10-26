@@ -135,6 +135,7 @@ class Helper_Keys
      *
      * @param   string  $key
      * @param   string  $type
+     * @param   string  $db
      * @return  string
      */
     public static function anchorKey( $key, $type, $db )
@@ -174,13 +175,13 @@ class Helper_Keys
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
-                'cmd'   => 'DEL ' . $key,
+                'cmd'   => 'DEL ' . urlencode( $key ),
                 'back'  => Request::factory()->getBack(),
             );
 
-            $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query($params);
+            $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
 
-            return '<a href="' . $url . '">Delete</a>';
+            return '<a class="cmd" href="' . $url . '">Delete</a>';
         }
     }
 
