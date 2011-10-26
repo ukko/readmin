@@ -1,6 +1,6 @@
 <div class="header">
-    <div class="span-5 logo">
-        <h1><a href="">Re:admin</a></h1>
+    <div class="span-16 logo">
+        <h1><a href="">Re:admin</a> <span><?= Config::get('host') .':' . Config::get('port') ?></span></h1>
     </div>
     <div class="right span-4 last ui-widget">
         <label for="">Database:</label>

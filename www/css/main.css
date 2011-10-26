@@ -11,6 +11,12 @@ div.header a {
     color: #000000;
 }
 
+div.header span {
+    text-decoration: none;
+    color: #666666;
+    font-size: 0.7em;
+}
+
 
 div.footer{
     padding: 5px;
