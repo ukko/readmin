@@ -26,6 +26,7 @@ class R
             {
                 self::$instance = new Redis();
                 self::$instance->connect( Config::get('host'), Config::get('port'), Config::get('timeout') );
+                self::$instance->select( Request::factory()->getDb() );
             }
             catch ( RedisException $e )
             {

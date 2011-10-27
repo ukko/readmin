@@ -4,14 +4,15 @@
  */
 return array(
     // Redis connection
-    'host'      => '192.168.2.157', // Redis host
+    //'host'      => '192.168.2.157', // redis host
+    'host'      => '127.0.0.1', // redis host
     'port'      => '6379',      // Redis port
     'timeout'   => 3,           // Redis timeout connect
 
     // Max count databases
-    'databases' => 17,
+    'databases' => 16,
 
-    // db for service data re:admin
+    // default database
     're_db'     => 0,
 
     // UI

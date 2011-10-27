@@ -12,7 +12,6 @@ class Command_Keys
         if ( is_array( $pattern ) )
         {
             $pattern = implode(' ', $pattern);
-
         }
 
         $lKey = Config::get( 're_prefix' ) . sha1( $pattern );
