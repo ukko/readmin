@@ -5,8 +5,8 @@
 		<tr>
 			<td class="column span-4">field</td>
 			<td>value</td>
-            <td class="action">edit</td>
-            <td class="action">delete</td>
+            <td class="column span-2">edit</td>
+            <td class="column span-2">delete</td>
 		</tr>
 	<thead>
 	<tbody>
