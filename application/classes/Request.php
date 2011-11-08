@@ -52,7 +52,7 @@ class Request
         $this->setDb(       filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
         $this->setPage(     filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
         $this->setServerName( filter_input( INPUT_SERVER, 'SERVER_NAME' ) );
-        $this->setBack(     $this->getCmd() );
+        $this->setBack(     filter_input( INPUT_GET,    'back', FILTER_SANITIZE_STRING ) );
     }
 
     /**
@@ -172,31 +172,33 @@ class Request
 
     public function setBack( $back )
     {
-        die(var_dump( $this->referrer ));
-        if ( $this->referrer )
+//        if ( $this->referrer )
+//        {
+//            parse_str(parse_url( $this->getReferrer(), PHP_URL_QUERY ), $params);
+//
+//            if ( isset( $params['cmd'] )  )
+//            {
+//
+//                return $this->back = $params['cmd'];
+//            }
+//
+//        }
+//        return $this->back = "INFO";
+
+        if ( ! $back )
         {
-            parse_str(parse_url( $this->getReferrer(), PHP_URL_QUERY ), $params);
-
-            if ( isset( $params['cmd'] )  )
-            {
-
-                return $this->back = $params['cmd'];
-            }
-
+            return $this->back = "INFO";
         }
-        return $this->back = "INFO";
-//
-//        if ( ! $back )
-//        {
-//            return $this->back = "INFO";
-//        }
-//
-//        $action = explode(' ', $back);
-//        $action = strtoupper( $action[0] );
-//        if ( in_array($action, array('KEYS')) )
-//        {
-//            return $this->back = $back;
-//        }
+
+        $back = urldecode($back);
+
+        $action = explode(' ', $back);
+        $action = strtoupper( $action[0] );
+
+        if ( in_array($action, array('KEYS', 'HGETALL')) )
+        {
+            return $this->back = $back;
+        }
     }
 
     public function getBack()

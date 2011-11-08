@@ -28,6 +28,8 @@ class Controller_Command extends Controller_Base
 
     public function hgetall( $key )
     {
+        Request::factory()->setBack( urlencode( 'HGETALL ' . $key ) );
+
         return Command_Hashes::hGetAll( $key );
     }
 
