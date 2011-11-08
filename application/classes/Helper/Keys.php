@@ -169,6 +169,7 @@ class Helper_Keys
         return '<a href="/?' . $url  . '" class="cmd">' . $key . '</a>';
     }
 
+
     public static function anchorAction( $key, $type, $action )
     {
         if ( $action == 'delete' )
@@ -181,7 +182,7 @@ class Helper_Keys
 
             $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
 
-            return '<a class="cmd" href="' . $url . '">Delete</a>';
+            return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '">Delete</a>';
         }
     }
 

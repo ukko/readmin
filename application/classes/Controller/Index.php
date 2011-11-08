@@ -42,6 +42,10 @@ class Controller_Index extends Controller_Base
         }
     }
 
+    /**
+     * @FIXME
+     * @return void
+     */
     public function action_help()
     {
         $data = array(
@@ -51,9 +55,23 @@ class Controller_Index extends Controller_Base
         echo View::factory('layout', $data);
     }
 
+    /**
+     * @FIXME
+     * @return void
+     */
     public function action_info()
     {
         $info = R::factory()->info();
         return View::factory('tables/info', array('items' => $info));
+    }
+
+    public function action_bookmark_add( $key )
+    {
+
+    }
+
+    public function action_bookmark_del( $key )
+    {
+
     }
 }

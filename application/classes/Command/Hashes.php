@@ -9,7 +9,7 @@
 
 class Command_Hashes
 {
-    public static function hgetall( $key )
+    public static function hGetAll( $key )
     {
         $value = R::factory()->hGetAll( $key );
 
@@ -18,5 +18,10 @@ class Command_Hashes
                         'value' => $value,
                     );
         return View::factory('tables/hgetall', $data);
+    }
+
+    public static function hDel( $key, $field )
+    {
+        return R::factory()->hDel( $key, $field );
     }
 }

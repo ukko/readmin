@@ -5,6 +5,8 @@
 		<tr>
 			<td class="column span-4">field</td>
 			<td>value</td>
+            <td class="action">edit</td>
+            <td class="action">delete</td>
 		</tr>
 	<thead>
 	<tbody>
@@ -12,6 +14,8 @@
 		<tr>
 		    <td><?= htmlspecialchars($k, ENT_QUOTES) ?></td>
 		    <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
+            <td><?= '-' ?></td>
+            <td><?= Helper_Hashes::anchorActionDelete( $key, $k ) ?></td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>

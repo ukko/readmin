@@ -4,19 +4,6 @@
  */
 class Controller_Command extends Controller_Base
 {
-    private function bookmark_add( $key )
-    {
-
-    }
-
-    private function bookmark_del( $key )
-    {
-
-    }
-
-
-    // KEYS -------------------------
-
     /**
      * Display keys
      *
@@ -41,7 +28,14 @@ class Controller_Command extends Controller_Base
 
     public function hgetall( $key )
     {
-        return Command_Hashes::hgetall( $key );
+        return Command_Hashes::hGetAll( $key );
+    }
+
+    public function hdel( $key, $field )
+    {
+        Command_Hashes::hDel( $key, $field );
+
+        return Helper_Navigation::goBack( $this );
     }
 
     public function smembers( $key )

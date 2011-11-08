@@ -9,8 +9,9 @@ class Helper_Navigation
 
     public static function goBack( Controller_Base $controller, $defaultAction = null, $defaultParams = array() )
     {
-        $back = filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING );
+//        $back = filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING );
 
+        $back = Request::factory()->getBack();
         if ( $back )
         {
             $args = explode(' ', $back);

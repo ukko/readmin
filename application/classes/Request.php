@@ -170,19 +170,33 @@ class Request
         return $this->userAgent;
     }
 
-    public function setBack($back)
+    public function setBack( $back )
     {
-        if ( ! $back )
+        die(var_dump( $this->referrer ));
+        if ( $this->referrer )
         {
-            return $this->back = "INFO";
-        }
+            parse_str(parse_url( $this->getReferrer(), PHP_URL_QUERY ), $params);
 
-        $action = explode(' ', $back);
-        $action = strtoupper( $action[0] );
-        if ( in_array($action, array('KEYS')) )
-        {
-            return $this->back = $back;
+            if ( isset( $params['cmd'] )  )
+            {
+
+                return $this->back = $params['cmd'];
+            }
+
         }
+        return $this->back = "INFO";
+//
+//        if ( ! $back )
+//        {
+//            return $this->back = "INFO";
+//        }
+//
+//        $action = explode(' ', $back);
+//        $action = strtoupper( $action[0] );
+//        if ( in_array($action, array('KEYS')) )
+//        {
+//            return $this->back = $back;
+//        }
     }
 
     public function getBack()
