@@ -154,7 +154,7 @@ class Helper_Keys
         }
         elseif( $type == 'list' )
         {
-            $data['cmd'] = 'LRANGE ' . $key . ' 0 -1';
+            $data['cmd'] = 'LRANGE ' . $key . ' 0 ' . Config::get('re_limit');
         }
         elseif ( $type == 'set' )
         {
@@ -162,7 +162,7 @@ class Helper_Keys
         }
         elseif( $type == 'zset' )
         {
-            $data['cmd'] = 'ZRANGE ' . $key . ' 0 -1';
+            $data['cmd'] = 'ZRANGE ' . $key . ' 0 ' . Config::get('re_limit');
         }
 
         $url = http_build_query($data);

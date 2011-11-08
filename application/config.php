@@ -9,7 +9,7 @@ return array(
     'timeout'   => 3,           // Redis timeout connect
 
     // Max count databases
-    'databases' => 17,
+    'databases' => 16,
 
     // db for service data re:admin
     're_db'     => 0,
@@ -18,7 +18,7 @@ return array(
     're_lang'   => 'ru', // @TODO
 
     // prefix for keys
-    're_prefix' => 're:admin:',
+    're_prefix' => 're:',
 
     // limit items on page
     're_limit'  => 20,

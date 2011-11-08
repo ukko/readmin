@@ -172,19 +172,6 @@ class Request
 
     public function setBack( $back )
     {
-//        if ( $this->referrer )
-//        {
-//            parse_str(parse_url( $this->getReferrer(), PHP_URL_QUERY ), $params);
-//
-//            if ( isset( $params['cmd'] )  )
-//            {
-//
-//                return $this->back = $params['cmd'];
-//            }
-//
-//        }
-//        return $this->back = "INFO";
-
         if ( ! $back )
         {
             return $this->back = "INFO";

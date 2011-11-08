@@ -12,6 +12,7 @@ class Controller_Command extends Controller_Base
      */
     public function keys($args)
     {
+        Request::factory()->setBack( urlencode( 'KEYS ' . $args ) );
         return Command_Keys::keys( $args );
     }
 
