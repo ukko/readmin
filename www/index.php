@@ -7,6 +7,11 @@ define('APPPATH', dirname(__DIR__) . '/application');
 
 require_once APPPATH . '/classes/Exceptions.php';
 
+if ( ! R::factory()->ping() )
+{
+    throw new RedisException('Redis has not connect ' . Config::get('host') . ':' . Config::get('port'));
+}
+
 $uri = parse_url( Request::factory()->getUrl(), PHP_URL_PATH );
 $uri = substr($uri, 1);
 

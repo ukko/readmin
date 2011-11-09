@@ -3,9 +3,10 @@
 class Command_Keys
 {
     /**
+     * Returns a list of keys matching the pattern
      *
-     * @param $pattern
-     * @return void
+     * @param   string $pattern
+     * @return  string
      */
     public static function keys( $pattern )
     {
@@ -14,7 +15,7 @@ class Command_Keys
             $pattern = implode(' ', $pattern);
         }
 
-        $lKey = Config::get( 're_prefix' ) . sha1( $pattern );
+        $lKey = Config::get( 're_prefix' ) . 'keys:' . sha1( $pattern );
 
         if ( ! R::factory()->exists( $lKey ) )
         {

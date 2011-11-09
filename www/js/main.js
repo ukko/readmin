@@ -72,7 +72,8 @@ $(document).ready(function ()
         }
     });
 
-    History.Adapter.bind( window, 'statechange', function(){
+    History.Adapter.bind( window, 'statechange', function()
+    {
         var State = History.getState();
         loadData(State.url);
     });
@@ -81,7 +82,7 @@ $(document).ready(function ()
     {
         var href    = window.location.protocol + '//' + window.location.host + '/?db=' + $( '#database' ).val() + '&cmd=' + $( '#command' ).val().replace(' ', '+');
         var title   = 'Re:admin "' + $('#command').val() + '"';
-        var state   = { url: href, title: title };
+        var state   = { url: href, title: title, random: Math.random() };
 
         History.pushState( state, title, href);
         return false;
@@ -92,6 +93,15 @@ $(document).ready(function ()
     {
         var href    = $(this).attr('href');
         var title   = 'Re:admin "' + $('#command').val() + '"';
+
+        if ( $(this).hasClass('delete') )
+        {
+            if ( ! confirm('"' + $(this).attr('title') + '", a you sure?') )
+            {
+                return false;
+            }
+
+        }
 
         History.pushState( {'url': href, 'title': title }, title, href);
         return false;

@@ -4,19 +4,6 @@
  */
 class Controller_Command extends Controller_Base
 {
-    private function bookmark_add( $key )
-    {
-
-    }
-
-    private function bookmark_del( $key )
-    {
-
-    }
-
-
-    // KEYS -------------------------
-
     /**
      * Display keys
      *
@@ -25,6 +12,7 @@ class Controller_Command extends Controller_Base
      */
     public function keys($args)
     {
+        Request::factory()->setBack( urlencode( 'KEYS ' . $args ) );
         return Command_Keys::keys( $args );
     }
 
@@ -41,7 +29,16 @@ class Controller_Command extends Controller_Base
 
     public function hgetall( $key )
     {
-        return Command_Hashes::hgetall( $key );
+        Request::factory()->setBack( urlencode( 'HGETALL ' . $key ) );
+
+        return Command_Hashes::hGetAll( $key );
+    }
+
+    public function hdel( $key, $field )
+    {
+        Command_Hashes::hDel( $key, $field );
+
+        return Helper_Navigation::goBack( $this );
     }
 
     public function smembers( $key )

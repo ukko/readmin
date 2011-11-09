@@ -9,8 +9,7 @@ class Helper_Navigation
 
     public static function goBack( Controller_Base $controller, $defaultAction = null, $defaultParams = array() )
     {
-        $back = filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING );
-
+        $back = Request::factory()->getBack();
         if ( $back )
         {
             $args = explode(' ', $back);
@@ -35,7 +34,7 @@ class Helper_Navigation
             }
         }
 
-        if ( ! $defaultAction || ! method_exists($controller, $defaultAction) )
+        if ( method_exists($controller, $defaultAction) )
         {
             return call_user_func_array(array( $controller, $defaultAction ), (array) $defaultParams);
         }

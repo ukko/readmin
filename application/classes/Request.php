@@ -52,7 +52,7 @@ class Request
         $this->setDb(       filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
         $this->setPage(     filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
         $this->setServerName( filter_input( INPUT_SERVER, 'SERVER_NAME' ) );
-        $this->setBack(     $this->getCmd() );
+        $this->setBack(     filter_input( INPUT_GET,    'back', FILTER_SANITIZE_STRING ) );
     }
 
     /**
@@ -170,16 +170,19 @@ class Request
         return $this->userAgent;
     }
 
-    public function setBack($back)
+    public function setBack( $back )
     {
         if ( ! $back )
         {
             return $this->back = "INFO";
         }
 
+        $back = urldecode($back);
+
         $action = explode(' ', $back);
         $action = strtoupper( $action[0] );
-        if ( in_array($action, array('KEYS')) )
+
+        if ( in_array($action, array('KEYS', 'HGETALL')) )
         {
             return $this->back = $back;
         }
