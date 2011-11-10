@@ -48,7 +48,15 @@ class Controller_Command extends Controller_Base
 
     public function zrange( $key, $start = 0, $end = -1 )
     {
+        Request::factory()->setBack( urlencode( 'ZRANGE ' . $key . ' ' . $start . ' ' . $end ) );
         return Command_ZSets::zrange( $key, $start, $end );
+    }
+
+    public function zrem( $key, $member )
+    {
+        Command_ZSets::zRem( $key, $member );
+
+        return Helper_Navigation::goBack( $this );
     }
 
     public function lrange( $key, $start = 0, $end = -1 )

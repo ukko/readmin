@@ -9,7 +9,7 @@
 
 class Command_ZSets
 {
-    public static function zrange( $key, $start = 0, $end = -1 )
+    public static function zRange( $key, $start = 0, $end = -1 )
     {
         $total = R::factory()->zCard( $key );
 
@@ -36,5 +36,10 @@ class Command_ZSets
         }
 
         return View::factory('tables/zrange', $data);
+    }
+
+    public static function zRem( $key, $member )
+    {
+        return R::factory()->zRem( $key, $member );
     }
 }
