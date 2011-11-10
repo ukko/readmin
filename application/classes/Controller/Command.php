@@ -61,7 +61,15 @@ class Controller_Command extends Controller_Base
 
     public function lrange( $key, $start = 0, $end = -1 )
     {
+        Request::factory()->setBack( urlencode( 'LRANGE ' . $key . ' ' . $start . ' ' . $end ) );
         return Command_Lists::lrange( $key, $start, $end );
+    }
+
+    public function lrem( $key, $count, $member )
+    {
+        Command_Lists::lRem( $key, $count, $member );
+
+        return Helper_Navigation::goBack( $this );
     }
 
     public function del($args)

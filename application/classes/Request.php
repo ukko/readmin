@@ -182,7 +182,7 @@ class Request
         $action = explode(' ', $back);
         $action = strtoupper( $action[0] );
 
-        if ( in_array($action, array('KEYS', 'HGETALL', 'ZRANGE')) )
+        if ( in_array($action, array('KEYS', 'HGETALL', 'ZRANGE', 'LRANGE')) )
         {
             return $this->back = $back;
         }
