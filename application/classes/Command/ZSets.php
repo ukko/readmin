@@ -17,6 +17,8 @@ class Command_ZSets
 
         $data = array(
                         'key'   => $key,
+                        'start' => $start,
+                        'end'   => $end,
                         'value' => $value,
                     );
 
@@ -24,16 +26,18 @@ class Command_ZSets
 
         if ( $total > Config::get('re_limit') )
         {
-            $cmd = 'ZRANGE ' . $key . ' ' . ($start + Config::get('re_limit')) . ' ' . ($end + Config::get('re_limit'));
+
             $dataUrl = array(
-                            'db'    => Request::factory()->getDb(),
-                            'cmd'   => $cmd,
+                            'db'        => Request::factory()->getDb(),
+                            'cmd'       => 'ZRANGE ' . $key,
                             );
 
-            $url    = '/?'. http_build_query( $dataUrl ) . '&page=:id:';
-            $data['paginator'] = Paginator::parsePaginator(
-                                    $total, Request::factory()->getPage(), $url, Config::get( 're_limit' ) );
+            $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+:end:+&page=:page:';
+            $data['paginator'] = Paginator::parseExtended(
+                                    $total, Request::factory()->getPage(), $url, Config::get( 're_limit' )
+                                );
         }
+        $data['command'] = 'ZRANGE ' . $key . ' ' . $start . ' ' . $end;
 
         return View::factory('tables/zrange', $data);
     }

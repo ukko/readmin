@@ -1,7 +1,7 @@
 <div>
     <?= $paginator ?>
     <table>
-        <caption>ZRANGE <?= $key ?> 0 -1</caption>
+        <caption>ZRANGE <?= $key . ' ' . $start . ' ' . $end ?> </caption>
         <thead>
             <tr>
                 <th class="column span-2">rank</th>
