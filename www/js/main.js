@@ -168,9 +168,9 @@ $(document).ready(function ()
 
 //                $("#command").flushCache();
 
-                if ( data.command.length > 0) {
-                    $('#command').val( data.command );
-                    $('title').text( 'Re:admin ' + data.command );
+                if ( data.cmd.length > 0) {
+                    $('#command').val( data.cmd );
+                    $('title').text( 'Re:admin ' + data.cmd );
                 }
             },
             'json'

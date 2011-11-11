@@ -1,6 +1,6 @@
 <?= $paginator ?>
 <table>
-     <caption><?= htmlspecialchars($command, ENT_QUOTES) ?></caption>
+     <caption><?= htmlspecialchars($cmd, ENT_QUOTES) ?></caption>
     <thead>
         <tr>
             <td class="column span-1"><input type="checkbox" /></td>
