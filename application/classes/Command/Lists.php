@@ -11,14 +11,32 @@ class Command_Lists
 {
     public static function lRange( $key, $start = 0, $end = -1 )
     {
-       $value = R::factory()->lrange( $key, $start, $end );
+        $value = R::factory()->lrange( $key, $start, $end );
 
         $data = array(
                         'key'   => $key,
                         'start' => $start,
                         'end'   => $end,
                         'value' => $value,
+			'paginator'  => '',
                     );
+
+	$total = R::factory()->lLen( $key );
+ 
+        if ( $total > Config::get('re_limit') )
+        {
+
+            $dataUrl = array(
+                            'db'        => Request::factory()->getDb(),
+                            'cmd'       => 'LRANGE ' . $key,
+                            );
+
+            $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+:end:+&page=:page:';
+            $data['paginator'] = Paginator::parseExtended(
+                                    $total, Request::factory()->getPage(), $url, Config::get( 're_limit' )
+                                );
+        }
+
         return View::factory('tables/lrange', $data);
     }
 

@@ -1,4 +1,5 @@
 <div>
+    <?= $paginator ?>
     <table>
         <caption>LRANGE <?= htmlspecialchars($key, ENT_QUOTES) . ' ' . $start . ' ' . $end ?> </caption>
         <thead>
@@ -20,4 +21,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?= $paginator ?>
 </div>
