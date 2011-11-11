@@ -46,4 +46,9 @@ class Command_ZSets
     {
         return R::factory()->zRem( $key, $member );
     }
+
+    public static function zRank( $key, $member )
+    {
+        return R::factory()->zRank( $key, $member );
+    }
 }
