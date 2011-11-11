@@ -13,7 +13,7 @@
         <tbody>
             <?php foreach( $value as $k => $v ) : ?>
             <tr>
-                <td><?= $k ?></td>
+                <td><?= $k + $start ?></td>
                 <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
                 <td> - </td>
                 <td><?= Helper_Lists::anchorActionDelete( $key, $v ) ?></td>

@@ -14,24 +14,24 @@ class Command_Lists
         $value = R::factory()->lrange( $key, $start, $end );
 
         $data = array(
-                        'key'   => $key,
-                        'start' => $start,
-                        'end'   => $end,
-                        'value' => $value,
-			'paginator'  => '',
+                        'key'       => $key,
+                        'start'     => $start,
+                        'end'       => $end,
+                        'value'     => $value,
+			            'paginator' => '',
                     );
 
-	$total = R::factory()->lLen( $key );
- 
+	    $total = R::factory()->lLen( $key );
+
         if ( $total > Config::get('re_limit') )
         {
-
             $dataUrl = array(
-                            'db'        => Request::factory()->getDb(),
-                            'cmd'       => 'LRANGE ' . $key,
+                                'db'    => Request::factory()->getDb(),
+                                'cmd'   => 'LRANGE ' . $key,
                             );
 
             $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+:end:+&page=:page:';
+
             $data['paginator'] = Paginator::parseExtended(
                                     $total, Request::factory()->getPage(), $url, Config::get( 're_limit' )
                                 );
