@@ -1,8 +1,15 @@
 <?php
-class Command_Strings 
+class Command_Strings
 {
 	public function get( $key )
 	{
-		return R::factory()->get( $key );
+        $data = array(
+                        'key'   => $key,
+                        'value' => R::factory()->get( $key ),
+                        'cmd'   => 'GET ' . $key,
+                    );
+        return View::factory('tables/get', $data);
+
+
 	}
 }
