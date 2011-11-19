@@ -5,20 +5,20 @@
         <thead>
             <tr>
                 <th class="column span-2">rank</th>
-                <th class="column span-3">value</th>
-                <th>score</th>
+                <th class="column span-3">score</th>
+                <th>value</th>
                 <th class="column span-2">edit</th>
                 <th class="column span-2">delete</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach( $value as $k => $v ) : ?>
+            <?php foreach( $value as $value => $score ) : ?>
             <tr>
-                <td><?= Command_ZSets::zRank( $key, $k ) ?></td>
-                <td><?= $k ?></td>
-                <td><?= $v ?></td>
+                <td><?= Command_ZSets::zRank( $key, $value ) ?></td>
+                <td><?= $score ?></td>
+                <td><?= $value ?></td>
 		        <td> - </td>
-		        <td><?= Helper_ZSets::anchorActionDelete( $key, $k ) ?></td>
+		        <td><?= Helper_ZSets::anchorActionDelete( $key, $value ) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
