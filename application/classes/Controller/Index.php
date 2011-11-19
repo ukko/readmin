@@ -34,6 +34,7 @@ class Controller_Index extends Controller_Base
 
         if ( method_exists( $command, $method ) )
         {
+            History::write( 'admin', Request::factory()->getCmd() );
             return call_user_func_array( array( $command,  $method ) , $cmd );
         }
         else
