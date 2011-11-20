@@ -23,6 +23,9 @@ return array(
     // limit items on page
     're_limit'  => 20,
 
+    // limit pages in paginator
+    're_pages'  => 10,
+
     // limit time store key (sec.)
     're_store_time' => 1500,
 );

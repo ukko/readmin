@@ -7,8 +7,18 @@ $(document).ready(function ()
 {
     var History = window.History;
 
-    setIcon('start');
     $('#command').focus();
+    $('.dropdown').dropdown();
+    setIcon('empty');
+
+    $('.popup').hover(
+        function() {
+            $(this).addClass('active').removeClass('noactive');
+        },
+        function() {
+            $(this).removeClass('active').addClass('noactive');
+        }
+    );
 
     commands =
     [
@@ -80,7 +90,7 @@ $(document).ready(function ()
 
     $('#execute').button().click(function()
     {
-        var href    = window.location.protocol + '//' + window.location.host + '/?db=' + $( '#database' ).val() + '&cmd=' + $( '#command' ).val().replace(' ', '+');
+        var href    = window.location.protocol + '//' + window.location.host + '/?db=' + $( '#database' ).attr('value') + '&cmd=' + $( '#command' ).val().replace(' ', '+');
         var title   = 'Re:admin "' + $('#command').val() + '"';
         var state   = { url: href, title: title, random: Math.random() };
 
@@ -107,34 +117,7 @@ $(document).ready(function ()
         return false;
     });
 
-    $('#icon').click(function()
-    {
-        setIcon('loader');
-        $.post(
-                '/bookmark/',
-                {
-                    'command': $('#command').val()
-                },
-                function(data)
-                {
-                    if (data.success = 'del') {
-                        setIcon('bookmark_del');
-                    }
-                    else
-                    {
-                        setIcon('bookmark_add');
-                    }
-                },
-                'json'
-        );
-    });
-
     // ------ FUNCTION -------
-
-    function addHistory(type, command, hint)
-    {
-
-    }
 
     /**
      * Ajax load data
@@ -166,8 +149,6 @@ $(document).ready(function ()
                     notice(data.error);
                 }
 
-//                $("#command").flushCache();
-
                 if ( data.cmd.length > 0) {
                     $('#command').val( data.cmd );
                     $('title').text( 'Re:admin ' + data.cmd );
@@ -177,31 +158,18 @@ $(document).ready(function ()
         );
     }
 
-    function notice (text)
-    {
-        html = '<p><span style="float: left; margin-right: .3em; vertical-align:'
-             + 'middle;" class="ui-icon ui-icon-info"></span>' + text + '</p>';
-        $('div.message').html(html);
-    }
-
     /**
      * @param string icon
      */
     function setIcon( icon )
     {
-        $('#icon').attr('src', '/i/32x32/actions/document-new.png');
-
         if (icon == 'loader')
         {
             $('#icon').attr('src', '/i/ajax-loader.gif');
         }
-        else if ( icon == 'bookmark_add' )
+        else
         {
-            $('#icon').attr('src', '/i/32x32/actions/bookmark_add.png');
-        }
-        else if ( icon == 'bookmark_del' )
-        {
-            $('#icon').attr('src', '/i/32x32/actions/document-new.png');
+            $('#icon').attr('src', '/i/empty.png');
         }
     }
 });

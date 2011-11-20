@@ -1,12 +1,11 @@
-<div>
-    <table>
-        <caption>HGETALL <?= htmlspecialchars($key, ENT_QUOTES) ?></caption>
+<h5>HGETALL <?= htmlspecialchars($key, ENT_QUOTES) ?></h5>
+<table>
 	<thead>
 		<tr>
-			<td class="column span-4">field</td>
+			<td class="span4">field</td>
 			<td>value</td>
-            <td class="column span-2">edit</td>
-            <td class="column span-2">delete</td>
+            <td class="span2">edit</td>
+            <td class="span2">delete</td>
 		</tr>
 	<thead>
 	<tbody>
@@ -19,5 +18,4 @@
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
-    </table>
-</div>
+</table>

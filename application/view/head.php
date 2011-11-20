@@ -1,21 +1,35 @@
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Re:admin</title>
-	    <link href='/favicon.ico' rel='shortcut icon' />
+<head>
+    <meta charset="utf-8">
+    <title>Re:admin - redis admin panel</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href='/favicon.ico' rel='shortcut icon'/>
 
-        <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
-        <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
-        <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" />
-        <!--[if lt IE 8]>
-        <link rel="stylesheet" href="blueprint/ie.css" type="text/css"
-        media="screen, projection" />
-        <![endif]-->
-        <script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
-        <script type="text/javascript" src="/js/amplify.store.js"></script>
-        <script type="text/javascript" src="/js/history.adapter.jquery.js"></script>
-        <script type="text/javascript" src="/js/history.js"></script>
-        <script type="text/javascript" src="/js/main.js"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
 
-        <link rel="stylesheet" href="/css/smoothness/jquery-ui-1.8.13.custom.css" class="href" />
-        <script type="text/javascript" src="/js/jquery-ui-1.8.13.custom.min.js"></script>
-    </head>
+    <script src="/js/jquery-1.7.min.js"></script>
+    <script src="/js/bootstrap-modal.js"></script>
+    <script src="/js/bootstrap-alerts.js"></script>
+    <script src="/js/bootstrap-twipsy.js"></script>
+    <script src="/js/bootstrap-popover.js"></script>
+    <script src="/js/bootstrap-dropdown.js"></script>
+    <script src="/js/bootstrap-scrollspy.js"></script>
+    <script src="/js/bootstrap-tabs.js"></script>
+    <script src="/js/bootstrap-buttons.js"></script>
+
+    <script src="/js/amplify.store.js"></script>
+    <script src="/js/history.adapter.jquery.js"></script>
+    <script src="/js/history.js"></script>
+
+    <script src="/js/jquery-ui-1.8.13.custom.min.js"></script>
+
+    <script src="/js/main.js"></script>
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/smoothness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+</head>

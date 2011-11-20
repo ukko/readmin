@@ -45,7 +45,7 @@ class Command_Keys
             'db'    => Request::factory()->getDb(),
         );
         $url        = '/?'. http_build_query( $dataUrl ) . '&page=:id:';
-        $paginator  = Paginator::parsePaginator( $total, Request::factory()->getPage(), $url, Config::get( 're_limit' ) );
+        $paginator  = Paginator::parsePaginator( $total, Request::factory()->getPage(), $url, Config::get( 're_pages' ) );
 
         $data = array(
                         'db'        => Request::factory()->getDb(),

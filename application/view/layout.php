@@ -1,33 +1,34 @@
 <?php
 /**
- * Main layout view
+ * Main "layout" template
  */
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <?= View::factory('head') ?>
-    <body>
-        <div class="container showgrid1">
-            <?= View::factory('header', array('currentdb' => $currentdb, 'dbkeys' => $dbkeys)) ?>
-            <hr/>
-            <div class="main">
-                <div class="content">
 
-                    <div style="display: none;" class="message column append-10 ui-state-highlight ui-corner-all"></div>
+<body>
+    <?= View::factory('topbar', array('currentdb' => $currentdb, 'dbkeys' => $dbkeys)) ?>
+<div class="container">
 
-                    <div class="command span-24 last">
-                        <img id="icon" src="" alt="">
-                        <input type="text" id="command" class="command title" value="<?= $cmd ?>"/>
-                        <input type="button" class="" id="execute" value="Execute" />
-                    </div>
-                    <hr/>
-                    <div class="result column span-24">
-                        <?= $content ?>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <?= View::factory('foot') ?>
+    <div class="content">
+
+        <div class="page-header">
+            <img id="icon" src="" alt="" >
+            <input type="text" class="span12 command" id="command" placeholder="Type your redis command here ..">
+            <button class="btn primary" id="execute">Execute</button>
         </div>
-    </body>
+
+        <div class="row">
+            <div class="span14">
+                <?= $content ?>
+            </div>
+        </div>
+    </div>
+
+    <?= View::factory('footer') ?>
+</div>
+<!-- /container -->
+
+</body>
 </html>

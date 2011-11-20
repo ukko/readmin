@@ -4,11 +4,11 @@
         <caption>ZRANGE <?= $key . ' ' . $start . ' ' . $end ?> </caption>
         <thead>
             <tr>
-                <th class="column span-2">rank</th>
-                <th class="column span-3">score</th>
+                <th class="span2">rank</th>
+                <th class="span3">score</th>
                 <th>value</th>
-                <th class="column span-2">edit</th>
-                <th class="column span-2">delete</th>
+                <th class="span2">edit</th>
+                <th class="span2">delete</th>
             </tr>
         </thead>
         <tbody>

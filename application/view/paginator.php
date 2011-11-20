@@ -1,13 +1,17 @@
-<ul class="pager">
-    <li><a href="<?= $prevURL ?>" class="<?= isset($page['prevURL']) ? 'active' : '' ?> cmd prev">&lt;&lt;&lt;</a></li>
-    <li><a href="<?= $nextURL ?>" class="<?= isset($page['nextURL']) ? 'active' : '' ?> cmd next">&gt;&gt;&gt;</a></li>
-    <?php foreach($pages as $page) : ?>
-    <li>
-        <a href="<?= isset($page['url']) ? $page['url'] : '' ?>" class="<?= isset($page['active']) ? 'active' : '' ?> cmd">
-            <?= $page['number'] ?>
-        </a>
-    </li>
-    <?php endforeach; ?>
-    <li class="iz">total</li>
-    <li><a class="cmd" href="<?= $totalURL ?> "><?= $total ?></a></li>
-</ul>
+<div class="pagination">
+    <ul>
+        <li class="<?= isset($page['prevURL']) ? 'disabled' : '' ?> cmd prev"><a href="<?= $prevURL ?>">&larr;</a></li>
+        <li class="<?= isset($page['nextURL']) ? 'disabled' : '' ?> cmd"><a href="<?= $nextURL ?>">&rarr;</a></li>
+
+        <?php foreach($pages as $page) : ?>
+        <li class="<?= isset($page['active']) ? 'active' : '' ?>">
+            <a href="<?= isset($page['url']) ? $page['url'] : '' ?>" class="cmd">
+                <?= $page['number'] ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+
+        <li class="disabled"><a>total</a></li>
+        <li class="next"><a class="cmd" href="<?= $totalURL ?> "><?= $total ?></a></li>
+    </ul>
+</div>

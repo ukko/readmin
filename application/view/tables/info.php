@@ -1,10 +1,5 @@
-<?php
-/**
- *
- */
-?>
+<h5>INFO</h5>
 <table>
-    <caption>INFO</caption>
     <thead>
         <tr>
             <th>name</th>
@@ -12,13 +7,13 @@
         </tr>
     </thead>
     <tbody>
-        <?php if(isset($items)) : ?>
+    <?php if(isset($items)) : ?>
         <?php foreach ($items as $name => $value) : ?>
         <tr>
             <td><?= htmlspecialchars($name, ENT_QUOTES) ?></td>
             <td><?= htmlspecialchars($value, ENT_QUOTES) ?></td>
         </tr>
         <?php endforeach; ?>
-        <?php endif; ?>
+    <?php endif; ?>
     </tbody>
 </table>

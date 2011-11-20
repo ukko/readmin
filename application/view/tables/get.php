@@ -1,10 +1,10 @@
+<h5>GET <?= htmlspecialchars($key, ENT_QUOTES) ?></h5>
 <table>
-	<caption>GET <?= htmlspecialchars($key, ENT_QUOTES) ?></caption>
 	<thead>
 		<tr>
 			<td>value</td>
-            <td class="column span-2">edit</td>
-            <td class="column span-2">delete</td>
+            <td class="span2">edit</td>
+            <td class="span2">delete</td>
 		</tr>
 	</thead>
 	<tbody>

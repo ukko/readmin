@@ -174,9 +174,9 @@ class Paginator
             $nextURL = $pages[ $current + 1 ]['url'];
         }
 
-	$totalUrl = str_replace(':page:',  $total, $url);
-	$totalUrl = str_replace(':start:', $total * Config::get('re_limit') - Config::get('re_limit'), $totalUrl);
-	$totalUrl = str_replace(':end:',   $total * Config::get('re_limit'),   $totalUrl);
+        $totalUrl = str_replace(':page:',  $total, $url);
+        $totalUrl = str_replace(':start:', $total * Config::get('re_limit') - Config::get('re_limit'), $totalUrl);
+        $totalUrl = str_replace(':end:',   $total * Config::get('re_limit'),   $totalUrl);
 
         $data = array(
             'pages'     => $pages,

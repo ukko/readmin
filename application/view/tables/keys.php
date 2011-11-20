@@ -1,32 +1,40 @@
+<h5><?= htmlspecialchars($cmd, ENT_QUOTES) ?></h5>
 <?= $paginator ?>
-<table>
-     <caption><?= htmlspecialchars($cmd, ENT_QUOTES) ?></caption>
+<table class="bordered-table zebra-striped">
     <thead>
-        <tr>
-            <td class="column span-1"><input type="checkbox" /></td>
-            <td class="column span-2">type</td>
-            <td class="">key</td>
-            <td class="column span-2 last">actions</td>
-        </tr>
+    <tr>
+        <th class="span1"><input type="checkbox"></th>
+        <th class="span2">Type</th>
+        <th>Key</th>
+        <th class="span2">Action</th>
+    </tr>
     </thead>
     <tbody>
-        <?php if ( isset( $keys ) ) : ?>
-        <?php foreach ( $keys as $item ) : ?>
-        <tr>
-            <td><input type="checkbox" id="<?= $item['key'] ?>" /></td>
-            <td><?= $item['type'] ?></td>
-            <td>
-                <div>
-                    <?= Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
-                    <?= Helper_Keys::value( $item['value'] ) ?>
-                </div>
-            </td>
-            <td>
-                <?= Helper_Keys::anchorAction( $item['key'], $item['type'], 'delete' ) ?>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-        <?php endif; ?>
+
+    <?php if ( isset( $keys ) ) : ?>
+    <?php foreach ( $keys as $item ) : ?>
+    <tr>
+        <td><input type="checkbox" id="<?= $item['key'] ?>" /></td>
+        <td><span class="label notice"><?= $item['type'] ?></span></td>
+        <td>
+            <?= Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
+            &nbsp;
+            <span class="small"><?= Helper_Keys::value( $item['value'] ) ?></span>
+            <span class="label pull-right">600</span>
+        </td>
+        <td>
+            <div class="popup noactive">
+                <span>Action ▿</span>
+                <ul class="menu">
+                    <li><a href="#">Set Expire</a></li>
+                    <li><a href="#">Rename</a></li>
+                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], 'delete' ) ?></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    <?php endif; ?>
     </tbody>
 </table>
 <?= $paginator ?>
