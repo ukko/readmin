@@ -188,8 +188,13 @@ class Helper_Keys
 
     public static function value( $params )
     {
-
         list( $size, $value ) = $params;
-        return '<span class="preview"> ( ' . (int)$size . ' ) '  . $value . '</span>';
+        return $value;
+    }
+
+    public static function size( $params )
+    {
+        list( $size, $value ) = $params;
+        return $size;
     }
 }

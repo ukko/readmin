@@ -9,6 +9,13 @@ $(document).ready(function ()
 
     $('#command').focus();
     $('.dropdown').dropdown();
+
+    $('.dropdown-menu a').click(function(){
+        $('#database').attr('value', $(this).attr('var-id')).text('Database: ' + $(this).attr('var-id'));
+    });
+
+    $.ajaxSetup({ cache: false });
+
     setIcon('empty');
 
     $('.popup').hover(
@@ -138,7 +145,7 @@ $(document).ready(function ()
 
                 if (data.content && data.content.length > 0)
                 {
-                    $('div.result').html(data.content);
+                    $('#content').html(data.content);
                 }
                 if (data.notice && data.notice.length > 0)
                 {

@@ -20,7 +20,7 @@
             <?= Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
             &nbsp;
             <span class="small"><?= Helper_Keys::value( $item['value'] ) ?></span>
-            <span class="label pull-right">600</span>
+            <span class="label pull-right"><?= Helper_Keys::size( $item['value'] ) ?></span>
         </td>
         <td>
             <div class="popup noactive">

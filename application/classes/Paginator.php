@@ -3,15 +3,16 @@
 class Paginator
 {
     /**
-     * Выводит пагинатор
+     * Generate paginator
      *
-     * @param int       $total
-     * @param int       $current
-     * @param string    $url
-     * @param int       $limit
+     * @param   int     $total      Total items
+     * @param   int     $current    Current page
+     * @param   string  $url        Template url
+     * @param   int     $limit      Limit items on page
+     * @param   int     $limitPages Limit pages in paginator
      * @return string
      */
-    public static function parsePaginator( $total, $current, $url, $limit = 10 )
+    public static function parsePaginator( $total, $current, $url, $limit = 20, $limitPages = 10 )
     {
         $total      = abs( (int)$total );
         $current    = abs( (int)$current );
@@ -38,14 +39,14 @@ class Paginator
         elseif($current)
         {
             // 1 2 3 4 '5 6 7 8 9 10
-            if ($current - ceil($limit / 2) <= 1)
+            if ($current - ceil($limitPages / 2) <= 1)
             {
                 $start = 1;
             }
-            elseif ($current + ceil($limit / 2) > $total)
+            elseif ($current + ceil($limitPages / 2) > $total)
             {
-                if ( ($total - $limit) > 1) {
-                    $start = $total - $limit;
+                if ( ($total - $limitPages) > 1) {
+                    $start = $total - $limitPages;
                 } else {
                     $start = 1;
                 }
@@ -56,7 +57,7 @@ class Paginator
             }
         }
 
-        $end    = (($start + $limit) < $total) ? ($start + $limit) : $total;
+        $end    = (($start + $limitPages) < $total) ? ($start + $limitPages) : $total;
 
         $pages = array();
         for($i = $start; $i <= $end; $i++)

@@ -48,7 +48,21 @@ body {
     border-left: 1px solid #eee;
 }
 
-    /* */
+.pagination a
+{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+table {
+    /*table-layout: fixed;*/
+    table-layout: inherit;
+}
+
+/*table td {*/
+    /*word-wrap: break-word;*/
+/*}*/
+
 .command {
     font-size: 20px;
     /*font-family: Mono;*/

@@ -20,7 +20,7 @@
         </div>
 
         <div class="row">
-            <div class="span14">
+            <div class="span14" id="content">
                 <?= $content ?>
             </div>
         </div>
