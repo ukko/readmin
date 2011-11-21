@@ -14,12 +14,12 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" id="database" value="<?= $currentdb ?>">Database: <?= $currentdb ?></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="">0 - 12,312,323 keys</a></li>
-                                    <li><a href="">1 - 4,332,423 keys</a></li>
-                                    <li><a href="">2 - 0 keys</a></li>
-                                    <li><a href="">3 - 0 keys</a></li>
-                                    <li><a href="">4 - 0 keys</a></li>
-                                    <li><a href="">5 - 0 keys</a></li>
+                                <?php
+                                    for ($i = 0; $i < Config::get('databases'); $i++) {
+                                        $count = isset( $dbkeys[$i] ) ? number_format($dbkeys[$i]) : 0;
+                                        echo '<li><a var-id="' . $i . '">' . $i .' — ' . $count . '  keys</a></li>';
+                                    }
+                                ?>
                                 </ul>
                             </li>
                         </ul>
