@@ -1,7 +1,7 @@
 <div class="pagination">
     <ul>
-        <li class="<?= isset($page['prevURL']) ? 'disabled' : '' ?> cmd prev"><a href="<?= $prevURL ?>">&larr;</a></li>
-        <li class="<?= isset($page['nextURL']) ? 'disabled' : '' ?> cmd"><a href="<?= $nextURL ?>">&rarr;</a></li>
+        <li class="<?= isset($page['prevURL']) ? 'disabled' : '' ?> prev"><a class="cmd" href="<?= $prevURL ?>">&larr;</a></li>
+        <li class="<?= isset($page['nextURL']) ? 'disabled' : '' ?> "><a class="cmd" href="<?= $nextURL ?>">&rarr;</a></li>
 
         <?php foreach($pages as $page) : ?>
         <li class="<?= isset($page['active']) ? 'active' : '' ?>">
