@@ -18,10 +18,11 @@ $(document).ready(function ()
 
     setIcon('empty');
 
-    $('.popup').hover(
+    $('.popup').live('mouseenter', 
         function() {
             $(this).addClass('active').removeClass('noactive');
-        },
+        });
+    $('.popup').live('mouseleave',   
         function() {
             $(this).removeClass('active').addClass('noactive');
         }
