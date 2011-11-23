@@ -1,14 +1,9 @@
 <div class="topbar-wrapper">
     <div class="topbar">
         <div class="topbar-inner">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="brand" href="#">Re:admin</a>
-                <ul class="nav">
-                    <li><a href="#SET">SET</a></li>
-                    <li><a href="#HSET">HSET</a></li>
-                    <li><a href="#LSET">LSET</a></li>
-                    <li><a href="#SADD">SADD</a></li>
-                    <li><a href="#ZADD">ZADD</a></li>
+		        <ul class="nav">
                     <li>
                         <ul class="nav secondary-nav">
                             <li class="dropdown">
