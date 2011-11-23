@@ -1,6 +1,5 @@
 <?php
-
-    class History
+class History
 {
     /**
      * Write command to
@@ -13,6 +12,14 @@
     {
         $key        = Config::get('re_prefix') . 'log:' . sha1( $user );
         $command    = trim( $command );
-        return R::factory()->rPush( $key, $command );
+
+        if ( R::factory()->lIndex( $key, -1 ) != $command )
+        {
+            return R::factory()->rPush( $key, $command );
+        }
+        else
+        {
+            return false;
+        }
     }
 }
