@@ -20,7 +20,6 @@
     <script src="/js/bootstrap-tabs.js"></script>
     <script src="/js/bootstrap-buttons.js"></script>
 
-    <script src="/js/amplify.store.js"></script>
     <script src="/js/history.adapter.jquery.js"></script>
     <script src="/js/history.js"></script>
 
