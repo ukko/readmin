@@ -20,8 +20,7 @@
     <script src="/js/bootstrap-tabs.js"></script>
     <script src="/js/bootstrap-buttons.js"></script>
 
-    <script src="/js/history.adapter.jquery.js"></script>
-    <script src="/js/history.js"></script>
+    <script src="/js/jquery.history.js"></script>
 
     <script src="/js/jquery-ui-1.8.13.custom.min.js"></script>
 
