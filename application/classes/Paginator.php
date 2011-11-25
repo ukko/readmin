@@ -53,7 +53,7 @@ class Paginator
             }
             else
             {
-                $start = $current - ceil($limit / 2);
+                $start = $current - ceil($limitPages / 2);
             }
         }
 
