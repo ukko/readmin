@@ -34,7 +34,8 @@ class Command_Keys
             $keys[] = array(
                                 'key'   => $key,
                                 'type'  => Helper_Keys::getType( $key ),
-                                'value' => Helper_Keys::getValue( $key, Helper_Keys::getType($key) )
+                                'value' => Helper_Keys::getValue( $key, Helper_Keys::getType($key) ),
+                                'ttl'   => Command_Keys::ttl( $key ),
                             );
         }
 
@@ -64,5 +65,15 @@ class Command_Keys
     public static function del( $key )
     {
         return R::factory()->del( $key );
+    }
+
+    public static function expire( $key, $ttl )
+    {
+        return R::factory()->expire( $key, $ttl );
+    }
+
+    public static function ttl( $key )
+    {
+        return R::factory()->ttl( $key );
     }
 }

@@ -16,6 +16,12 @@ class Controller_Command extends Controller_Base
         return Command_Keys::keys( $args );
     }
 
+    public function expire( $key, $ttl )
+    {
+        Command_Keys::expire( $key, (int)$ttl );
+        return Helper_Navigation::goBack( $this );
+    }
+
     /**
      * Get string value
      *

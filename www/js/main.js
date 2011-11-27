@@ -18,11 +18,11 @@ $(document).ready(function ()
 
     setIcon('empty');
 
-    $('.popup').live('mouseenter', 
+    $('.popup').live('mouseenter',
         function() {
             $(this).addClass('active').removeClass('noactive');
         });
-    $('.popup').live('mouseleave',   
+    $('.popup').live('mouseleave',
         function() {
             $(this).removeClass('active').addClass('noactive');
         }
@@ -106,9 +106,14 @@ $(document).ready(function ()
         return false;
     });
 
-
     $('a.cmd').live('click', function()
     {
+        if ( $(this).hasClass('exec') )
+        {
+            $('#command').val( $(this).attr('href') );
+            return false;
+        }
+
         var href    = $(this).attr('href');
         var title   = 'Re:admin "' + $('#command').val() + '"';
 

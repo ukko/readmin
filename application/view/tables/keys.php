@@ -15,7 +15,10 @@
     <?php foreach ( $keys as $item ) : ?>
     <tr>
         <td><input type="checkbox" id="<?= $item['key'] ?>" /></td>
-        <td><span class="label notice"><?= $item['type'] ?></span></td>
+        <td>
+            <span class="label notice"><?= $item['type'] ?></span>
+            <?= ($item['ttl'] > 0) ? '<span>⌚ '. $item['ttl'] . '</span>':'' ?>
+        </td>
         <td>
             <?= Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
             &nbsp;
@@ -26,9 +29,9 @@
             <div class="popup noactive">
                 <span>Action ▿</span>
                 <ul class="menu">
-                    <li><a href="#">Set Expire</a></li>
+                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE ) ?>
                     <li><a href="#">Rename</a></li>
-                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], 'delete' ) ?></li>
+                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_DELETE ) ?></li>
                 </ul>
             </div>
         </td>

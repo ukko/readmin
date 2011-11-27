@@ -59,11 +59,7 @@ table {
     table-layout: inherit;
 }
 
-/*table td {*/
-    /*word-wrap: break-word;*/
-/*}*/
-
-.command {
+input.command {
     font-size: 20px;
     /*font-family: Mono;*/
     height: 20px;

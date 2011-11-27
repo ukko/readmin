@@ -4,6 +4,9 @@
  */
 class Helper_Keys
 {
+    const ACTION_DELETE     = 'delete';
+    const ACTION_EXPIRE  = 'expire';
+
     public static function getType( $key )
     {
         $types = array(
@@ -172,7 +175,7 @@ class Helper_Keys
 
     public static function anchorAction( $key, $type, $action )
     {
-        if ( $action == 'delete' )
+        if ( $action == self::ACTION_DELETE )
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
@@ -183,6 +186,18 @@ class Helper_Keys
             $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
 
             return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '">Delete</a>';
+        }
+        elseif ( $action == self::ACTION_EXPIRE )
+        {
+            $params = array(
+                'db'    => Request::factory()->getDb(),
+                'cmd'   => 'EXPIRE ' . urlencode( $key ),
+                'back'  => Request::factory()->getBack(),
+            );
+
+//            $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
+
+            return '<a class="cmd exec" href="' . 'EXPIRE ' . urlencode( $key ) . ' " title="EXPIRE ' . $key . '">Expire</a>';
         }
     }
 
