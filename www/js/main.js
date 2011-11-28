@@ -110,7 +110,7 @@ $(document).ready(function ()
     {
         if ( $(this).hasClass('exec') )
         {
-            $('#command').val( $(this).attr('href') );
+            $('#command').val( $(this).attr('href') ).focus();
             return false;
         }
 
