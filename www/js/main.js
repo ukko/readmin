@@ -9,6 +9,7 @@ $(document).ready(function ()
 
     $('#command').focus();
     $('.dropdown').dropdown();
+    $("a[rel=twipsy]").twipsy({ live: true });
 
     $('.dropdown-menu a').click(function(){
         $('#database').attr('value', $(this).attr('var-id')).text('Database: ' + $(this).attr('var-id'));

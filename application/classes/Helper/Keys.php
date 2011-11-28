@@ -7,6 +7,8 @@ class Helper_Keys
     const ACTION_DELETE     = 'delete';
     const ACTION_EXPIRE     = 'expire';
     const ACTION_RENAME     = 'rename';
+    const ACTION_PERSIST    = 'persist';
+    const ACTION_MOVE       = 'move';
 
     public static function getType( $key )
     {
@@ -207,6 +209,26 @@ class Helper_Keys
             );
 
             return '<a class="cmd exec" href="' . 'RENAME ' . urlencode( $key ) . ' " title="RENAME ' . $key . ' newKeyName">Rename</a>';
+        }
+        elseif ( $action == self::ACTION_PERSIST )
+        {
+            $params = array(
+                'db'    => Request::factory()->getDb(),
+                'cmd'   => 'PERSIST ' . urlencode( $key ),
+                'back'  => Request::factory()->getBack(),
+            );
+
+            return '<a class="cmd exec" href="' . 'PERSIST ' . urlencode( $key ) . ' " title="PERSIST ' . $key . '">Persist</a>';
+        }
+        elseif ( $action == self::ACTION_MOVE )
+        {
+            $params = array(
+                'db'    => Request::factory()->getDb(),
+                'cmd'   => 'MOVE ' . urlencode( $key ),
+                'back'  => Request::factory()->getBack(),
+            );
+
+            return '<a class="cmd exec" href="' . 'MOVE ' . urlencode( $key ) . ' " title="MOVE ' . $key . '">Move</a>';
         }
     }
 

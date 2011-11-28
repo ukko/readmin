@@ -35,11 +35,11 @@ class Command_Keys
                                 'key'   => $key,
                                 'type'  => Helper_Keys::getType( $key ),
                                 'value' => Helper_Keys::getValue( $key, Helper_Keys::getType($key) ),
-                                'ttl'   => Command_Keys::ttl( $key ),
+                                'ttl'   => R::factory()->ttl( $key ),
                             );
 
             // Remove deleted keys from cache
-            if ( $data['type'] == 'not_found' ) 
+            if ( $data['type'] == 'not_found' )
             {
                 R::factory()->lRem( $lKey, $key, 0 );
             }
@@ -80,6 +80,11 @@ class Command_Keys
         return R::factory()->expire( $key, $ttl );
     }
 
+    public static function expireAt( $key, $timestamp )
+    {
+        return R::factory()->expireAt( $key, $timestamp );
+    }
+
     public static function ttl( $key )
     {
         $data = array(
@@ -89,8 +94,23 @@ class Command_Keys
         return View::factory( 'tables/ttl', $data );
     }
 
+    public static function persist( $key )
+    {
+        return R::factory()->persist( $key );
+    }
+
     public static function rename( $key, $newKey )
     {
         return R::factory()->rename( $key, $newKey );
+    }
+
+    public static function move( $key, $db )
+    {
+        return R::factory()->move( $key, $db );
+    }
+
+    public static function randomKey()
+    {
+        return View::factory( 'tables/randomkey', array( 'key' => R::factory()->randomKey() ) );
     }
 }

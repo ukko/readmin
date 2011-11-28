@@ -1,5 +1,5 @@
-<h5><?= htmlspecialchars($cmd, ENT_QUOTES) ?></h5>
-<?= $paginator ?>
+<h5><?php echo htmlspecialchars($cmd, ENT_QUOTES) ?></h5>
+<?php echo $paginator ?>
 <table class="bordered-table zebra-striped">
     <thead>
     <tr>
@@ -14,24 +14,28 @@
     <?php if ( isset( $keys ) ) : ?>
     <?php foreach ( $keys as $item ) : ?>
     <tr>
-        <td><input type="checkbox" id="<?= $item['key'] ?>" /></td>
+        <td><input type="checkbox" id="<?php echo $item['key'] ?>" /></td>
         <td>
-            <span class="label notice"><?= $item['type'] ?></span>
-            <?= ($item['ttl'] > 0) ? '<span>⌚ '. $item['ttl'] . '</span>':'' ?>
+            <span class="label notice"><?php echo $item['type'] ?></span>
+            <?php if ( $item['ttl'] > 0) : ?>
+            <a data-placement="right" rel='twipsy' title='TTL <?php echo $item['ttl'] ?>'>⌚</a>
+            <?php endif; ?>
         </td>
         <td>
-            <?= Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
+            <?php echo Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
             &nbsp;
-            <span class="small"><?= Helper_Keys::value( $item['value'] ) ?></span>
-            <span class="label pull-right"><?= Helper_Keys::size( $item['value'] ) ?></span>
+            <span class="small"><?php echo Helper_Keys::value( $item['value'] ) ?></span>
+            <span class="label pull-right"><?php echo Helper_Keys::size( $item['value'] ) ?></span>
         </td>
         <td>
             <div class="popup noactive">
                 <span>Action ▿</span>
                 <ul class="menu">
-                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE ) ?>
-                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_RENAME ) ?>
-                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_DELETE ) ?></li>
+                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE ) ?></li>
+                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_RENAME ) ?></li>
+                    <li><?php if ( $item['ttl'] > 0 ) echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_PERSIST ) ?></li>
+                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_MOVE ) ?></li>
+                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_DELETE ) ?></li>
                 </ul>
             </div>
         </td>
@@ -40,4 +44,4 @@
     <?php endif; ?>
     </tbody>
 </table>
-<?= $paginator ?>
+<?php echo $paginator ?>

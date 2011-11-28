@@ -22,6 +22,23 @@ class Controller_Command extends Controller_Base
         return Helper_Navigation::goBack( $this );
     }
 
+    public function expireat( $key, $timestamp )
+    {
+        Command_Keys::expireAt( $key, (int)$timestamp );
+        return Helper_Navigation::goBack( $this );
+    }
+
+    public function persist( $key )
+    {
+        Command_Keys::persist( $key );
+        return Helper_Navigation::goBack( $this );
+    }
+
+    public function randomkey()
+    {
+        return Command_Keys::randomKey();
+    }
+
     public function ttl( $key )
     {
         return Command_Keys::ttl( $key );
@@ -30,6 +47,12 @@ class Controller_Command extends Controller_Base
     public function rename( $key, $newKey )
     {
         Command_Keys::rename( $key, $newKey );
+        return Helper_Navigation::goBack( $this );
+    }
+
+    public function move( $key, $db )
+    {
+        Command_Keys::move( $key, $db );
         return Helper_Navigation::goBack( $this );
     }
 
