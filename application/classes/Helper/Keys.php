@@ -5,7 +5,8 @@
 class Helper_Keys
 {
     const ACTION_DELETE     = 'delete';
-    const ACTION_EXPIRE  = 'expire';
+    const ACTION_EXPIRE     = 'expire';
+    const ACTION_RENAME     = 'rename';
 
     public static function getType( $key )
     {
@@ -195,9 +196,17 @@ class Helper_Keys
                 'back'  => Request::factory()->getBack(),
             );
 
-//            $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
-
             return '<a class="cmd exec" href="' . 'EXPIRE ' . urlencode( $key ) . ' " title="EXPIRE ' . $key . '">Expire</a>';
+        }
+        elseif ( $action == self::ACTION_RENAME )
+        {
+            $params = array(
+                'db'    => Request::factory()->getDb(),
+                'cmd'   => 'RENAME ' . urlencode( $key ),
+                'back'  => Request::factory()->getBack(),
+            );
+
+            return '<a class="cmd exec" href="' . 'RENAME ' . urlencode( $key ) . ' " title="RENAME ' . $key . ' newKeyName">Rename</a>';
         }
     }
 

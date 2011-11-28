@@ -27,6 +27,12 @@ class Controller_Command extends Controller_Base
         return Command_Keys::ttl( $key );
     }
 
+    public function rename( $key, $newKey )
+    {
+        Command_Keys::rename( $key, $newKey );
+        return Helper_Navigation::goBack( $this );
+    }
+
     /**
      * Get string value
      *

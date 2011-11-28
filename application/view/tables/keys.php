@@ -30,7 +30,7 @@
                 <span>Action ▿</span>
                 <ul class="menu">
                     <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE ) ?>
-                    <li><a href="#">Rename</a></li>
+                    <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_RENAME ) ?>
                     <li><?= Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_DELETE ) ?></li>
                 </ul>
             </div>

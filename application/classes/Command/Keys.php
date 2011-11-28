@@ -88,4 +88,9 @@ class Command_Keys
         );
         return View::factory( 'tables/ttl', $data );
     }
+
+    public static function rename( $key, $newKey )
+    {
+        return R::factory()->rename( $key, $newKey );
+    }
 }
