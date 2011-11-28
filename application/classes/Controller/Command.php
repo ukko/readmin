@@ -22,6 +22,11 @@ class Controller_Command extends Controller_Base
         return Helper_Navigation::goBack( $this );
     }
 
+    public function ttl( $key )
+    {
+        return Command_Keys::ttl( $key );
+    }
+
     /**
      * Get string value
      *
@@ -88,7 +93,7 @@ class Controller_Command extends Controller_Base
     public function info()
     {
         $info = R::factory()->info();
-        $this->table = View::factory('tables/info', array('items' => $info));
+        return View::factory('tables/info', array('items' => $info));
     }
 
     public function ping()
@@ -96,4 +101,5 @@ class Controller_Command extends Controller_Base
         $ping = R::factory()->ping();
         $this->notice = View::factory('tables/ping', array('ping' => $ping));
     }
+
 }

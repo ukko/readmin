@@ -82,6 +82,10 @@ class Command_Keys
 
     public static function ttl( $key )
     {
-        return R::factory()->ttl( $key );
+        $data = array(
+            'key' => $key,
+            'ttl' => R::factory()->ttl( $key ),
+        );
+        return View::factory( 'tables/ttl', $data );
     }
 }
