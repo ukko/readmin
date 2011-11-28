@@ -7,8 +7,13 @@ class Controller_Index extends Controller_Base
 
     public function action_index()
     {
+        if ( ! Request::factory()->getCmd() )
+        {
+            Request::factory()->setCmd('INFO');
+        }
+
         $data = array(
-            'content'   => Request::factory()->getCmd() ? $this->executeCommand()  : $this->action_info(),
+            'content'   => $this->executeCommand(),
             'currentdb' => Request::factory()->getDb(),
             'cmd'       => Request::factory()->getCmd(),
             'dbkeys'    => Helper_Info::getCountKeysInDb(),
@@ -54,16 +59,6 @@ class Controller_Index extends Controller_Base
             'currentdb' => 0,
         );
         echo View::factory('layout', $data);
-    }
-
-    /**
-     * @FIXME
-     * @return void
-     */
-    public function action_info()
-    {
-        $info = R::factory()->info();
-        return View::factory('tables/info', array('items' => $info));
     }
 
     public function action_bookmark_add( $key )
