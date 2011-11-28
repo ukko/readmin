@@ -31,12 +31,20 @@ class Command_Keys
         $keys       = array();
         foreach ( R::factory()->lRange( $lKey, $start, $end ) as $key )
         {
-            $keys[] = array(
+            $data = array(
                                 'key'   => $key,
                                 'type'  => Helper_Keys::getType( $key ),
                                 'value' => Helper_Keys::getValue( $key, Helper_Keys::getType($key) ),
                                 'ttl'   => Command_Keys::ttl( $key ),
                             );
+
+            // Remove deleted keys from cache
+            if ( $data['type'] == 'not_found' ) 
+            {
+                R::factory()->lRem( $lKey, $key, 0 );
+            }
+
+            $keys[] = $data;
         }
 
         $total      = R::factory()->lSize( $lKey );
