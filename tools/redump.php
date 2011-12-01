@@ -1,12 +1,12 @@
 #! /usr/bin/env php
 <?php
 /**
- * Redis dump keys and values in stdin or file
+ * Copyright (c) 2011 Max Kamashev <max.kamashev@gmail.com>
+ * Distributed under the GNU GPL v3. For full terms see the file COPYING.
  *
- * @author  Max Kamashev <max.kamashev@gmail.com>
- * @link    https://github.com/ukko/readmin
+ *
+ * Redis dump keys and values in stdin or file
  */
-
 $redump = new Redump();
 foreach ( $redump->getPatterns() as $pattern )
 {

@@ -15,3 +15,6 @@ Re: admin - web gui for easy viewing and managing data in Redis.
  * [A PHP extension for Redis](https://github.com/nicolasff/phpredis)
  * [PHP](http://php.net/)
 
+## License
+
+Distributed under the GNU GPL v3. For full terms see the file http://www.gnu.org/licenses/gpl-3.0.txt

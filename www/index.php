@@ -1,6 +1,7 @@
 <?php
 /**
- * Entry point
+ * Copyright (c) 2011 Max Kamashev <max.kamashev@gmail.com>
+ * Distributed under the GNU GPL v3. For full terms see the file COPYING.
  */
 error_reporting(E_ALL);
 define('APPPATH', dirname(__DIR__) . '/application');

@@ -1,12 +1,8 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: ukko
- * Date: 22.10.11
- * Time: 4:05
- * To change this template use File | Settings | File Templates.
+ * Copyright (c) 2011 Max Kamashev <max.kamashev@gmail.com>
+ * Distributed under the GNU GPL v3. For full terms see the file COPYING.
  */
-
 class Command_Hashes
 {
     public static function hGetAll( $key )
