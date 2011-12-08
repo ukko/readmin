@@ -10,6 +10,7 @@ class Helper_Keys
     const ACTION_RENAME     = 'rename';
     const ACTION_PERSIST    = 'persist';
     const ACTION_MOVE       = 'move';
+    const ACTION_CLEAR_CACHE= 'cc';
 
     public static function getType( $key )
     {
@@ -231,6 +232,19 @@ class Helper_Keys
 
             return '<a class="cmd exec" href="' . 'MOVE ' . urlencode( $key ) . ' " title="MOVE ' . $key . '">Move</a>';
         }
+    }
+
+    public static function anchorActionClearCache($key, $back)
+    {
+        $params = array(
+            'db'    => Request::factory()->getDb(),
+            'cmd'   => 'DEL ' . urlencode( $key ),
+            'back'  => $back,
+        );
+
+        $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
+
+        return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '">Clear cache</a>';
     }
 
     public static function value( $params )

@@ -1,4 +1,9 @@
-<h5><?php echo htmlspecialchars($cmd, ENT_QUOTES) ?></h5>
+<h5>
+    <?php echo htmlspecialchars($cmd, ENT_QUOTES) ?>
+    <small class="pull-right">
+    <?php echo Helper_Keys::anchorActionClearCache($cache, $cmd) ?>
+    </small>
+</h5>
 <?php echo $paginator ?>
 <table class="bordered-table zebra-striped">
     <thead>

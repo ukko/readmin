@@ -64,6 +64,7 @@ class Command_Keys
                         'paginator' => $paginator,
                         'keys'      => $keys,
                         'cmd'       => Request::factory()->getCmd(),
+                        'cache'     => $lKey
                     );
 
         return View::factory( 'tables/keys', $data );
