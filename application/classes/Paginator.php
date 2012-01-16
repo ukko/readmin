@@ -15,13 +15,13 @@ class Paginator
      * @param   int     $limitPages Limit pages in paginator
      * @return string
      */
-    public static function parsePaginator( $total, $current, $url, $limit = 20, $limitPages = 10 )
+    public static function parsePaginator( $totalItems, $current, $url, $limit = 20, $limitPages = 10 )
     {
-        $total      = abs( (int)$total );
+        $totalItems = abs( (int)$totalItems );
         $current    = abs( (int)$current );
         $limit      = abs( (int)$limit );
 
-        $total = ceil($total / $limit);
+        $total = ceil($totalItems / $limit);
 
         if ($total <= 1)
         {
@@ -90,6 +90,7 @@ class Paginator
             'totalURL'  => str_replace(':id:', $total, $url),
             'prevURL'   => $prevURL,
             'nextURL'   => $nextURL,
+            'totalItems'=> $totalItems,
         );
 
         return View::factory('paginator', $data);
@@ -104,22 +105,22 @@ class Paginator
      * @param int $limit    Limit pages
      * @return string
      */
-    public static function parseExtended( $total, $current, $url, $limit = 10 )
+    public static function parseExtended( $totalItems, $current, $url, $limit = 10 )
     {
-        $total      = abs( (int)$total );
+        $totalItems = abs( (int)$totalItems );
         $current    = abs( (int)$current );
         $limit      = abs( (int)$limit );
 
-        $total = ceil($total / $limit);
+        $totalPages = ceil($totalItems / Config::get( 're_limit' ));
 
-        if ($total <= 1)
+        if ($totalPages <= 1)
         {
             return '';
         }
 
-        if ($current > $total)
+        if ($current > $totalPages)
         {
-            $current = $total;
+            $current = $totalPages;
         }
 
         $start = 1;
@@ -135,10 +136,10 @@ class Paginator
             {
                 $start = 1;
             }
-            elseif ($current + ceil($limit / 2) > $total)
+            elseif ($current + ceil($limit / 2) > $totalPages)
             {
-                if ( ($total - $limit) > 1) {
-                    $start = $total - $limit;
+                if ( ($totalPages - $limit) > 1) {
+                    $start = $totalPages - $limit;
                 } else {
                     $start = 1;
                 }
@@ -149,7 +150,7 @@ class Paginator
             }
         }
 
-        $end    = (($start + $limit) < $total) ? ($start + $limit) : $total;
+        $end    = (($start + $limit) < $totalPages) ? ($start + $limit) : $totalPages;
 
         $pages = array();
         for($i = $start; $i <= $end; $i++)
@@ -178,16 +179,17 @@ class Paginator
             $nextURL = $pages[ $current + 1 ]['url'];
         }
 
-        $totalUrl = str_replace(':page:',  $total, $url);
-        $totalUrl = str_replace(':start:', $total * Config::get('re_limit') - Config::get('re_limit'), $totalUrl);
-        $totalUrl = str_replace(':end:',   $total * Config::get('re_limit'),   $totalUrl);
+        $totalUrl = str_replace(':page:',  $totalPages, $url);
+        $totalUrl = str_replace(':start:', $totalPages * Config::get('re_limit') - Config::get('re_limit'), $totalUrl);
+        $totalUrl = str_replace(':end:',   $totalPages * Config::get('re_limit'),   $totalUrl);
 
         $data = array(
             'pages'     => $pages,
-            'total'     => $total,
+            'total'     => $totalPages,
             'totalURL'  => $totalUrl,
             'prevURL'   => $prevURL,
             'nextURL'   => $nextURL,
+            'totalItems'=> $totalItems,
         );
 
         return View::factory('paginator', $data);

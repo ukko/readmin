@@ -30,7 +30,7 @@ class Command_ZSets
 
             $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+:end:+&page=:page:';
             $data['paginator'] = Paginator::parseExtended(
-                                    $total, Request::factory()->getPage(), $url, Config::get( 're_limit' )
+                                    $total, Request::factory()->getPage(), $url, Config::get( 're_pages' )
                                 );
         }
         $data['command'] = 'ZRANGE ' . $key . ' ' . $start . ' ' . $end;
