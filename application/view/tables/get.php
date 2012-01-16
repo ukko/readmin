@@ -1,4 +1,4 @@
-<h5>GET <?= htmlspecialchars($key, ENT_QUOTES) ?></h5>
+<h5>GET <?php echo htmlspecialchars($key, ENT_QUOTES) ?></h5>
 <table>
 	<thead>
 		<tr>
@@ -9,9 +9,9 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><?= htmlspecialchars($value, ENT_QUOTES) ?></td>
+			<td><?php echo htmlspecialchars($value, ENT_QUOTES) ?></td>
             <td> - </td>
-            <td><?= Helper_Strings::anchorActionDelete( $key ) ?></td>
+            <td><?php echo Helper_Strings::anchorActionDelete( $key ) ?></td>
 		</tr>
 	</tbody>
 </table>

@@ -14,8 +14,8 @@
         <tr>
             <td><input type="checkbox" /></td>
             <td>S</td>
-            <td><?= htmlspecialchars($name, ENT_QUOTES) ?></td>
-            <td><?= htmlspecialchars($value, ENT_QUOTES) ?></td>
+            <td><?php echo htmlspecialchars($name, ENT_QUOTES) ?></td>
+            <td><?php echo htmlspecialchars($value, ENT_QUOTES) ?></td>
         </tr>
         <?php endforeach; ?>
         <?php endif; ?>

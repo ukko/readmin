@@ -1,5 +1,5 @@
-<h5>LRANGE <?= htmlspecialchars($key, ENT_QUOTES) . ' ' . $start . ' ' . $end ?></h5>
-<?= $paginator ?>
+<h5>LRANGE <?php echo htmlspecialchars($key, ENT_QUOTES) . ' ' . $start . ' ' . $end ?></h5>
+<?php echo $paginator ?>
 <table>
     <thead>
         <tr>
@@ -12,12 +12,12 @@
     <tbody>
         <?php foreach( $value as $k => $v ) : ?>
         <tr>
-            <td><?= $k + $start ?></td>
-            <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
+            <td><?php echo $k + $start ?></td>
+            <td><?php echo htmlspecialchars($v, ENT_QUOTES) ?></td>
             <td> - </td>
-            <td><?= Helper_Lists::anchorActionDelete( $key, $v ) ?></td>
+            <td><?php echo Helper_Lists::anchorActionDelete( $key, $v ) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-<?= $paginator ?>
+<?php echo $paginator ?>

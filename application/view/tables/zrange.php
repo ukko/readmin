@@ -1,6 +1,6 @@
 <div>
-    <h5>ZRANGE <?= $key . ' ' . $start . ' ' . $end ?></h5>
-    <?= $paginator ?>
+    <h5>ZRANGE <?php echo $key . ' ' . $start . ' ' . $end ?></h5>
+    <?php echo $paginator ?>
     <table>
         <thead>
             <tr>
@@ -14,14 +14,14 @@
         <tbody>
             <?php foreach( $value as $value => $score ) : ?>
             <tr>
-                <td><?= Command_ZSets::zRank( $key, $value ) ?></td>
-                <td><?= $score ?></td>
-                <td><?= $value ?></td>
+                <td><?php echo Command_ZSets::zRank( $key, $value ) ?></td>
+                <td><?php echo $score ?></td>
+                <td><?php echo $value ?></td>
 		        <td> - </td>
-		        <td><?= Helper_ZSets::anchorActionDelete( $key, $value ) ?></td>
+		        <td><?php echo Helper_ZSets::anchorActionDelete( $key, $value ) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?= $paginator ?>
+    <?php echo $paginator ?>
 </div>
