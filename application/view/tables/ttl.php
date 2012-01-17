@@ -1,4 +1,4 @@
-<h5>TTL <?= htmlspecialchars($key, ENT_QUOTES) ?></h5>
+<h5>TTL <?php echo htmlspecialchars($key, ENT_QUOTES) ?></h5>
 <table>
 	<thead>
 		<tr>
@@ -8,8 +8,8 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><?= htmlspecialchars($key, ENT_QUOTES) ?></td>
-            <td><?= $ttl ?></td>
+			<td><?php echo htmlspecialchars($key, ENT_QUOTES) ?></td>
+            <td><?php echo $ttl ?></td>
 		</tr>
 	</tbody>
 </table>

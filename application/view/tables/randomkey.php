@@ -7,7 +7,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><?= htmlspecialchars($key, ENT_QUOTES) ?></td>
+			<td><?php echo htmlspecialchars($key, ENT_QUOTES) ?></td>
 		</tr>
 	</tbody>
 </table>

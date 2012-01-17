@@ -7,7 +7,7 @@
                     <li>
                         <ul class="nav secondary-nav">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" id="database" value="<?= $currentdb ?>">Database: <?= $currentdb ?></a>
+                                <a class="dropdown-toggle" href="#" id="database" value="<?php echo $currentdb ?>">Database: <?php echo $currentdb ?></a>
                                 <ul class="dropdown-menu">
                                 <?php
                                     for ($i = 0; $i < Config::get('databases'); $i++) {

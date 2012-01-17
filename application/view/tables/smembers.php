@@ -1,4 +1,4 @@
-<h5>SMEMBERS <?= htmlspecialchars($key, ENT_QUOTES) ?></h5>
+<h5>SMEMBERS <?php echo htmlspecialchars($key, ENT_QUOTES) ?></h5>
 <table>
     <thead>
     <tr>
@@ -8,7 +8,7 @@
     <tbody>
         <?php foreach( $value as $k => $v ) : ?>
         <tr>
-            <td><?= htmlspecialchars($v, ENT_QUOTES) ?></td>
+            <td><?php echo htmlspecialchars($v, ENT_QUOTES) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
