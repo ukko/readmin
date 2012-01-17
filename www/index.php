@@ -30,6 +30,10 @@ else
     throw new ExceptionRouter('Not a valid URL : ' . $uri);
 }
 
+/**
+ * @TODO SPL::__autoload
+ * @param $className
+ */
 function __autoload($className)
 {
     $path = str_replace('_', '/', $className) . '.php';

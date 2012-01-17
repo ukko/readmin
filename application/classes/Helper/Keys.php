@@ -244,7 +244,7 @@ class Helper_Keys
 
         $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
 
-        return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '">Clear cache</a>';
+        return '<a class="cmd" href="' . $url . '" title="DEL ' . $key . '">Clear cache</a>';
     }
 
     public static function value( $params )
