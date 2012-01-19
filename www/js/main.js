@@ -29,6 +29,13 @@ $(document).ready(function ()
         }
     );
 
+    $('thead input:checkbox').click(function(){
+        thch = this;
+        $('tbody input:checkbox').each(function(){
+            $(this).prop('checked', ! $(this).prop('checked'));
+        });
+    });
+
     commands =
     [
         {

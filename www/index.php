@@ -8,6 +8,20 @@ define('APPPATH', dirname(__DIR__) . '/application');
 
 require_once APPPATH . '/classes/Exceptions.php';
 
+/**
+ * @TODO SPL::__autoload
+ * @param $className
+ */
+function __autoload($className)
+{
+    $path = str_replace('_', '/', $className) . '.php';
+
+    if ( file_exists(APPPATH . '/classes/' . $path) )
+    {
+        require_once APPPATH . '/classes/' . $path;
+    }
+}
+
 if ( ! R::factory()->ping() )
 {
     throw new RedisException('Redis has not connect ' . Config::get('host') . ':' . Config::get('port'));
@@ -29,18 +43,3 @@ else
 {
     throw new ExceptionRouter('Not a valid URL : ' . $uri);
 }
-
-/**
- * @TODO SPL::__autoload
- * @param $className
- */
-function __autoload($className)
-{
-    $path = str_replace('_', '/', $className) . '.php';
-
-    if ( file_exists(APPPATH . '/classes/' . $path) )
-    {
-        require_once APPPATH . '/classes/' . $path;
-    }
-}
-
