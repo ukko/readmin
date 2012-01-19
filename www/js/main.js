@@ -91,6 +91,12 @@ $(document).ready(function ()
         .appendTo( ul );
     };
 
+    History.Adapter.bind( window, 'statechange', function()
+    {
+        var State = History.getState();
+        loadData(State.url);
+    });
+
     $('#command').keypress(function(e){
         if ( e.which == 13 )
         {
@@ -98,19 +104,16 @@ $(document).ready(function ()
         }
     });
 
-    History.Adapter.bind( window, 'statechange', function()
-    {
-        var State = History.getState();
-        loadData(State.url);
-    });
-
     $('#execute').button().click(function()
     {
-        var href    = window.location.protocol + '//' + window.location.host + '/?db=' + $( '#database' ).attr('value') + '&cmd=' + $( '#command' ).val().replace(' ', '+');
-        var title   = 'Re:admin "' + $('#command').val() + '"';
-        var state   = { url: href, title: title, random: Math.random() };
+        var href    = window.location.protocol + '//' + window.location.host;
 
-        History.pushState( state, title, href);
+        params = {
+            db: $( '#database' ).attr('value'),
+            cmd: $( '#command' ).val(),
+        }
+
+        loadData( href, params );
         return false;
     });
 
@@ -131,10 +134,9 @@ $(document).ready(function ()
             {
                 return false;
             }
-
         }
 
-        History.pushState( {'url': href, 'title': title }, title, href);
+        History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
         return false;
     });
 
@@ -146,15 +148,22 @@ $(document).ready(function ()
      * @param href      String
      * @param params    Get params
      */
-    function loadData( href, params )
+    function loadData( href, params, type )
     {
         setIcon('loader');
 
-        $.get(
-            href,
-            params,
-            function( data )
-            {
+        if (type==undefined)
+        {
+            type = "post";
+        }
+
+
+        $.ajax({
+            type:       type,
+            url:        href,
+            data:       params,
+            dataType:   "json",
+            success: function(data){
                 setIcon('auto');
 
                 if (data.content && data.content.length > 0)
@@ -174,9 +183,8 @@ $(document).ready(function ()
                     $('#command').val( data.cmd );
                     $('title').text( 'Re:admin ' + data.cmd );
                 }
-            },
-            'json'
-        );
+            }
+        });
     }
 
     /**

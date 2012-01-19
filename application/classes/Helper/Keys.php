@@ -184,7 +184,7 @@ class Helper_Keys
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
-                'cmd'   => 'DEL ' . urlencode( $key ),
+                'cmd'   => 'DEL ' . $key,
                 'back'  => Request::factory()->getBack(),
             );
 
@@ -196,41 +196,41 @@ class Helper_Keys
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
-                'cmd'   => 'EXPIRE ' . urlencode( $key ),
+                'cmd'   => 'EXPIRE ' . $key,
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'EXPIRE ' . urlencode( $key ) . ' " title="EXPIRE ' . $key . '">Expire</a>';
+            return '<a class="cmd exec" href="' . 'EXPIRE ' . $key . ' " title="EXPIRE ' . $key . '">Expire</a>';
         }
         elseif ( $action == self::ACTION_RENAME )
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
-                'cmd'   => 'RENAME ' . urlencode( $key ),
+                'cmd'   => 'RENAME ' . $key,
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'RENAME ' . urlencode( $key ) . ' " title="RENAME ' . $key . ' newKeyName">Rename</a>';
+            return '<a class="cmd exec" href="' . 'RENAME ' . $key . ' " title="RENAME ' . $key . ' newKeyName">Rename</a>';
         }
         elseif ( $action == self::ACTION_PERSIST )
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
-                'cmd'   => 'PERSIST ' . urlencode( $key ),
+                'cmd'   => 'PERSIST ' . $key,
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'PERSIST ' . urlencode( $key ) . ' " title="PERSIST ' . $key . '">Persist</a>';
+            return '<a class="cmd exec" href="' . 'PERSIST ' . $key . ' " title="PERSIST ' . $key . '">Persist</a>';
         }
         elseif ( $action == self::ACTION_MOVE )
         {
             $params = array(
                 'db'    => Request::factory()->getDb(),
-                'cmd'   => 'MOVE ' . urlencode( $key ),
+                'cmd'   => 'MOVE ' . $key,
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'MOVE ' . urlencode( $key ) . ' " title="MOVE ' . $key . '">Move</a>';
+            return '<a class="cmd exec" href="' . 'MOVE ' . $key . ' " title="MOVE ' . $key . '">Move</a>';
         }
     }
 
@@ -238,7 +238,7 @@ class Helper_Keys
     {
         $params = array(
             'db'    => Request::factory()->getDb(),
-            'cmd'   => 'DEL ' . urlencode( $key ),
+            'cmd'   => 'DEL ' . $key,
             'back'  => $back,
         );
 

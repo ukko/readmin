@@ -40,19 +40,52 @@ class Request
             )
         );
 
-        $this->setUrl(      filter_input( INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL ) );
-        $this->setMethod(   filter_input( INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING ) );
-        $this->setReferrer( filter_input( INPUT_SERVER, 'HTTP_REFERER', FILTER_SANITIZE_URL ) );
-        $this->setIp(       filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_SANITIZE_STRING ) );
-        $this->setAjax(     filter_input( INPUT_SERVER, 'HTTP_X_REQUESTED_WITH', FILTER_SANITIZE_STRING ) == 'XMLHttpRequest' );
-        $this->setScheme(   filter_input( INPUT_SERVER, 'SERVER_PROTOCOL', FILTER_SANITIZE_STRING ) );
-        $this->setUserAgent( filter_input( INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_SANITIZE_STRING ) );
+        $this->setUrl(      filter_input( INPUT_SERVER,     'REQUEST_URI', FILTER_SANITIZE_URL ) );
+        $this->setMethod(   filter_input( INPUT_SERVER,     'REQUEST_METHOD', FILTER_SANITIZE_STRING ) );
+        $this->setReferrer( filter_input( INPUT_SERVER,     'HTTP_REFERER', FILTER_SANITIZE_URL ) );
+        $this->setIp(       filter_input( INPUT_SERVER,     'REMOTE_ADDR', FILTER_SANITIZE_STRING ) );
 
-        $this->setCmd(      filter_input( INPUT_GET, 'cmd', FILTER_SANITIZE_STRING ) );
-        $this->setDb(       filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT,   $dbOptions ) );
-        $this->setPage(     filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
-        $this->setServerName( filter_input( INPUT_SERVER, 'SERVER_NAME' ) );
-        $this->setBack(     filter_input( INPUT_GET,    'back', FILTER_SANITIZE_STRING ) );
+        $this->setScheme(   filter_input( INPUT_SERVER,     'SERVER_PROTOCOL', FILTER_SANITIZE_STRING ) );
+        $this->setUserAgent( filter_input( INPUT_SERVER,    'HTTP_USER_AGENT', FILTER_SANITIZE_STRING ) );
+        $this->setServerName( filter_input( INPUT_SERVER,   'SERVER_NAME' ) );
+        $this->setAjax(     filter_input( INPUT_SERVER,     'HTTP_X_REQUESTED_WITH',
+                                                                FILTER_SANITIZE_STRING ) == 'XMLHttpRequest' );
+
+        if ( isset( $_POST['cmd'] ) )
+        {
+            $this->setCmd( filter_input( INPUT_POST, 'cmd', FILTER_SANITIZE_STRING ) );
+        }
+        else
+        {
+            $this->setCmd( filter_input( INPUT_GET, 'cmd', FILTER_SANITIZE_STRING ) );
+        }
+
+        if ( isset( $_POST['db'] ) )
+        {
+            $this->setDb( filter_input( INPUT_POST, 'db', FILTER_VALIDATE_INT, $dbOptions ) );
+        }
+        else
+        {
+            $this->setDb( filter_input( INPUT_GET, 'db', FILTER_VALIDATE_INT, $dbOptions ) );
+        }
+
+        if ( isset( $_POST['page'] ) )
+        {
+            $this->setPage( filter_input( INPUT_POST, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
+        }
+        else
+        {
+            $this->setPage( filter_input( INPUT_GET, 'page', FILTER_VALIDATE_INT, $pageOptions ) );
+        }
+
+        if ( isset( $_POST['back'] ) )
+        {
+            $this->setBack( filter_input( INPUT_POST, 'back', FILTER_SANITIZE_STRING ) );
+        }
+        else
+        {
+            $this->setBack( filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING ) );
+        }
     }
 
     /**
