@@ -2,8 +2,8 @@
     <div class="topbar">
         <div class="topbar-inner">
             <div class="container">
-                <a class="brand" href="#">Re:admin</a>
-		        <ul class="nav">
+                <a class="brand" href="<?php echo Helper_URL::create() ?>">Re:admin</a>
+                <ul class="nav">
                     <li>
                         <ul class="nav secondary-nav">
                             <li class="dropdown">
@@ -27,10 +27,9 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#">ukko@127.0.0.1:6379</a>
                         <ul class="dropdown-menu">
-                            <li><a href="">127.0.0.1:6379</a></li>
-                            <li><a href="">127.0.0.1:6380</a></li>
-                            <li class="divider"></li>
-                            <li><a href="">127.0.0.1:6381</a></li>
+                            <?php foreach( Config::get('hosts') as $host ) : ?>
+                            <li><a var-host="<?php echo $host['host'] ?>" var-port="<?php $host['port']?>"><?php echo $host['host'] . ':' . $host['port'] ?></a></li>
+                            <?php endforeach; ?>
                         </ul>
                     </li>
                 </ul>
