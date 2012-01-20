@@ -10,7 +10,7 @@
     <script src="/js/html5.js"></script>
     <![endif]-->
 
-    <script src="/js/jquery-1.7.min.js"></script>
+    <script src="/js/jquery-1.7.1.min.js"></script>
     <script src="/js/bootstrap-modal.js"></script>
     <script src="/js/bootstrap-alerts.js"></script>
     <script src="/js/bootstrap-twipsy.js"></script>
@@ -22,13 +22,13 @@
 
     <script src="/js/jquery.history.js"></script>
 
-    <script src="/js/jquery-ui-1.8.13.custom.min.js"></script>
+    <script src="/js/jquery-ui-1.8.17.custom.min.js"></script>
 
     <script src="/js/main.js"></script>
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/smoothness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/smoothness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
     <link href="/css/main.css" rel="stylesheet" />
 
 <script type="text/javascript">
