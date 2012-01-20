@@ -19,4 +19,18 @@ class Helper_Hashes
 
         return '<a class="cmd delete" href="' . $url . '" title="' . $title . '">Delete</a>';
     }
+
+    public static function anchorActionEdit( $key, $field )
+    {
+        $params = array(
+            'db'    => Request::factory()->getDb(),
+            'cmd'   => 'HSET ' . urlencode( $key ) . ' ' . urlencode( $field ),
+            'back'  => Request::factory()->getBack(),
+        );
+
+        $url    = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
+        $title  = 'HSET ' . htmlspecialchars($key) . ' ' . htmlspecialchars($field);
+
+        return '<a class="cmd" href="' . $url . '" title="' . $title . '">Edit</a>';
+    }
 }

@@ -2,10 +2,9 @@
 <table>
 	<thead>
 		<tr>
-			<td class="span4">field</td>
-			<td>value</td>
-            <td class="span2">edit</td>
-            <td class="span2">delete</td>
+			<td class="span4">Field</td>
+			<td>Value</td>
+            <td class="span2">Action</td>
 		</tr>
 	<thead>
 	<tbody>
@@ -13,8 +12,15 @@
 		<tr>
 		    <td><?php echo htmlspecialchars($k, ENT_QUOTES) ?></td>
 		    <td><?php echo htmlspecialchars($v, ENT_QUOTES) ?></td>
-            <td><?php echo '-' ?></td>
-            <td><?php echo Helper_Hashes::anchorActionDelete( $key, $k ) ?></td>
+            <td>
+                <div class="popup noactive">
+                    <span>Action ▿</span>
+                    <ul class="menu">
+                        <li><?php echo Helper_Hashes::anchorActionDelete( $key, $k ) ?></li>
+                        <li><?php echo Helper_Hashes::anchorActionEdit( $key, $k ) ?></li>
+                    </ul>
+                </div>
+            </td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
