@@ -76,7 +76,7 @@ class Command_Keys
      */
     public static function del( $key )
     {
-        return R::factory()->del( $key );
+        return call_user_func_array( array( R::factory(), 'del' ), explode(' ', $key) );
     }
 
     public static function expire( $key, $ttl )

@@ -33,15 +33,23 @@ class Controller_Index extends Controller_Base
 
     private function executeCommand()
     {
-        $cmd = explode(' ', Request::factory()->getCmd());
+        if ( $pos = strpos( Request::factory()->getCmd(), ' ') )
+        {
+            $method = substr( Request::factory()->getCmd(), 0, $pos );
+            $args   = substr( Request::factory()->getCmd(), $pos + 1 );
+        }
+        else
+        {
+            $method = Request::factory()->getCmd();
+            $args   = array();
+        }
 
         $command    = new Controller_Command();
-        $method     = array_shift( $cmd );
 
         if ( method_exists( $command, $method ) )
         {
             History::write( 'admin', Request::factory()->getCmd() );
-            return call_user_func_array( array( $command,  $method ) , $cmd );
+            return call_user_func( array( $command,  $method ) , $args );
         }
         else
         {

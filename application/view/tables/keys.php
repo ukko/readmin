@@ -1,4 +1,4 @@
-<h5>
+<h5 var-cmd="<?php echo $cmd ?>">
     <?php echo htmlspecialchars($cmd, ENT_QUOTES) ?>
     <small class="pull-right">
     <?php echo Helper_Keys::anchorActionClearCache($cache, $cmd) ?>
@@ -49,15 +49,16 @@
     <?php endif; ?>
     </tbody>
 </table>
+<div class="container">
+    <div class="pull-left">
+        <label for="do_with_checked">Checked items:</label>
+            <select id="do_with_checked" class="span2">
+                <option>&nbsp;</option>
+                <option value="delete">Delete</option>
+            </select>
+    </div>
 
-<div class="right clearfix">
-
-        <label for="action_checked">Checked items:</label>
-        <select id="action_checked" class="span2">
-            <option>&nbsp;</option>
-            <option>Delete</option>
-        </select>
-
+    <div class="pull-right">
         <label for="limit">Limit items:</label>
         <select id="limit" class="span1">
             <option>10</option>
@@ -65,6 +66,6 @@
             <option>50</option>
             <option>all</option>
         </select>
-
+    </div>
 </div>
 <?php echo $paginator ?>
