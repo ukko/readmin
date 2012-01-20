@@ -50,23 +50,21 @@
     </tbody>
 </table>
 
-<div>
-<div>
-    <label for="action_checked">Checked items:</label>
-    <select id="action_checked">
-        <option><option>
-        <option>Delete<option>
-    </select>
-</div>
+<div class="right clearfix">
 
-<div class="push-right">
-    <label for="limit">Limit items:</label>
-    <select id="limit">
-        <option>10<option>
-        <option>20<option>
-        <option>50<option>
-        <option>all<option>
-    </select>
-</div>
+        <label for="action_checked">Checked items:</label>
+        <select id="action_checked" class="span2">
+            <option>&nbsp;</option>
+            <option>Delete</option>
+        </select>
+
+        <label for="limit">Limit items:</label>
+        <select id="limit" class="span1">
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>all</option>
+        </select>
+
 </div>
 <?php echo $paginator ?>

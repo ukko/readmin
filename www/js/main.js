@@ -29,7 +29,7 @@ $(document).ready(function ()
         }
     );
 
-    $('thead input:checkbox').click(function(){
+    $('thead input:checkbox').live('click', function(){
         thch = this;
         $('tbody input:checkbox').each(function(){
             $(this).prop('checked', ! $(this).prop('checked'));
