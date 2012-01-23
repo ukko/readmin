@@ -11,7 +11,7 @@
 <div class="container">
 
     <div class="content">
-
+        <div id="desc"></div>
         <div class="page-header">
             <img id="icon" src="/i/empty.png" alt="" >
             <input type="text" class="span12 command" id="command" placeholder="Type your redis command here .." value="<?php echo $cmd ?>" >

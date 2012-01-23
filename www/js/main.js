@@ -7,6 +7,20 @@ $(document).ready(function ()
 {
     var History = window.History;
 
+
+//    $(document).keypress(function(e){
+//
+//        console.log(e);
+//        // Ctrl + / - command
+//        if ( e.ctrlKey )
+//        {
+//
+//            alert('asd');
+////            $('#command').focus();
+//        }
+//    });
+
+
     $('#command').focus();
     $('.dropdown').dropdown();
     $("a[rel=twipsy]").twipsy({ live: true });
@@ -107,13 +121,17 @@ $(document).ready(function ()
         },
         select: function( event, ui ) {
             $( "#command" ).val( ui.item.value );
+            $('#desc').text(ui.item.desc);
             return false;
         }
     })
     .data( "autocomplete" )._renderItem = function( ul, item ) {
         return $( "<li></li>" )
         .data( "item.autocomplete", item )
-        .append( "<a>" + item.value + "<br>" + item.desc + "</a>" )
+        .append( "<a var-desc='" + item.desc + "'>" + item.value
+//                + "</small><span class='ui-icon ui-icon-clock pull-right'></a>"
+                + "<span class='ui-icon ui-icon-star pull-right'></a>"
+        )
         .appendTo( ul );
     };
 
