@@ -93,6 +93,26 @@ class Controller_Command extends Controller_Base
         return Command_ZSets::zrange( $key, $start, $end );
     }
 
+    public function zRangeByScore( $args )
+    {
+        $args = explode(' ', $args);
+
+        if ( count($args) > 2 )
+        $key        = $args[0];
+        $min        = $args[1];
+        $max        = $args[2];
+        $withscores = (bool)(isset($args[3]) && strtoupper($args[3]) == 'WITHSCORES');
+
+        if ( isset($args[4]) && strtoupper($args[4]) == 'WITHSCORES' )
+        {
+            $offset     = $args[5];
+            $limit      = $args[6];
+        }
+
+        Request::factory()->setBack( urlencode( 'ZRANGE ' . $key . ' ' . $start . ' ' . $end ) );
+        return Command_ZSets::zRangeByScore( $key, $min, $max, $limit, $offset );
+    }
+
     public function zrem( $key, $member )
     {
         Command_ZSets::zRem( $key, $member );

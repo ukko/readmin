@@ -80,35 +80,35 @@ $(document).ready(function ()
     [
         {
             value:  "INFO",
-            desc:   "Get information and statistics about the server"
+            desc:   "INFO"
         },
         {
-            value: "KEYS pattern*",
-            desc:   "Find all keys matching the given pattern"
+            value:  "KEYS",
+            desc:   "KEYS pattern:*"
         },
         {
-            value: "GET key",
-            desc:   "Get the value of a key"
+            value:  "GET",
+            desc:   "GET string.key"
         },
         {
-            value: "HGETALL key",
-            desc:   "Get all the fields and values in a hash"
+            value:  "HGETALL",
+            desc:   "HGETALL hash.key"
         },
         {
-            value:  "SMEMBERS key",
-            desc:   "Get all the members in a set"
+            value:  "SMEMBERS",
+            desc:   "SMEMBERS set.key"
         },
         {
-            value:  "ZRANGE key start stop [WITHSCORES]",
-            desc:   "Return a range of members in a sorted set, by index"
+            value:  "ZRANGE",
+            desc:   "ZRANGE key start stop [WITHSCORES]"
         },
         {
-            value:  "LRANGE key start stop",
-            desc:   "Get a range of elements from a list"
+            value:  "LRANGE",
+            desc:   "LRANGE key start stop"
         },
         {
-            value:  "DEL key [key ...]",
-            desc:   "Delete a key"
+            value:  "DEL",
+            desc:   "DEL key [key ...]"
         },
     ];
 
@@ -117,11 +117,11 @@ $(document).ready(function ()
         source: commands,
         focus: function( event, ui ) {
             $( "#command" ).val( ui.item.value );
+            $( '#desc' ).text(ui.item.desc);
             return false;
         },
         select: function( event, ui ) {
             $( "#command" ).val( ui.item.value );
-            $('#desc').text(ui.item.desc);
             return false;
         }
     })
