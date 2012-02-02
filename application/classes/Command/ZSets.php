@@ -49,27 +49,35 @@ class Command_ZSets
 
         $data = array(
                         'key'   => $key,
-                        'start' => $start,
-                        'end'   => $end,
+                        'start' => $offset,
+                        'end'   => Config::get('re_limit'),
                         'value' => $value,
                     );
 
         $data['paginator']  = '';
+        $data['command'] = 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max;
 
         if ( $total > Config::get('re_limit') )
         {
 
             $dataUrl = array(
                             'db'        => Request::factory()->getDb(),
-                            'cmd'       => 'ZRANGE ' . $key . ' ' . $min . ' ' . $max,
+                            'cmd'       => 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max,
                             );
 
-            $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+:end:+&page=:page:';
+            if ($limit)
+            {
+                $dataUrl['cmd'] .= ' LIMIT';
+                $data['command'] .= ' LIMIT ' . $offset . ' ' . $limit;
+            }
+
+            $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+' . Config::get('re_limit') .  '+&page=:page:';
+
             $data['paginator'] = Paginator::parseExtended(
                                     $total, Request::factory()->getPage(), $url, Config::get( 're_pages' )
                                 );
         }
-        $data['command'] = 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max;
+
 
         return View::factory('tables/zrange', $data);
     }

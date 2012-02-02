@@ -138,7 +138,7 @@ $(document).ready(function ()
     History.Adapter.bind( window, 'statechange', function()
     {
         var State = History.getState();
-        loadData(State.url);
+        loadData(State.data.url);
     });
 
     $('#command').keypress(function(e){

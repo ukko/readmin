@@ -97,19 +97,31 @@ class Controller_Command extends Controller_Base
     {
         $args = explode(' ', $args);
 
-        if ( count($args) > 2 )
-        $key        = $args[0];
-        $min        = $args[1];
-        $max        = $args[2];
-        $withscores = (bool)(isset($args[3]) && strtoupper($args[3]) == 'WITHSCORES');
-
-        if ( isset($args[4]) && strtoupper($args[4]) == 'WITHSCORES' )
-        {
-            $offset     = $args[5];
-            $limit      = $args[6];
+        if ( count($args) > 2 ) {
+            $key        = $args[0];
+            $min        = in_array(strtolower($args[1]), array('-inf', '+inf')) ? strtolower($args[1]) : (int)$args[1];
+            $max        = in_array(strtolower($args[2]), array('-inf', '+inf')) ? strtolower($args[2]) : (int)$args[2];
         }
 
-        Request::factory()->setBack( urlencode( 'ZRANGE ' . $key . ' ' . $start . ' ' . $end ) );
+        $withscores = FALSE;
+        $offset     = 0;
+        $limit      = 20;
+
+        $command = 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max;
+        if ( isset($args[3]) && strtoupper($args[3] == 'WITHSCORES') )
+        {
+            $withscores = TRUE;
+            $command .= ' WITHSCORES ';
+        }
+        if ( isset($args[3 + $withscores ]) && strtoupper($args[3 + $withscores]) == 'LIMIT' )
+        {
+
+            $offset     = (int)$args[4 + $withscores ];
+            $limit      = (int)$args[5 + $withscores ];
+            $command    .= ' LIMIT ' .  $offset . ' ' . $limit;
+        }
+
+        Request::factory()->setBack( urlencode( $command ) );
         return Command_ZSets::zRangeByScore( $key, $min, $max, $limit, $offset );
     }
 

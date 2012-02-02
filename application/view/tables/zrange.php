@@ -1,5 +1,5 @@
 <div>
-    <h5>ZRANGE <?php echo $key . ' ' . $start . ' ' . $end ?></h5>
+    <h5><?php echo $command ?></h5>
     <?php echo $paginator ?>
     <table>
         <thead>
