@@ -17,14 +17,34 @@ class Controller_Command extends Controller_Base
         return Command_Keys::keys( $args );
     }
 
-    public function expire( $key, $ttl )
+    public function expire( $args )
     {
-        Command_Keys::expire( $key, (int)$ttl );
+        $key    = '';
+        $ttl    = 0;
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key    = $args[0];
+            $ttl    = (int)$args[1];
+        }
+
+        Command_Keys::expire( $key, $ttl );
         return Helper_Navigation::goBack( $this );
     }
 
-    public function expireat( $key, $timestamp )
+    public function expireat( $args )
     {
+        $key            = '';
+        $timestamp      = 0;
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $timestamp  = (int)$args[1];
+        }
+
         Command_Keys::expireAt( $key, (int)$timestamp );
         return Helper_Navigation::goBack( $this );
     }
@@ -45,14 +65,34 @@ class Controller_Command extends Controller_Base
         return Command_Keys::ttl( $key );
     }
 
-    public function rename( $key, $newKey )
+    public function rename( $args )
     {
+        $key        = '';
+        $newKey     = '';
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $newKey     = $args[1];
+        }
+
         Command_Keys::rename( $key, $newKey );
         return Helper_Navigation::goBack( $this );
     }
 
-    public function move( $key, $db )
+    public function move( $args )
     {
+        $key        = '';
+        $db         = 0;
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $db         = (int)$args[1];
+        }
+
         Command_Keys::move( $key, $db );
         return Helper_Navigation::goBack( $this );
     }
@@ -61,7 +101,7 @@ class Controller_Command extends Controller_Base
      * Get string value
      *
      * @param $key
-     * @return void
+     * @return string
      */
     public function get( $key )
     {
@@ -75,8 +115,18 @@ class Controller_Command extends Controller_Base
         return Command_Hashes::hGetAll( $key );
     }
 
-    public function hdel( $key, $field )
+    public function hdel( $args )
     {
+        $key        = '';
+        $field      = '';
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $field      = $args[1];
+        }
+
         Command_Hashes::hDel( $key, $field );
 
         return Helper_Navigation::goBack( $this );
@@ -87,8 +137,20 @@ class Controller_Command extends Controller_Base
         return Command_Sets::smembers( $key );
     }
 
-    public function zrange( $key, $start = 0, $end = -1 )
+    public function zrange( $args )
     {
+        $key        = '';
+        $start      = 0;
+        $end        = -1;
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 3 )
+        {
+            $key        = $args[0];
+            $start      = (int)$args[1];
+            $end        = (int)$args[2];
+        }
+
         Request::factory()->setBack( urlencode( 'ZRANGE ' . $key . ' ' . $start . ' ' . $end ) );
         return Command_ZSets::zrange( $key, $start, $end );
     }
@@ -97,7 +159,7 @@ class Controller_Command extends Controller_Base
     {
         $args = explode(' ', $args);
 
-        if ( count($args) > 2 ) {
+        if ( count($args) > 3 ) {
             $key        = $args[0];
             $min        = in_array(strtolower($args[1]), array('-inf', '+inf')) ? strtolower($args[1]) : (int)$args[1];
             $max        = in_array(strtolower($args[2]), array('-inf', '+inf')) ? strtolower($args[2]) : (int)$args[2];
@@ -127,6 +189,16 @@ class Controller_Command extends Controller_Base
 
     public function zrem( $key, $member )
     {
+        $key        = '';
+        $member     = '';
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $member      = $args[1];
+        }
+
         Command_ZSets::zRem( $key, $member );
 
         return Helper_Navigation::goBack( $this );
@@ -152,6 +224,18 @@ class Controller_Command extends Controller_Base
 
     public function lrem( $key, $count, $member )
     {
+        $key    = '';
+        $count  = '';
+        $member = '';
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 3 )
+        {
+            $key        = $args[0];
+            $count      = (int)$args[1];
+            $member     = $args[2];
+        }
+
         Command_Lists::lRem( $key, $count, $member );
 
         return Helper_Navigation::goBack( $this );
