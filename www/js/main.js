@@ -154,10 +154,15 @@ $(document).ready(function ()
 
         params = {
             db: $( '#database' ).attr('value'),
-            cmd: $( '#command' ).val(),
+            cmd: $( '#command' ).val()
         }
 
-        loadData( href, params );
+        href    = href + '/?' + $.param(params);
+        title   = 'Re:admin "' + $('#command').val() + '"';
+
+        History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
+//        loadData( href + '/?' + $.param(params) );
+//        loadData( href, params );
         return false;
     });
 
