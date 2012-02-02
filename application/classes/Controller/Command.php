@@ -132,8 +132,20 @@ class Controller_Command extends Controller_Base
         return Helper_Navigation::goBack( $this );
     }
 
-    public function lrange( $key, $start = 0, $end = -1 )
+    public function lrange( $args )
     {
+        $key    = '';
+        $start  = 0;
+        $end    = -1;
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 3 )
+        {
+            $key    = $args[0];
+            $start  = (int)$args[1];
+            $end    = (int)$args[2];
+        }
+
         Request::factory()->setBack( urlencode( 'LRANGE ' . $key . ' ' . $start . ' ' . $end ) );
         return Command_Lists::lrange( $key, $start, $end );
     }
