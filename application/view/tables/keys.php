@@ -29,7 +29,7 @@
         <td>
             <?php echo Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
             &nbsp;
-            <span class="small"><?php echo Helper_Keys::value( $item['value'] ) ?></span>
+            <span class="small"><?php echo htmlspecialchars(Helper_Keys::value( $item['value'] )) ?></span>
             <span class="label pull-right"><?php echo Helper_Keys::size( $item['value'] ) ?></span>
         </td>
         <td>

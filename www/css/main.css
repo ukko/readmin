@@ -108,3 +108,9 @@ span.small {
     width: 24px;
     height: 24px;
 }
+
+#desc {
+    position: relative;
+    top: 5px;
+    left: 30px;
+}

@@ -170,7 +170,7 @@ class Helper_Keys
         }
         elseif( $type == 'zset' )
         {
-            $data['cmd'] = 'ZRANGE ' . $key . ' 0 ' . Config::get('re_limit');
+            $data['cmd'] = 'ZRANGEBYSCORE ' . $key . ' -inf +inf WITHSCORES LIMIT 0 ' . Config::get('re_limit');
         }
 
         $url = http_build_query($data);

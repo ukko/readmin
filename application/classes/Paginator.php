@@ -166,7 +166,6 @@ class Paginator
                 'number'    => $i,
             );
         }
-
         $prevURL = $nextURL = '';
 
         if ( isset( $pages[ $current - 1 ] ) )
@@ -191,7 +190,6 @@ class Paginator
             'nextURL'   => $nextURL,
             'totalItems'=> $totalItems,
         );
-
         return View::factory('paginator', $data);
     }
 }

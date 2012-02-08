@@ -1,4 +1,4 @@
-<h5>LRANGE <?php echo htmlspecialchars($key, ENT_QUOTES) . ' ' . $start . ' ' . $end ?></h5>
+<h5><?php echo htmlspecialchars($command, ENT_QUOTES) ?></h5>
 <?php echo $paginator ?>
 <table>
     <thead>
