@@ -168,6 +168,11 @@ $(document).ready(function ()
 
     $('a.cmd').live('click', function()
     {
+        if ( $(this).attr('href') == '' )
+        {
+            return false;
+        }
+
         if ( $(this).hasClass('exec') )
         {
             $('#command').val( $(this).attr('href') ).focus();
