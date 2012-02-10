@@ -1,61 +1,62 @@
 <h5 var-cmd="<?php echo $cmd ?>">
     <?php echo htmlspecialchars($cmd, ENT_QUOTES) ?>
     <small class="pull-right">
-    <?php echo Helper_Keys::anchorActionClearCache($cache, $cmd) ?>
+        <?php echo Helper_Keys::anchorActionClearCache($cache, $cmd) ?>
     </small>
 </h5>
 <?php echo $paginator ?>
-<table class="bordered-table zebra-striped">
+<table class="table-striped">
     <thead>
     <tr>
-        <th class="span1"><input type="checkbox"></th>
-        <th class="span2">Type</th>
+        <th style="width: 20px; text-align: left;"><input type="checkbox"></th>
+        <th class="span1">Type</th>
         <th>Key</th>
-        <th class="span2">Action</th>
+        <th class="span1">Action</th>
     </tr>
     </thead>
     <tbody>
 
-    <?php if ( isset( $keys ) ) : ?>
-    <?php foreach ( $keys as $item ) : ?>
-    <tr>
-        <td><input type="checkbox" id="<?php echo $item['key'] ?>" /></td>
-        <td>
-            <span class="label notice"><?php echo $item['type'] ?></span>
-            <?php if ( $item['ttl'] > 0) : ?>
-            <a data-placement="right" rel='twipsy' title='TTL <?php echo $item['ttl'] ?>'>⌚</a>
-            <?php endif; ?>
-        </td>
-        <td>
-            <?php echo Helper_Keys::anchorKey( $item['key'], $item['type'], $db ) ?>
-            &nbsp;
-            <span class="small"><?php echo htmlspecialchars(Helper_Keys::value( $item['value'] )) ?></span>
-            <span class="label pull-right"><?php echo Helper_Keys::size( $item['value'] ) ?></span>
-        </td>
-        <td>
-            <div class="popup noactive">
-                <span>Action ▿</span>
-                <ul class="menu">
-                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE ) ?></li>
-                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_RENAME ) ?></li>
-                    <li><?php if ( $item['ttl'] > 0 ) echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_PERSIST ) ?></li>
-                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_MOVE ) ?></li>
-                    <li><?php echo Helper_Keys::anchorAction( $item['key'], $item['type'], Helper_Keys::ACTION_DELETE ) ?></li>
-                </ul>
-            </div>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-    <?php endif; ?>
+    <?php if (isset($keys)) : ?>
+        <?php foreach ($keys as $item) : ?>
+        <tr>
+            <td><input type="checkbox" id="<?php echo $item['key'] ?>"/></td>
+            <td>
+                <span class="label label-info"><?php echo $item['type'] ?></span>
+                <?php if ($item['ttl'] > 0) : ?>
+                <a data-placement="right" rel='twipsy' title='TTL <?php echo $item['ttl'] ?>'><i class="icon-time"></i></a>
+                <?php endif; ?>
+            </td>
+            <td>
+                <?php echo Helper_Keys::anchorKey($item['key'], $item['type'], $db) ?>
+                &nbsp;
+                <span class="small"><?php echo htmlspecialchars(Helper_Keys::value($item['value'])) ?></span>
+                <span class="label pull-right"><?php echo Helper_Keys::size($item['value']) ?></span>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE) ?></li>
+                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_RENAME) ?></li>
+                        <li><?php if ($item['ttl'] > 0) echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_PERSIST) ?></li>
+                        <li class="divider"></li>
+                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_MOVE) ?></li>
+                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_DELETE) ?></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </tbody>
 </table>
 <div class="container">
     <div class="pull-left">
         <label for="do_with_checked">Checked items:</label>
-            <select id="do_with_checked" class="span2">
-                <option>&nbsp;</option>
-                <option value="delete">Delete</option>
-            </select>
+        <select id="do_with_checked" class="span2">
+            <option>&nbsp;</option>
+            <option value="delete">Delete</option>
+        </select>
     </div>
 
     <div class="pull-right">
