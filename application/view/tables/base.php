@@ -1,5 +1,5 @@
 <h5></h5>
-<table>
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th><input type="checkbox" /></th>

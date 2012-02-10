@@ -5,7 +5,7 @@
     </small>
 </h5>
 <?php echo $paginator ?>
-<table class="table-striped">
+<table class="table table-striped table-bordered">
     <thead>
     <tr>
         <th style="width: 20px; text-align: left;"><input type="checkbox"></th>
@@ -34,7 +34,8 @@
             </td>
             <td>
                 <div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span
+                            class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE) ?></li>
                         <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_RENAME) ?></li>
@@ -50,23 +51,33 @@
         <?php endif; ?>
     </tbody>
 </table>
+
+<?php echo $paginator ?>
+
 <div class="container">
-    <div class="pull-left">
-        <label for="do_with_checked">Checked items:</label>
-        <select id="do_with_checked" class="span2">
-            <option>&nbsp;</option>
-            <option value="delete">Delete</option>
-        </select>
+    <div class="pull-left hide checked-do">
+        <div class="btn-group">
+            <a class="btn btn-danger" href="#">Delete</a>
+            <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#" value="delete">Delete</a></li>
+            </ul>
+        </div>
     </div>
 
-    <div class="pull-right">
-        <label for="limit">Limit items:</label>
-        <select id="limit" class="span1">
-            <option>10</option>
-            <option>20</option>
-            <option>50</option>
-            <option>all</option>
-        </select>
-    </div>
+    <form class="form-horizontal">
+        <div class="control-group pull-right">
+            <label class="control-label" for="limit">Limit items:</label>
+
+            <div class="controls">
+                <select id="limit" class="span1">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>all</option>
+                </select>
+            </div>
+        </div>
+    </form>
 </div>
-<?php echo $paginator ?>
+

@@ -1,7 +1,10 @@
 <?php
-
+/**
+ * Fill db mockup values
+ */
 $redis = new Redis();
 $redis->connect('127.0.0.1');
+$redis->select(2);
 
 // HSET
 for ( $i = 0; $i <= rand(1000, 10000); $i++ )
@@ -54,14 +57,14 @@ for ( $i = 0; $i <= rand(1000, 10000); $i++ )
 
 
 
-// SET
+// ZSET
 for ( $i = 0; $i <= rand(1000, 10000); $i++ )
 {
-    $incr = $redis->incr('test:incr:set');
+    $incr = $redis->incr('test:incr:zset');
 
     for ( $j = 0; $j <= rand(10, 100); $j++ )
     {
-        $redis->zAdd('test:' . $incr . ':set', $j, md5($j) );
+        $redis->zAdd('test:' . $incr . ':zset', $j, md5($j) );
     }
 }
 

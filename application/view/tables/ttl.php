@@ -1,5 +1,5 @@
 <h5>TTL <?php echo htmlspecialchars($key, ENT_QUOTES) ?></h5>
-<table>
+<table class="table table-striped table-bordered">
 	<thead>
 		<tr>
 			<td>key</td>

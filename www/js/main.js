@@ -75,6 +75,10 @@ $(document).ready(function ()
             }
         }
     });
+    $(':checkbox').live('click', function(){
+        $('.checked-do').show();
+    });
+
 
     commands =
     [

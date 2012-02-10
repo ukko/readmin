@@ -1,5 +1,5 @@
 <h5>RANDOMKEY</h5>
-<table>
+<table class="table table-striped table-bordered">
 	<thead>
 		<tr>
 			<td>key</td>
