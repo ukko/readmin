@@ -11,14 +11,18 @@
     <![endif]-->
 
     <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/bootstrap-carousel.js"></script>
+    <script src="/js/bootstrap-collapse.js"></script>
+    <script src="/js/bootstrap-tooltip.js"></script>
+    <script src="/js/bootstrap-transition.js"></script>
+    <script src="/js/bootstrap-typeahead.js"></script>
     <script src="/js/bootstrap-modal.js"></script>
-    <script src="/js/bootstrap-alerts.js"></script>
-    <script src="/js/bootstrap-twipsy.js"></script>
+    <script src="/js/bootstrap-alert.js"></script>
     <script src="/js/bootstrap-popover.js"></script>
     <script src="/js/bootstrap-dropdown.js"></script>
     <script src="/js/bootstrap-scrollspy.js"></script>
-    <script src="/js/bootstrap-tabs.js"></script>
-    <script src="/js/bootstrap-buttons.js"></script>
+    <script src="/js/bootstrap-tab.js"></script>
+    <script src="/js/bootstrap-button.js"></script>
 
     <script src="/js/jquery.history.js"></script>
 
@@ -27,7 +31,7 @@
     <script src="/js/main.js"></script>
 
     <!-- Le styles -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/smoothness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
     <link href="/css/main.css" rel="stylesheet" />
 
