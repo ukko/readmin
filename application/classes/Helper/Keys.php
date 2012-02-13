@@ -174,7 +174,7 @@ class Helper_Keys
         }
 
         $url = http_build_query($data);
-        return '<a href="/?' . $url  . '" class="cmd">' . $key . '</a>';
+        return '<a rel="twipsy" title="' . htmlspecialchars($key) . '" href="/?' . $url  . '" class="cmd">' . $key . '</a>';
     }
 
 
