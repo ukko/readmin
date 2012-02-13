@@ -24,7 +24,7 @@ class Helper_Hashes
     {
         $params = array(
             'db'    => Request::factory()->getDb(),
-            'cmd'   => 'HSET ' . urlencode( $key ) . ' ' . urlencode( $field ),
+            'cmd'   => 'HSET ' . $key . ' ' . $field,
             'back'  => Request::factory()->getBack(),
         );
 
