@@ -1,7 +1,7 @@
 <div class="pagination">
     <ul>
-        <li class="<?php echo (empty($prevURL) ? 'disabled' : '') ?> prev"><a class="cmd" href="<?php echo $prevURL ?>">&larr;</a></li>
-        <li class="<?php echo (empty($nextURL) ? 'disabled' : '') ?> "><a class="cmd" href="<?php echo $nextURL ?>">&rarr;</a></li>
+        <li class="<?php echo (empty($prevURL) ? 'disabled' : '') ?> prev"><a class="cmd" href="<?php echo $prevURL ?>">«</a></li>
+        <li class="<?php echo (empty($nextURL) ? 'disabled' : '') ?> "><a class="cmd" href="<?php echo $nextURL ?>">»</a></li>
 
         <?php foreach($pages as $page) : ?>
         <li class="<?php echo isset($page['active']) ? 'active' : '' ?>">
