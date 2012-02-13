@@ -114,6 +114,19 @@ $(document).ready(function ()
             value:  "DEL",
             desc:   "DEL key [key ...]"
         },
+        {
+            value:  "EXPIRE",
+            desc:   "EXPIRE key seconds"
+        },
+        {
+            value:  "RENAME",
+            desc:   "RENAME key newkey"
+        },
+        {
+            value:  "MOVE",
+            desc:   "MOVE key db"
+        },
+
     ];
 
     $( "#command" ).autocomplete({
