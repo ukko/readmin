@@ -10,8 +10,8 @@
 	<tbody>
 		<?php foreach( $value as $k => $v ) : ?>
 		<tr>
-		    <td><?php echo htmlspecialchars($k, ENT_QUOTES) ?></td>
-		    <td><?php echo htmlspecialchars($v, ENT_QUOTES) ?></td>
+		    <td><?php echo htmlspecialchars($k) ?></td>
+		    <td><?php echo $v ?></td>
             <td>
                 <div class="btn-group">
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>
