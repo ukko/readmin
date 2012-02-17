@@ -27,6 +27,8 @@ if ( ! R::factory()->ping() )
     throw new RedisException('Redis has not connect ' . Config::get('host') . ':' . Config::get('port'));
 }
 
+session_start();
+
 $uri = parse_url( Request::factory()->getUrl(), PHP_URL_PATH );
 $uri = substr($uri, 1);
 

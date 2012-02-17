@@ -16,6 +16,7 @@ class Request
     protected $cmd          = null;
     protected $serverName   = null;
     protected $page         = null;
+    protected $limit        = null;
 
     protected $back         = null;
 
@@ -86,6 +87,16 @@ class Request
         {
             $this->setBack( filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING ) );
         }
+
+        if ( isset( $_POST['limit'] ) )
+        {
+            $limit = filter_input( INPUT_POST, 'limit', FILTER_VALIDATE_INT );
+        }
+        else
+        {
+            $limit = filter_input( INPUT_GET, 'limit', FILTER_VALIDATE_INT ) ;
+        }
+        Config::set( 're_limit', $limit );
     }
 
     /**
@@ -234,5 +245,15 @@ class Request
     public function getServerName()
     {
         return $this->serverName;
+    }
+
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+    }
+
+    public function getLimit()
+    {
+        return $this->limit;
     }
 }

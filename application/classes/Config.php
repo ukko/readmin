@@ -20,4 +20,10 @@ class Config
         $config = self::factory();
         return $config[$key];
     }
+
+    public static function set( $key, $value )
+    {
+        self::factory();
+        return self::$config[$key] = $value;
+    }
 }

@@ -43,35 +43,33 @@ $(document).ready(function ()
         }
     );
 
+    // KEYS
     $('thead input:checkbox').live('click', function(){
         thch = this;
         $('tbody input:checkbox').each(function(){
             $(this).prop('checked', ! $(this).prop('checked'));
         });
     });
-
-    $('#do_with_checked').live('change', function(){
-        if ( $('option:selected', this).val() == 'delete' )
+    $('.checked-do .btn-group a').live('click', function(){
+        if ( confirm('Delete selected keys?') )
         {
-            if ( confirm('Delete selected keys?') )
+            var href    = window.location.protocol + '//' + window.location.host;
+            var cmd     = '';
+
+            $('tbody input:checked').each(function(){
+                cmd += ' ' + $(this).attr('id');
+            });
+
+            if ( cmd != '')
             {
-                var href    = window.location.protocol + '//' + window.location.host;
-                var cmd     = '';
-
-                $('tbody input:checked').each(function(){
-                    cmd += ' ' + $(this).attr('id');
-                });
-
-                if ( cmd != '')
-                {
-                    params = {
-                        db:     $( '#database' ).attr('value'),
-                        cmd:    'DEL' + cmd,
-                        back:   $('h5').attr('var-cmd')
-                    }
-
-                    loadData(href, params);
+                params = {
+                    db:     $( '#database' ).attr('value'),
+                    cmd:    'DEL' + cmd,
+                    back:   $('h5').attr('var-cmd'),
+                    limit:  $( '#limit :selected' ).val()
                 }
+
+                loadData(href, params);
             }
         }
     });
@@ -170,8 +168,9 @@ $(document).ready(function ()
         var href    = window.location.protocol + '//' + window.location.host;
 
         params = {
-            db: $( '#database' ).attr('value'),
-            cmd: $( '#command' ).val()
+            db:     $( '#database' ).attr('value'),
+            cmd:    $( '#command' ).val(),
+            limit:  $( '#limit :selected' ).val()
         }
 
         href    = href + '/?' + $.param(params);

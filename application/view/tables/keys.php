@@ -68,10 +68,12 @@
 
             <div class="controls">
                 <select id="limit" class="span1">
-                    <option>10</option>
-                    <option>20</option>
-                    <option>50</option>
-                    <option>all</option>
+                <?php foreach( array(10, 20, 50, 100) as $value ) : ?>
+                <?php
+                    $selected = Config::get('re_limit') == $value ? "selected='selected'" : "";
+                    echo "<option {$selected} value='{$value}'>{$value}</option>"
+                ?>
+                <?php endforeach; ?>
                 </select>
             </div>
         </div>
