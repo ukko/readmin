@@ -107,7 +107,7 @@ class Helper_Keys
                     }
                     $value .= $item;
                 } else {
-                    $value .= ', ..';
+                    $value = substr( $value, 0, ($max - 5)  ) . '..';
                     break;
                 }
             }
