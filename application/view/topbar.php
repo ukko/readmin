@@ -20,6 +20,7 @@
                         ?>
                     </ul>
                 </li>
+                <li><a href="/index/logout">Exit&nbsp;<i class="icon-user icon-white"></i></a></li>
             </ul>
 
         </div>

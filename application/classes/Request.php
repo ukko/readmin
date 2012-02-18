@@ -96,6 +96,11 @@ class Request
         {
             $limit = filter_input( INPUT_GET, 'limit', FILTER_VALIDATE_INT ) ;
         }
+
+        if ( ! $limit )
+        {
+            $limit = Config::get( 're_limit' );
+        }
         Config::set( 're_limit', $limit );
     }
 

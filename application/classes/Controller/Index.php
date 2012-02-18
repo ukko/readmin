@@ -70,6 +70,11 @@ class Controller_Index extends Controller_Base
         echo View::factory('layout', $data);
     }
 
+    public function action_logout()
+    {
+        Helper_Auth::logout();
+    }
+
     public function action_bookmark_add( $key )
     {
 

@@ -31,20 +31,23 @@ return array(
 
     'hosts' => array(
         array(
-            'host'   => '127.0.0.1',
-            'port'   => '6379',
+            'host'      => '127.0.0.1',
+            'port'      => '6379',
+            'users'     => array( // user => permissions: write || read
+                'admin' => 'write',
+                'user'  => 'read',
             ),
+        ),
         array(
-            'host'   => '192.168.2.157',
-            'port'   => '6379',
+            'host'      => '127.0.0.1',
+            'port'      => '6380',
+            'users'     => array(
+                'user'  => 'write',
             ),
-        array(
-            'host'   => '192.168.2.157',
-            'port'   => '6380',
-            ),
+        ),
     ),
-    'users'     => array(
-        'ukko'    => '601f1889667efaebb33b8c12572835da3f027f78',
-        'rashit'  => '601f1889667efaebb33b8c12572835da3f027f78',
+    'users'     => array( // login => sha1( password)
+        'admin'     => 'd033e22ae348aeb5660fc2140aec35850c4da997',
+        'user'      => '12dea96fec20593566ab75692c9949596833adc9',
     ),
 );
