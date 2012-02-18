@@ -185,11 +185,9 @@ $(document).ready(function ()
         }
 
         href    = href + '/?' + $.param(params);
-        title   = 'Re:admin "' + $('#command').val() + '"';
+        title   = $('#command').val() + ' — Re:admin';
 
         History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
-//        loadData( href + '/?' + $.param(params) );
-//        loadData( href, params );
         return false;
     });
 
@@ -207,7 +205,7 @@ $(document).ready(function ()
         }
 
         var href    = $(this).attr('href');
-        var title   = 'Re:admin "' + $('#command').val() + '"';
+        var title   = $('#command').val() + ' — Re:admin';
 
         if ( $(this).hasClass('delete') )
         {
@@ -262,7 +260,7 @@ $(document).ready(function ()
 
                 if ( data.cmd.length > 0) {
                     $('#command').val( data.cmd );
-                    $('title').text( 'Re:admin ' + data.cmd );
+                    $('title').text( data.cmd + ' — Re:admin' );
                 }
             }
         });

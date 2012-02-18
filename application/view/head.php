@@ -1,8 +1,8 @@
 <head>
     <meta charset="utf-8">
-    <title>Re:admin - redis admin panel</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Re:admin</title>
+    <meta name="description" content="php redis admin">
+    <meta name="author" content="Max Kamashev">
     <link href='/favicon.ico' rel='shortcut icon'/>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
