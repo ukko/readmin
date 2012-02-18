@@ -22,6 +22,9 @@ class Helper_Auth
             if ( $_SESSION['password'] == $users[ $_SESSION['login'] ] )
             {
                 $isAuth = true;
+                Config::set('host', $_SESSION['host']);
+                Config::set('port', $_SESSION['port']);
+
             }
         }
 
@@ -29,20 +32,23 @@ class Helper_Auth
         {
             if ( isset( $users[ $login ] ) && $users[ $login ] == sha1( $password ) )
             {
-                $_SESSION['login']      = $login;
-                $_SESSION['password']   = sha1( $password );
 
                 $server                 = explode(':', $server);
                 $host                   = isset($server[0]) ? $server[0] : NULL;
                 $port                   = isset($server[1]) ? $server[1] : NULL;
 
+                Config::set('host', $host);
+                Config::set('port', $port);
+
+                $_SESSION['login']      = $login;
+                $_SESSION['password']   = sha1( $password );
                 $_SESSION['host']       = $host;
                 $_SESSION['port']       = $port;
 
-                return true;
+                header('Location: /');
+                exit();
             }
         }
-
 
         if ( ! $isAuth )
         {
@@ -54,7 +60,6 @@ class Helper_Auth
     public static function logout()
     {
         session_destroy();
-        setcookie (session_name(), "", time() - 86400);
         header('Location: /');
         exit();
     }

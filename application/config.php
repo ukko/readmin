@@ -4,8 +4,8 @@
  */
 return array(
     // Redis connection
-    'host'      => '127.0.0.1', // Redis host
-    'port'      => '6379',      // Redis port
+//    'host'      => '127.0.0.1', // Redis host
+//    'port'      => '6379',      // Redis port
     'timeout'   => 3,           // Redis timeout connect
 
     // Max count databases

@@ -12,10 +12,11 @@
 
     <div class="content">
         <div class="page-header">
-
-            <img id="icon" src="/i/empty.png" alt="" >
-            <input type="text" class="span9 command" id="command" placeholder="Type your redis command here .." value="<?php echo $cmd ?>" >
-            <button class="btn btn-primary" id="execute">Execute</button>
+            <form class="form-horizontal">
+                <img id="icon" src="/i/empty.png" alt="" >
+                <input type="text" class="span9 command" id="command" placeholder="Type your redis command here .." value="<?php echo $cmd ?>" >
+                <button class="btn btn-primary" id="execute">Execute</button>
+            </form>
 <!--            <div class="alert alert-info" id="desc"><a class="close" data-dismiss="alert" href="#">&times;</a>&nbsp</div>-->
         </div>
 
