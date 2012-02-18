@@ -87,21 +87,6 @@ class Request
         {
             $this->setBack( filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING ) );
         }
-
-        if ( isset( $_POST['limit'] ) )
-        {
-            $limit = filter_input( INPUT_POST, 'limit', FILTER_VALIDATE_INT );
-        }
-        else
-        {
-            $limit = filter_input( INPUT_GET, 'limit', FILTER_VALIDATE_INT ) ;
-        }
-
-        if ( ! $limit )
-        {
-            $limit = Config::get( 're_limit' );
-        }
-        Config::set( 're_limit', $limit );
     }
 
     /**

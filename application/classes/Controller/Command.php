@@ -13,6 +13,24 @@ class Controller_Command extends Controller_Base
      */
     public function keys($args)
     {
+        $limit = Config::get('re_limit');
+
+        if ( isset( $_POST['limit'] ) )
+        {
+            $limit = (int) $_POST['limit'];
+        }
+        elseif ( isset( $_GET['limit'] ) )
+        {
+            $limit = (int) $_GET['limit'];
+        }
+        elseif ( isset( $_SESSION['limit'] ) )
+        {
+            $limit = (int) $_SESSION['limit'];
+        }
+
+        $_SESSION['limit'] = $limit;
+        Config::set( 're_limit', $limit );
+
         Request::factory()->setBack( urlencode( 'KEYS ' . $args ) );
         return Command_Keys::keys( $args );
     }

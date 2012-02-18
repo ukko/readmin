@@ -43,7 +43,7 @@ $(document).ready(function ()
         }
     );
 
-    // KEYS
+    // KEYS +
     $('thead input:checkbox').live('click', function(){
         thch = this;
         $('tbody input:checkbox').each(function(){
@@ -65,18 +65,30 @@ $(document).ready(function ()
                 params = {
                     db:     $( '#database' ).attr('value'),
                     cmd:    'DEL' + cmd,
-                    back:   $('h5').attr('var-cmd'),
-                    limit:  $( '#limit :selected' ).val()
+                    back:   $('h5').attr('var-cmd')
                 }
 
                 loadData(href, params);
             }
         }
     });
+
     $(':checkbox').live('click', function(){
         $('.checked-do').show();
     });
 
+    $('#limit').live('change', function(){
+        var href    = window.location.protocol + '//' + window.location.host;
+        params = {
+            db:     $( '#database' ).attr('value'),
+            cmd:    $('h5').attr('var-cmd'),
+            limit:  $( ':selected', this ).val()
+        }
+
+        loadData(href, params);
+    });
+
+    // KEYS -
 
     commands =
     [
@@ -170,7 +182,6 @@ $(document).ready(function ()
         params = {
             db:     $( '#database' ).attr('value'),
             cmd:    $( '#command' ).val(),
-            limit:  $( '#limit :selected' ).val()
         }
 
         href    = href + '/?' + $.param(params);
