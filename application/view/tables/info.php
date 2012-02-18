@@ -2,8 +2,8 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>name</th>
-            <th>value</th>
+            <th class="span2">name</th>
+            <th class="span9">value</th>
         </tr>
     </thead>
     <tbody>
