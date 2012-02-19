@@ -190,7 +190,7 @@ class Helper_Keys
 
             $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
 
-            return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '">Delete</a>';
+            return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '"><i class="icon-trash"></i>&nbsp;Delete</a>';
         }
         elseif ( $action == self::ACTION_EXPIRE )
         {
@@ -200,7 +200,7 @@ class Helper_Keys
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'EXPIRE ' . $key . ' " title="EXPIRE ' . $key . '">Expire</a>';
+            return '<a class="cmd exec" href="' . 'EXPIRE ' . $key . ' " title="EXPIRE ' . $key . '"><i class="icon-time"></i>&nbsp;Expire</a>';
         }
         elseif ( $action == self::ACTION_RENAME )
         {
@@ -210,7 +210,7 @@ class Helper_Keys
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'RENAME ' . $key . ' " title="RENAME ' . $key . ' newKeyName">Rename</a>';
+            return '<a class="cmd exec" href="' . 'RENAME ' . $key . ' " title="RENAME ' . $key . ' newKeyName"><i class="icon-retweet"></i>&nbsp;Rename</a>';
         }
         elseif ( $action == self::ACTION_PERSIST )
         {
@@ -230,7 +230,7 @@ class Helper_Keys
                 'back'  => Request::factory()->getBack(),
             );
 
-            return '<a class="cmd exec" href="' . 'MOVE ' . $key . ' " title="MOVE ' . $key . '">Move</a>';
+            return '<a class="cmd exec" href="' . 'MOVE ' . $key . ' " title="MOVE ' . $key . '"><i class="icon-random"></i>&nbsp;Move</a>';
         }
     }
 
