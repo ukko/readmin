@@ -18,6 +18,7 @@ class Controller_Index extends Controller_Base
             'currentdb' => Request::factory()->getDb(),
             'cmd'       => Request::factory()->getCmd(),
             'dbkeys'    => Helper_Info::getCountKeysInDb(),
+            'history'   => History::getLast($_SESSION['login']),
         );
 
         if ( Request::factory()->getAjax() )
@@ -73,6 +74,27 @@ class Controller_Index extends Controller_Base
     public function action_logout()
     {
         Helper_Auth::logout();
+    }
+
+    public function action_history()
+    {
+        $data = array(
+            'content'   => $this->executeCommand(),
+            'currentdb' => Request::factory()->getDb(),
+            'cmd'       => Request::factory()->getCmd(),
+            'dbkeys'    => Helper_Info::getCountKeysInDb(),
+            'history'   => History::getLast($_SESSION['login']),
+        );
+
+        if ( Request::factory()->getAjax() )
+        {
+            header('Content-Type: application/json');
+            echo json_encode( $data );
+        }
+        else
+        {
+            echo View::factory('layout', $data);
+        }
     }
 
     public function action_bookmark_add( $key )

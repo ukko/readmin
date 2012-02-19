@@ -21,6 +21,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="" class="disabled"><?php echo (isset($_SESSION['login']) ? $_SESSION['login'] : '') . '@' .Config::get('host') . ':' . Config::get('port') ?></a></li>
                             <li class="divider"></li>
+                            <li><a class="cmd" href="<?php echo History::getUrl($_SESSION['login']) ?>"><i class="icon-list-alt"></i>&nbsp;History</a></li>
+                            <li class="divider"></li>
                             <li><a href="/index/logout"><i class="icon-eject"></i>&nbsp;Logout</a></li>
                         </ul>
                     </li>

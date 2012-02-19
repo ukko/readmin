@@ -12,7 +12,16 @@
     <?php foreach ($value as $k => $v) : ?>
     <tr>
         <td><?php echo $k + $start ?></td>
-        <td><?php echo htmlspecialchars($v, ENT_QUOTES) ?></td>
+        <td><?php
+            if ( $history )
+            {
+                echo "<a class='cmd exec' href='". $v . "'>" . htmlspecialchars($v, ENT_QUOTES) . "</a>";
+            }
+            else
+            {
+                echo htmlspecialchars($v, ENT_QUOTES);
+            }
+            ?></td>
         <td>
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>

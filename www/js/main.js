@@ -260,7 +260,8 @@ $(document).ready(function ()
                 }
 
                 if ( data.cmd.length > 0) {
-                    $('#command').val( data.cmd );
+                    $('#command').val( data.cmd )
+                                 .autocomplete('option', 'source', data.history);
                     $('title').text( data.cmd + ' — Re:admin' );
                 }
             }

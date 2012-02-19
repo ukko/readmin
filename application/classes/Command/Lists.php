@@ -18,6 +18,10 @@ class Command_Lists
                     );
 
 	    $total = R::factory()->lLen( $key );
+        $data['command']    = 'LRANGE ' . $key . ' ' . $start . ' ' . $end;
+
+        $re = Config::get('re_prefix') . 'log:';
+        $data['history'] = (substr($key, 0, strlen($re)) == $re);
 
         if ( $total > Config::get('re_limit') )
         {
@@ -27,7 +31,6 @@ class Command_Lists
                             );
 
             $url    = '/?'. http_build_query( $dataUrl ) . '+:start:+:end:+&page=:page:';
-            $data['command']    = 'LRANGE ' . $key . ' ' . $start . ' ' . $end;
             $data['paginator'] = Paginator::parseExtended(
                                     $total, Request::factory()->getPage(), $url, Config::get( 're_pages' )
                                 );

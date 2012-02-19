@@ -26,4 +26,31 @@ class History
             return false;
         }
     }
+
+    public static function getLast( $user )
+    {
+        $key        = Config::get('re_prefix') . 'log:' . sha1( $user );
+        $history    =  array();
+        $uniq       = array();
+        foreach (R::factory()->lRange( $key, -100, -1 ) as $h )
+        {
+            if ( ! in_array( $h, $uniq ) )
+            {
+                $uniq[]  = $h;
+                $history[] = array( 'value' => $h, 'desc' => '' );
+            }
+        }
+        return $history;
+    }
+
+    public static function getUrl( $user )
+    {
+        $key        = Config::get('re_prefix') . 'log:' . sha1( $user );
+        $args       = array(
+            'cmd'       => 'LRANGE ' . $key . ' 0 ' . $_SESSION['limit'],
+            'db'        => Request::factory()->getDb(),
+        );
+
+        return 'http://' . Request::factory()->getServerName() .'/?'. http_build_query( $args);
+    }
 }
