@@ -25,7 +25,7 @@ $(document).ready(function ()
     $('.dropdown-toggle').dropdown();
     $("a[rel=twipsy]").tooltip({ live: true });
 
-    $('.dropdown-menu a').click(function(){
+    $('.dropdown-menu.database a').click(function(){
         $('#database').attr('value', $(this).attr('var-id')).text('Database: ' + $(this).attr('var-id'));
     });
 
@@ -182,6 +182,7 @@ $(document).ready(function ()
         params = {
             db:     $( '#database' ).attr('value'),
             cmd:    $( '#command' ).val(),
+            back:   $('h5').attr('var-cmd')
         }
 
         href    = href + '/?' + $.param(params);

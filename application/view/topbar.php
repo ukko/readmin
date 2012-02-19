@@ -7,7 +7,7 @@
                 <ul class="nav pull-right">
                     <li id="fat-menu" class="dropdown">
                         <a href="#" id="database" value="<?php echo Request::factory()->getDb() ?>" class="dropdown-toggle" data-toggle="dropdown">Database: 0<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu database">
                             <?php
                             for ($i = 0; $i < Config::get('databases'); $i++) {
                                 $count = isset($dbkeys[$i]) ? number_format($dbkeys[$i]) : 0;

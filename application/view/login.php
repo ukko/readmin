@@ -27,7 +27,11 @@
 
                 <form class="form-horizontal" method="post">
                     <fieldset>
-                        <legend>Login plz</legend>
+                        <legend>Please log in:</legend>
+                        <div class="alert alert-info">
+                            login: <b>admin</b><br/>
+                            password: <b>admin</b>
+                        </div>
                         <div class="control-group">
                             <label class="control-label" for="login">Login</label>
 
