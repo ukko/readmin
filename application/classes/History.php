@@ -47,7 +47,7 @@ class History
     {
         $key        = Config::get('re_prefix') . 'log:' . sha1( $user );
         $args       = array(
-            'cmd'       => 'LRANGE ' . $key . ' 0 ' . $_SESSION['limit'],
+            'cmd'       => 'LRANGE ' . $key . ' 0 ' . (isset($_SESSION['limit']) ? $_SESSION['limit'] : Config::get('re_limit')),
             'db'        => Request::factory()->getDb(),
         );
 

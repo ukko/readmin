@@ -1,8 +1,3 @@
-/**
- *
- */
-var commands = [];
-
 $(document).ready(function ()
 {
     var History = window.History;
@@ -89,55 +84,6 @@ $(document).ready(function ()
     });
 
     // KEYS -
-
-    commands =
-    [
-        {
-            value:  "INFO",
-            desc:   "INFO"
-        },
-        {
-            value:  "KEYS",
-            desc:   "KEYS pattern:*"
-        },
-        {
-            value:  "GET",
-            desc:   "GET string.key"
-        },
-        {
-            value:  "HGETALL",
-            desc:   "HGETALL hash.key"
-        },
-        {
-            value:  "SMEMBERS",
-            desc:   "SMEMBERS set.key"
-        },
-        {
-            value:  "ZRANGE",
-            desc:   "ZRANGE key start stop [WITHSCORES]"
-        },
-        {
-            value:  "LRANGE",
-            desc:   "LRANGE key start stop"
-        },
-        {
-            value:  "DEL",
-            desc:   "DEL key [key ...]"
-        },
-        {
-            value:  "EXPIRE",
-            desc:   "EXPIRE key seconds"
-        },
-        {
-            value:  "RENAME",
-            desc:   "RENAME key newkey"
-        },
-        {
-            value:  "MOVE",
-            desc:   "MOVE key db"
-        },
-
-    ];
 
     $( "#command" ).autocomplete({
         minLength: 0,

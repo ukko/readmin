@@ -8,6 +8,9 @@
 <?php echo View::factory('head') ?>
 <body>
     <?php echo View::factory('topbar', array('currentdb' => $currentdb, 'dbkeys' => $dbkeys)) ?>
+    <script type="text/javascript">
+        var commands = <?php echo json_encode( $history ); ?>;
+    </script>
 <div class="container">
 
     <div class="content">
