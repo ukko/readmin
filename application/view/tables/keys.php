@@ -7,12 +7,12 @@
 <?php echo $paginator ?>
 <table class="table table-striped table-bordered">
     <thead>
-    <tr>
-        <th style="width: 20px; text-align: left;"><input type="checkbox"></th>
-        <th class="span1">Type</th>
-        <th>Key</th>
-        <th class="span1">Action</th>
-    </tr>
+        <tr>
+            <th class="chckbox"><input type="checkbox"></th>
+            <th class="span1">Type</th>
+            <th>Key</th>
+            <th class="action">Action</th>
+        </tr>
     </thead>
     <tbody>
 
@@ -31,8 +31,12 @@
             </td>
             <td>
                 <div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span
-                            class="caret"></span></a>
+                    <a class="btn" data-toggle="dropdown" href="#">
+                        <i class="icon-pencil"></i>
+                    </a>
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE) ?></li>
                         <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_RENAME) ?></li>

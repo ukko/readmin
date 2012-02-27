@@ -110,3 +110,14 @@ span.small {
     height: 24px;
 }
 
+table th.action
+{
+    width: 70px;
+}
+
+table th.chckbox
+{
+    width: 20px;
+    text-align: left;
+}
+
