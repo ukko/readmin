@@ -3,17 +3,17 @@ $(document).ready(function ()
     var History = window.History;
 
 
-//    $(document).keypress(function(e){
-//
-//        console.log(e);
-//        // Ctrl + / - command
-//        if ( e.ctrlKey )
-//        {
-//
-//            alert('asd');
-////            $('#command').focus();
-//        }
-//    });
+    $(document).keypress(function(e)
+    {
+        if ( $('#command').is(':focus'))
+        {
+            // do nothing
+        }
+        else
+        {
+            $('#command').val('').focus();
+        }
+    });
 
 
     $('#command').focus();
