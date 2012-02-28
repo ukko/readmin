@@ -9,11 +9,12 @@ class Helper_Auth
     {
         session_start();
 
-        $users = Config::get('users');
+        $users      = Config::get('users');
+        $hosts      = Config::get('hosts');
 
-        $login      = filter_input(INPUT_POST, 'login' );
-        $password   = filter_input(INPUT_POST, 'password' );
-        $server     = filter_input(INPUT_POST, 'server');
+        $login      = filter_input(INPUT_POST, 'login',     FILTER_SANITIZE_STRING );
+        $password   = filter_input(INPUT_POST, 'password',  FILTER_SANITIZE_STRING );
+        $server     = filter_input(INPUT_POST, 'server',    FILTER_SANITIZE_STRING );
 
         $isAuth     = false;
 
@@ -22,28 +23,41 @@ class Helper_Auth
             if ( $_SESSION['password'] == $users[ $_SESSION['login'] ] )
             {
                 $isAuth = true;
+
                 Config::set('host', $_SESSION['host']);
                 Config::set('port', $_SESSION['port']);
-
+                Config::set('role', $_SESSION['role']);
             }
         }
 
         if ( ! $isAuth && $login && $password )
         {
-            if ( isset( $users[ $login ] ) && $users[ $login ] == sha1( $password ) )
+            if ( isset( $hosts[ $server ] [ $login ] ) )
             {
+                $role = $hosts[ $server ] [ $login ];
+            }
+            else
+            {
+                $role = NULL;
+            }
+
+            if ( isset( $users[ $login ] ) && $users[ $login ] == sha1( $password ) && $role )
+            {
+                $isAuth                 = true;
 
                 $server                 = explode(':', $server);
                 $host                   = isset($server[0]) ? $server[0] : NULL;
                 $port                   = isset($server[1]) ? $server[1] : NULL;
 
-                Config::set('host', $host);
-                Config::set('port', $port);
-
                 $_SESSION['login']      = $login;
                 $_SESSION['password']   = sha1( $password );
                 $_SESSION['host']       = $host;
                 $_SESSION['port']       = $port;
+                $_SESSION['role']       = $role;
+
+                Config::set('host', $host);
+                Config::set('port', $port);
+                Config::set('role', $role);
 
                 header('Location: /');
                 exit();

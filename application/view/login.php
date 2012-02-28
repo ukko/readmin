@@ -53,9 +53,9 @@
                             <div class="controls">
                                 <select id="connect" name="server" class="input-xlarge">
                                 <?php
-                                foreach ( Config::get('hosts') as $host )
+                                foreach ( Config::get('hosts') as $host => $users )
                                 {
-                                    echo "<option value='{$host['host']}:{$host['port']}'>{$host['host']}:{$host['port']}</option>";
+                                    echo "<option value='{$host}'>{$host}</option>";
                                 }
                                 ?>
                                 </select>
@@ -66,8 +66,6 @@
                         </div>
                     </fieldset>
                 </form>
-
-
             </div>
         </div>
     </div>

@@ -4,8 +4,6 @@
  */
 return array(
     // Redis connection
-//    'host'      => '127.0.0.1', // Redis host
-//    'port'      => '6379',      // Redis port
     'timeout'   => 3,           // Redis timeout connect
 
     // Max count databases
@@ -29,24 +27,19 @@ return array(
     // limit time store key (sec.)
     're_store_time' => 1500,
 
+    // user => permissions: write || read
     'hosts' => array(
-        array(
-            'host'      => '127.0.0.1',
-            'port'      => '6379',
-            'users'     => array( // user => permissions: write || read
-                'admin' => 'write',
-                'user'  => 'read',
-            ),
+        '127.0.0.1:6379' => array(
+            'admin' => 'write',
+            'user' => 'read',
         ),
-        array(
-            'host'      => '127.0.0.1',
-            'port'      => '6380',
-            'users'     => array(
-                'user'  => 'write',
-            ),
+        '127.0.0.1:6380' => array(
+            'ukko'  => 'write',
         ),
     ),
-    'users'     => array( // login => sha1( password)
+
+    // login => sha1( password)
+    'users'     => array(
         'admin'     => 'd033e22ae348aeb5660fc2140aec35850c4da997',
         'user'      => '12dea96fec20593566ab75692c9949596833adc9',
     ),
