@@ -103,7 +103,8 @@ $(document).ready(function ()
         .data( "item.autocomplete", item )
         .append( "<a var-desc='" + item.desc + "'>" + item.value
 //                + "</small><span class='ui-icon ui-icon-clock pull-right'></a>"
-                + "<span class='ui-icon ui-icon-star pull-right'></a>"
+//                + "<span class='ui-icon ui-icon-clock pull-right'></a>"
+                + "<span class='ui-icon ui-icon-empty pull-right'><i class='icon-repeat'></i></span></a>"
         )
         .appendTo( ul );
     };
@@ -209,6 +210,11 @@ $(document).ready(function ()
                     $('#command').val( data.cmd )
                                  .autocomplete('option', 'source', data.history);
                     $('title').text( data.cmd + ' — Re:admin' );
+                }
+            },
+            statusCode: {
+                401: function() {
+                    window.location = '/';
                 }
             }
         });
