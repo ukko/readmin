@@ -8,7 +8,11 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><?php echo htmlspecialchars($value, ENT_QUOTES) ?></td>
+			<td>
+            <div class="span10" style="overflow:auto;">
+            <?php echo htmlspecialchars($value, ENT_QUOTES) ?>
+            </div>
+            </td>
             <td>
                 <div class="btn-group">
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>

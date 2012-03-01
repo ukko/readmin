@@ -11,7 +11,7 @@
         <?php foreach ($items as $name => $value) : ?>
         <tr>
             <td><?php echo htmlspecialchars($name, ENT_QUOTES) ?></td>
-            <td><?php echo htmlspecialchars($value, ENT_QUOTES) ?></td>
+            <td style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;" ><?php echo htmlspecialchars($value, ENT_QUOTES) ?></td>
         </tr>
         <?php endforeach; ?>
     <?php endif; ?>

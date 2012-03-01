@@ -24,10 +24,12 @@
                 <span class="label label-info"><?php echo $item['type'] ?></span><?php if ($item['ttl'] > 0) : ?><i class="icon-time" data-placement="right" rel="twipsy" title="TTL <?php echo $item['ttl'] ?>"></i><?php endif; ?>
             </td>
             <td>
-                <span class="overflow"><?php echo Helper_Keys::anchorKey($item['key'], $item['type'], $db) ?></span>
-                &nbsp;
-                <span class="small"><?php echo htmlspecialchars(Helper_Keys::value($item['value'])) ?></span>
-                <span class="label pull-right"><?php echo Helper_Keys::size($item['value']) ?></span>
+                <div class="span8" style="overflow:hidden;">
+                    <?php echo Helper_Keys::anchorKey($item['key'], $item['type'], $db) ?>
+                    &nbsp;
+                    <span class="small"><?php echo htmlspecialchars(Helper_Keys::value($item['value'])) ?></span>
+                    <span class="label pull-right"><?php echo Helper_Keys::size($item['value']) ?></span>
+                </div>
             </td>
             <td>
                 <div class="btn-group">
