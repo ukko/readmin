@@ -17,7 +17,7 @@ class Helper_Hashes
         $url    = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
         $title  = 'HDEL ' . htmlspecialchars($key) . ' ' . htmlspecialchars($field);
 
-        return '<a class="cmd delete" href="' . $url . '" title="' . $title . '">Delete</a>';
+        return '<a class="cmd delete" href="' . $url . '" title="' . $title . '"><i class="icon-trash"></i> Delete</a>';
     }
 
     public static function anchorActionEdit( $key, $field )
@@ -31,6 +31,6 @@ class Helper_Hashes
         $url    = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
         $title  = 'HSET ' . htmlspecialchars($key) . ' ' . htmlspecialchars($field);
 
-        return '<a class="cmd" href="' . $url . '" title="' . $title . '">Edit</a>';
+        return '<a class="cmd" href="' . $url . '" title="' . $title . '"><i class="icon-pencil"></i> Edit</a>';
     }
 }

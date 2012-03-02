@@ -121,3 +121,10 @@ table th.chckbox
     text-align: left;
 }
 
+div.overflow
+{
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
