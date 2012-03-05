@@ -6,3 +6,7 @@
 class ExceptionView extends Exception {}
 class ExceptionRouter extends Exception {}
 
+function exception_handler( Exception $e )
+{
+    echo View::factory('exception', array('exception' => $e));
+}

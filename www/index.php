@@ -22,6 +22,9 @@ function __autoload($className)
     }
 }
 
+set_exception_handler('exception_handler');
+
+
 $uri = parse_url( Request::factory()->getUrl(), PHP_URL_PATH );
 $uri = substr($uri, 1);
 
@@ -45,3 +48,5 @@ else
 {
     throw new ExceptionRouter('Not a valid URL : ' . $uri);
 }
+
+
