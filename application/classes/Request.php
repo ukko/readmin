@@ -16,11 +16,14 @@ class Request
     protected $cmd          = null;
     protected $serverName   = null;
     protected $page         = null;
-    protected $limit        = null;
+    protected $format       = null;
 
     protected $back         = null;
 
     protected static $instance = null;
+
+    const FORMAT_RAW        = 'raw';
+    const FORMAT_HTML       = 'html';
 
     private function __construct() {}
 
@@ -86,6 +89,15 @@ class Request
         else
         {
             $this->setBack( filter_input( INPUT_GET, 'back', FILTER_SANITIZE_STRING ) );
+        }
+
+        if ( filter_input( INPUT_POST, 'format' ) == self::FORMAT_RAW || filter_input( INPUT_GET, 'format' ) == self::FORMAT_RAW)
+        {
+            $this->setFormat( self::FORMAT_RAW );
+        }
+        else
+        {
+            $this->setFormat( self::FORMAT_HTML );
         }
     }
 
@@ -237,13 +249,13 @@ class Request
         return $this->serverName;
     }
 
-    public function setLimit($limit)
+    public function setFormat($format)
     {
-        $this->limit = $limit;
+        $this->format = $format;
     }
 
-    public function getLimit()
+    public function getFormat()
     {
-        return $this->limit;
+        return $this->format;
     }
 }

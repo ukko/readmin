@@ -17,6 +17,20 @@ class Helper_Strings
         $url    = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
         $title  = 'DEL ' . htmlspecialchars($key);
 
-        return '<a class="cmd delete" href="' . $url . '" title="' . $title . '">Delete</a>';
+        return '<a class="cmd delete" href="' . $url . '" title="' . $title . '"><i class="icon-trash"></i> Delete</a>';
+    }
+
+    public static function anchorActionEdit( $key )
+    {
+        $params = array(
+            'db'    => Request::factory()->getDb(),
+            'cmd'   => 'DEL ' . urlencode( $key ),
+            'back'  => Request::factory()->getBack(),
+        );
+
+        $url    = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
+        $title  = 'DEL ' . htmlspecialchars($key);
+
+        return '<a class="cmd delete" href="' . $url . '" title="' . $title . '"><i class="icon-trash"></i> Delete</a>';
     }
 }

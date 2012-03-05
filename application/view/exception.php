@@ -10,7 +10,7 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="<?php echo Helper_URL::create() ?>">Re:admin</a>
+            <a class="brand" href="<?php echo Helper_Url::create() ?>">Re:admin</a>
         </div>
     </div>
 </div>

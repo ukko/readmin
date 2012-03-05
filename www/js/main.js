@@ -5,7 +5,7 @@ $(document).ready(function ()
 
     $(document).keypress(function(e)
     {
-        if ( $('#command').is(':focus'))
+        if ( $(':input').is(':focus'))
         {
             // do nothing
         }
@@ -15,6 +15,30 @@ $(document).ready(function ()
         }
     });
 
+    $(".edit").editable(
+        function(value, settings)
+        {
+             console.log(this);
+             console.log(value);
+             console.log(settings);
+             return(value + 'sss');
+        },
+        {
+            id          : 'cmd',
+            indicator   : "<img src='/i/ajax-loader.gif'>",
+            loadurl     : '/?db=0&format=raw',
+            loadtype    : "post",
+            submit      : "OK",
+            cancel      : "Cancel",
+            tooltip     : "Click to edit...",
+            type        : "autogrow",
+            autogrow    :
+            {
+                lineHeight : 16,
+                minHeight  : 32
+            }
+        }
+    );
 
     $('#command').focus();
     $('.dropdown-toggle').dropdown();

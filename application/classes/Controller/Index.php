@@ -21,14 +21,21 @@ class Controller_Index extends Controller_Base
             'history'   => History::getLast($_SESSION['login']),
         );
 
-        if ( Request::factory()->getAjax() )
+        if ( Request::factory()->getFormat() == Request::FORMAT_RAW )
         {
-            header('Content-Type: application/json');
-            echo json_encode( $data );
+            echo "" . $data['content'];
         }
         else
         {
-            echo View::factory('layout', $data);
+            if ( Request::factory()->getAjax() )
+            {
+                header('Content-Type: application/json');
+                echo json_encode( $data );
+            }
+            else
+            {
+                echo View::factory('layout', $data);
+            }
         }
     }
 
@@ -45,7 +52,15 @@ class Controller_Index extends Controller_Base
             $args   = array();
         }
 
-        $command    = new Controller_Command();
+        if ( Request::factory()->getFormat() == Request::FORMAT_RAW )
+        {
+            $command    = new Controller_CommandRaw();
+        }
+        else
+        {
+            $command    = new Controller_Command();
+        }
+
 
         if ( method_exists( $command, $method ) )
         {

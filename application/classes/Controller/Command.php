@@ -123,7 +123,13 @@ class Controller_Command extends Controller_Base
      */
     public function get( $key )
     {
-        return Command_Strings::get( $key );
+        $data = array(
+            'key'   => $key,
+            'value' => Command_Strings::get( $key ),
+            'cmd'   => 'GET ' . $key,
+        );
+
+        return View::factory('tables/get', $data);
     }
 
     public function hgetall( $key )
@@ -205,7 +211,7 @@ class Controller_Command extends Controller_Base
         return Command_ZSets::zRangeByScore( $key, $min, $max, $limit, $offset );
     }
 
-    public function zrem( $key, $member )
+    public function zrem( $args )
     {
         $key        = '';
         $member     = '';
@@ -240,7 +246,7 @@ class Controller_Command extends Controller_Base
         return Command_Lists::lrange( $key, $start, $end );
     }
 
-    public function lrem( $key, $count, $member )
+    public function lrem( $args )
     {
         $key    = '';
         $count  = '';

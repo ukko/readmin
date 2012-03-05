@@ -16,4 +16,18 @@ class Helper_Url
 	{
         return 'http://' . $_SERVER['SERVER_NAME'];// .  http_build_query( $args, $base );
 	}
+
+    /**
+     * Create anchor
+     *
+     * @param string $url
+     * @param string $value
+     * @param array $classes
+     * @return string
+     */
+    public static function anchor( $url, $value, array $classes = array() )
+    {
+        return '<a href="' . $url . '"'
+                . ( ! empty( $classes ) ? ' class="' . implode(' ', $classes) . '"' : '' ) . '>' . $value . '</a>';
+    }
 }

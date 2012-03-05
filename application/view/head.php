@@ -25,6 +25,9 @@
     <script src="/js/bootstrap-button.js"></script>
 
     <script src="/js/jquery.history.js"></script>
+    <script src="/js/jquery.jeditable.js"></script>
+    <script src="/js/jquery.autogrow.js"></script>
+    <script src="/js/jquery.jeditable.autogrow.js"></script>
 
     <script src="/js/jquery-ui-1.8.17.custom.min.js"></script>
 

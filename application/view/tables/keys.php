@@ -10,7 +10,7 @@
         <tr>
             <th class="chckbox"><input type="checkbox"></th>
             <th class="span1">Type</th>
-            <th>Key</th>
+            <th class="span8">Key</th>
             <th class="action">Action</th>
         </tr>
     </thead>

@@ -14,10 +14,8 @@ class Helper_Hashes
             'back'  => Request::factory()->getBack(),
         );
 
-        $url    = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
-        $title  = 'HDEL ' . htmlspecialchars($key) . ' ' . htmlspecialchars($field);
-
-        return '<a class="cmd delete" href="' . $url . '" title="' . $title . '"><i class="icon-trash"></i> Delete</a>';
+        $url    = Helper_Url::create() . '/?' . http_build_query( $params );
+        return Helper_Url::anchor($url, '<i class="icon-trash"></i> Delete', array('cmd', 'delete'));
     }
 
     public static function anchorActionEdit( $key, $field )
