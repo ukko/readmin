@@ -15,33 +15,10 @@ $(document).ready(function ()
         }
     });
 
-    $(".edit").editable(
-        function(value, settings)
-        {
-             console.log(this);
-             console.log(value);
-             console.log(settings);
-             return(value + 'sss');
-        },
-        {
-            id          : 'cmd',
-            indicator   : "<img src='/i/ajax-loader.gif'>",
-            loadurl     : '/?db=0&format=raw',
-            loadtype    : "post",
-            submit      : "OK",
-            cancel      : "Cancel",
-            tooltip     : "Click to edit...",
-            type        : "autogrow",
-            autogrow    :
-            {
-                lineHeight : 16,
-                minHeight  : 32
-            }
-        }
-    );
-
     $('#command').focus();
+
     $('.dropdown-toggle').dropdown();
+
     $("a[rel=twipsy]").tooltip({ live: true });
 
     $('.dropdown-menu.database a').click(function(){
@@ -51,6 +28,53 @@ $(document).ready(function ()
     $.ajaxSetup({ cache: false });
 
     setIcon('empty');
+
+    // Edit data +
+    var dta;
+
+    $('a.textarea').on('click', function(){
+        tr = $(this).parents('tr');
+        $('div.textarea', tr).dblclick();
+    });
+
+    $('div.textarea').live('dblclick', function(){
+        dta = this;
+        $.get(
+            $(dta).data('load'),
+            {
+                rand: Math.random()
+            },
+            function(e)
+            {
+                $(dta).hide().after('<textarea class="span8 edit">' + e + '</textarea>');
+
+                $('textarea.edit').autogrow().focus();
+            },
+            'html'
+        );
+    });
+
+    $('textarea.edit').live('blur', function(){
+        ta = this;
+
+        $.post(
+            $(dta).data('save'),
+            {
+                cmd: $(dta).data('cmd') + $(ta).val()
+            },
+            function(e)
+            {
+                $(dta).html(e);
+            },
+            'html'
+        );
+
+        $(ta).remove();
+        $(dta).show('fast');
+    });
+
+    // Edit data -
+
 
     $('.popup').live('mouseenter',
         function() {

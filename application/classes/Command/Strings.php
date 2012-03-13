@@ -9,4 +9,9 @@ class Command_Strings
 	{
         return R::factory()->get( $key );
 	}
+
+    public function set( $key, $value )
+    {
+        return R::factory()->set( $key, $value );
+    }
 }

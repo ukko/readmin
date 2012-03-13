@@ -49,7 +49,7 @@ class Controller_Index extends Controller_Base
         else
         {
             $method = Request::factory()->getCmd();
-            $args   = array();
+            $args   = substr( Request::factory()->getCmd(), $pos + 1 );
         }
 
         if ( Request::factory()->getFormat() == Request::FORMAT_RAW )

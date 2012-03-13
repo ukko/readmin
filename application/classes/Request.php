@@ -57,11 +57,11 @@ class Request
 
         if ( isset( $_POST['cmd'] ) )
         {
-            $this->setCmd( filter_input( INPUT_POST, 'cmd', FILTER_SANITIZE_STRING ) );
+            $this->setCmd( filter_input( INPUT_POST, 'cmd' ) );
         }
         else
         {
-            $this->setCmd( filter_input( INPUT_GET, 'cmd', FILTER_SANITIZE_STRING ) );
+            $this->setCmd( filter_input( INPUT_GET, 'cmd' ) );
         }
 
         if ( isset( $_POST['db'] ) )

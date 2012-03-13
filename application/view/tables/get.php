@@ -9,17 +9,16 @@
 	<tbody>
 		<tr>
 			<td>
-                <div class="span9 overflow edit"
-                     cmd="<?php echo $key ?>"
-                     data-key="<?php echo htmlspecialchars($key, ENT_QUOTES) ?>"
-                     data-load="/?db=0&format=raw&cmd=GET+test.s"
-                     data-save="/?db=0&cmd=SET+test.s">
+                <div class="span9 overflow textarea"
+                     data-cmd="SET <?php echo $key ?> "
+                     data-load="<?php echo '/?db=' . Request::factory()->getDb() . '&format=raw&cmd=GET+' . $key ?>"
+                     data-save="<?php echo '/?db=' . Request::factory()->getDb() . '&format=raw' ?>">
                     <?php echo htmlspecialchars($value, ENT_QUOTES) ?>
                 </div>
             </td>
             <td>
                 <div class="btn-group">
-                    <a class="btn " data-toggle="dropdown" href="#">
+                    <a class="btn textarea" data-toggle="dropdown" href="#">
                         <i class="icon-pencil"></i>
                     </a>
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
