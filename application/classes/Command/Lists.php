@@ -44,4 +44,14 @@ class Command_Lists
         // @XXX WARNING, please note the order of arguments
         return R::factory()->lRem( $key, $value, (int) $count );
     }
+
+    public static function lIndex( $key, $index )
+    {
+        return R::factory()->lIndex( $key, $index );
+    }
+
+    public static function lSet( $key, $index, $value )
+    {
+        return R::factory()->lSet( $key, $index, $value );
+    }
 }

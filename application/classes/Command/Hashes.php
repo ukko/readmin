@@ -20,4 +20,14 @@ class Command_Hashes
     {
         return R::factory()->hDel( $key, $field );
     }
+
+    public static function hGet( $key, $field )
+    {
+        return R::factory()->hGet( $key, $field );
+    }
+
+    public static function hSet( $key, $field, $value )
+    {
+        return R::factory()->hSet( $key, $field, $value );
+    }
 }
