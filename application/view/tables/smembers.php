@@ -9,7 +9,14 @@
     <tbody>
         <?php foreach( $value as $k => $v ) : ?>
         <tr>
-            <td><?php echo htmlspecialchars($v, ENT_QUOTES) ?></td>
+            <td>
+                <div class="span7 overflow textarea"
+                     data-cmd="LSET <?php echo $key . ' ' . ($k+$start) ?> "
+                     data-load="<?php echo '/?db=' . Request::factory()->getDb() . '&format=raw&cmd=LINDEX+' . $key . '+' . ($k + $start) ?>"
+                     data-save="<?php echo '/?db=' . Request::factory()->getDb() . '&format=raw' ?>">
+                    <?php echo htmlspecialchars($v, ENT_QUOTES) ?>
+                </div>
+            </td>
             <td>
                 <div class="btn-group">
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>

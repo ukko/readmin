@@ -112,7 +112,7 @@ span.small {
 
 table th.action
 {
-    width: 80px;
+    width: 90px;
 }
 
 table th.chckbox
@@ -128,3 +128,6 @@ div.overflow
     text-overflow: ellipsis;
 }
 
+textarea.edit {
+    width: 98%;
+}

@@ -30,47 +30,68 @@ $(document).ready(function ()
     setIcon('empty');
 
     // Edit data +
-    var dta;
+    var divTextarea = null;
 
     $('a.textarea').on('click', function(){
         tr = $(this).parents('tr');
         $('div.textarea', tr).dblclick();
     });
 
-    $('div.textarea').live('dblclick', function(){
-        dta = this;
+    $('div.textarea').live('dblclick', function()
+    {
+        if ( divTextarea ) {
+            return false;
+        }
+
+        divTextarea = this;
+
         $.get(
-            $(dta).data('load'),
+            $(divTextarea).data('load'),
             {
                 rand: Math.random()
             },
             function(e)
             {
-                $(dta).hide().after('<textarea class="span8 edit">' + e + '</textarea>');
+                $(divTextarea).hide().after(
+                        '<div class="textarea">' +
+                        '<textarea class="span8 edit"></textarea>' +
+                        '<div class="pull-right"><input class="btn cancel" type="button" value="Cancel">' +
+                        '&nbsp;<input class="btn btn-primary save" type="button" value="Save" />' +
+                        '</div></div>'
+                );
 
-                $('textarea.edit').autogrow().focus();
+                $('textarea.edit').text(e).autogrow().focus();
             },
             'html'
         );
     });
 
-    $('textarea.edit').live('blur', function(){
-        ta = this;
+    $('div.textarea .cancel').live('click', function(){
+        var textarea = $('textarea', $(this).parents('div.textarea'));
+        $(textarea).parents('div.textarea').remove();
+        $(divTextarea).show('fast');
+        divTextarea = null;
+    });
+
+    $('div.textarea .save').live('click', function(){
+        var textarea = $('textarea', $(this).parents('div.textarea'));
 
         $.post(
-            $(dta).data('save'),
+            $(divTextarea).data('save'),
             {
-                cmd: $(dta).data('cmd') + $(ta).val()
+                cmd: $(divTextarea).data('cmd') + $(textarea).val()
             },
             function(e)
             {
-                $(dta).html(e);
+                $(divTextarea).text(e);
+                divTextarea = null;
             },
             'html'
         );
 
-        $(ta).remove();
-        $(dta).show('fast');
+        $(textarea).parents('div.textarea').remove();
+        $(divTextarea).show('fast');
+
     });
 
     // Edit data -
