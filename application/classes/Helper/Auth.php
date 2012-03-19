@@ -32,9 +32,9 @@ class Helper_Auth
 
         if ( ! $isAuth && $login && $password )
         {
-            if ( isset( $hosts[ $server ] [ $login ] ) )
+            if ( isset( $hosts[ $server ]['users'][ $login ] ) )
             {
-                $role = $hosts[ $server ] [ $login ];
+                $role = $hosts[ $server ]['users'][ $login ];
             }
             else
             {
@@ -43,8 +43,6 @@ class Helper_Auth
 
             if ( isset( $users[ $login ] ) && $users[ $login ] == sha1( $password ) && $role )
             {
-                $isAuth                 = true;
-
                 $server                 = explode(':', $server);
                 $host                   = isset($server[0]) ? $server[0] : NULL;
                 $port                   = isset($server[1]) ? $server[1] : NULL;
