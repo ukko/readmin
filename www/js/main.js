@@ -2,7 +2,6 @@ $(document).ready(function ()
 {
     var History = window.History;
 
-
     $(document).keypress(function(e)
     {
         if ( $(':input').is(':focus'))
@@ -92,6 +91,13 @@ $(document).ready(function ()
         $(textarea).parents('div.textarea').remove();
         $(divTextarea).show('fast');
 
+    });
+
+    $(document).live('keyup', function(e)
+    {
+        if (e.which == 27 && divTextarea != null ) {
+            $('div.textarea .save').click();
+        }
     });
 
     // Edit data -
