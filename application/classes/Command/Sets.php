@@ -5,14 +5,13 @@
  */
 class Command_Sets
 {
-    public static function smembers( $key )
+    public static function sMembers( $key )
     {
-        $value = R::factory()->sMembers( $key );
+        return R::factory()->sMembers( $key );
+    }
 
-        $data = array(
-                        'key'   => $key,
-                        'value' => $value,
-                    );
-        return View::factory('tables/smembers', $data);
+    public static function sRem( $key, $member )
+    {
+        return R::factory()->sRem( $key, $member );
     }
 }

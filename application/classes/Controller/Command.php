@@ -156,9 +156,29 @@ class Controller_Command extends Controller_Base
         return Helper_Navigation::goBack( $this );
     }
 
-    public function smembers( $key )
+    public function sMembers( $key )
     {
-        return Command_Sets::smembers( $key );
+        $data = array(
+                        'key'   => $key,
+                        'value' => Command_Sets::sMembers( $key ),
+                    );
+        return View::factory('tables/smembers', $data);
+    }
+
+    public function sRem( $args )
+    {
+        $key            = '';
+        $member         = 0;
+
+        $args = explode(' ', $args);
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $member     = (int)$args[1];
+        }
+
+        Request::factory()->setBack( urlencode( 'SMEMBERS ' . $key ) );
+        return Command_Sets::sRem( $key, $member );
     }
 
     public function zrange( $args )

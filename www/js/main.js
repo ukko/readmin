@@ -11,6 +11,7 @@ $(document).ready(function ()
         }
         else
         {
+            $(window).scrollTop();
             $('#command').val('').focus();
         }
     });

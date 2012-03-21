@@ -27,7 +27,6 @@
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 
                 <ul class="dropdown-menu">
-                    <li><?php echo Helper_Hashes::anchorActionEdit($key, $k) ?></li>
                     <li><?php echo Helper_Hashes::anchorActionDelete($key, $k) ?></li>
                 </ul>
             </div>
