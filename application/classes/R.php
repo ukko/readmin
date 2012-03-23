@@ -32,6 +32,7 @@ class R
             }
             catch ( RedisException $e )
             {
+                Helper_Auth::logout();
                 throw $e;
             }
         }
