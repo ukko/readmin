@@ -50,7 +50,7 @@
                                 <?php
                                 foreach ( Config::get('hosts') as $host => $users )
                                 {
-                                    echo "<option value='{$host}'>{$host}</option>";
+                                    echo "<option value='{$host}'>". Helper_Auth::aliasHost( $host ) . "</option>";
                                 }
                                 ?>
                                 </select>
