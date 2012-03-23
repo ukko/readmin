@@ -34,7 +34,7 @@
             <td>
                 <div class="btn-group">
                     <a class="btn" data-toggle="dropdown" href="#">
-                        <i class="icon-pencil"></i>
+                        <i class="icon-edit"></i>
                     </a>
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="caret"></span>

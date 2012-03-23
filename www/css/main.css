@@ -66,6 +66,10 @@ input.command {
     height: 20px;
 }
 
+.ui-icon-empty {
+    background-position: -240px -224px;
+}
+
 .popup>span {
     border-bottom: 1px dashed #d8bfd8;
     cursor: pointer;

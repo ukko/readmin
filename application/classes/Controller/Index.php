@@ -86,6 +86,12 @@ class Controller_Index extends Controller_Base
         echo View::factory('layout', $data);
     }
 
+
+    public function action_login()
+    {
+        Helper_Auth::login();
+    }
+
     public function action_logout()
     {
         Helper_Auth::logout();
