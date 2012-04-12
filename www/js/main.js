@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2012 Max Kamashev <max.kamashev@gmail.com>
+ * Distributed under the GNU GPL v3. For full terms see the file COPYING.
+ */
 $(document).ready(function ()
 {
     var History = window.History;
@@ -29,81 +33,6 @@ $(document).ready(function ()
 
     setIcon('empty');
 
-    // Edit data +
-    var divTextarea = null;
-
-    $('a.textarea').on('click', function(){
-        tr = $(this).parents('tr');
-        $('div.textarea', tr).dblclick();
-    });
-
-    $('div.textarea').live('dblclick', function()
-    {
-        if ( divTextarea ) {
-            return false;
-        }
-
-        divTextarea = this;
-
-        $.get(
-            $(divTextarea).data('load'),
-            {
-                rand: Math.random()
-            },
-            function(e)
-            {
-                $(divTextarea).hide().after(
-                        '<div class="textarea">' +
-                        '<textarea class="span8 edit"></textarea>' +
-                        '<div class="pull-right"><input class="btn cancel" type="button" value="Cancel">' +
-                        '&nbsp;<input class="btn btn-primary save" type="button" value="Save" />' +
-                        '</div></div>'
-                );
-
-                $('textarea.edit').text(e).autogrow().focus();
-            },
-            'html'
-        );
-    });
-
-    $('div.textarea .cancel').live('click', function(){
-        var textarea = $('textarea', $(this).parents('div.textarea'));
-        $(textarea).parents('div.textarea').remove();
-        $(divTextarea).show('fast');
-        divTextarea = null;
-    });
-
-    $('div.textarea .save').live('click', function(){
-        var textarea = $('textarea', $(this).parents('div.textarea'));
-
-        $.post(
-            $(divTextarea).data('save'),
-            {
-                cmd: $(divTextarea).data('cmd') + $(textarea).val()
-            },
-            function(e)
-            {
-                $(divTextarea).text(e);
-                divTextarea = null;
-            },
-            'html'
-        );
-
-        $(textarea).parents('div.textarea').remove();
-        $(divTextarea).show('fast');
-
-    });
-
-    $(document).live('keyup', function(e)
-    {
-        if (e.which == 27 && divTextarea != null ) {
-            $('div.textarea .save').click();
-        }
-    });
-
-    // Edit data -
-
-
     $('.popup').live('mouseenter',
         function() {
             $(this).addClass('active').removeClass('noactive');
@@ -113,53 +42,6 @@ $(document).ready(function ()
             $(this).removeClass('active').addClass('noactive');
         }
     );
-
-    // KEYS +
-    $('thead input:checkbox').live('click', function(){
-        thch = this;
-        $('tbody input:checkbox').each(function(){
-            $(this).prop('checked', ! $(this).prop('checked'));
-        });
-    });
-    $('.checked-do .btn-group a').live('click', function(){
-        if ( confirm('Delete selected keys?') )
-        {
-            var href    = window.location.protocol + '//' + window.location.host;
-            var cmd     = '';
-
-            $('tbody input:checked').each(function(){
-                cmd += ' ' + $(this).attr('id');
-            });
-
-            if ( cmd != '')
-            {
-                params = {
-                    db:     $( '#database' ).attr('value'),
-                    cmd:    'DEL' + cmd,
-                    back:   $('h5').attr('var-cmd')
-                }
-
-                loadData(href, params);
-            }
-        }
-    });
-
-    $(':checkbox').live('click', function(){
-        $('.checked-do').show();
-    });
-
-    $('#limit').live('change', function(){
-        var href    = window.location.protocol + '//' + window.location.host;
-        params = {
-            db:     $( '#database' ).attr('value'),
-            cmd:    $('h5').attr('var-cmd'),
-            limit:  $( ':selected', this ).val()
-        }
-
-        loadData(href, params);
-    });
-
-    // KEYS -
 
     $( "#command" ).autocomplete({
         minLength: 0,
@@ -178,8 +60,6 @@ $(document).ready(function ()
         return $( "<li></li>" )
         .data( "item.autocomplete", item )
         .append( "<a var-desc='" + item.desc + "'>" + item.value
-//                + "</small><span class='ui-icon ui-icon-clock pull-right'></a>"
-//                + "<span class='ui-icon ui-icon-clock pull-right'></a>"
                 + "<span class='ui-icon ui-icon-empty pull-right'><i class='icon-repeat'></i></span></a>"
         )
         .appendTo( ul );
@@ -242,73 +122,72 @@ $(document).ready(function ()
         History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
         return false;
     });
-
-    // ------ FUNCTION -------
-
-    /**
-     * Ajax load data
-     *
-     * @param href      String
-     * @param params    Get params
-     */
-    function loadData( href, params, type )
-    {
-        setIcon('loader');
-
-        if (type==undefined)
-        {
-            type = "post";
-        }
-
-
-        $.ajax({
-            type:       type,
-            url:        href,
-            data:       params,
-            dataType:   "json",
-            success: function(data){
-                setIcon('auto');
-
-                if (data.content && data.content.length > 0)
-                {
-                    $('#content').html(data.content);
-                }
-                if (data.notice && data.notice.length > 0)
-                {
-                    notice(data.error);
-                }
-                if (data.error && data.error.length > 0)
-                {
-                    notice(data.error);
-                }
-
-                if ( data.cmd.length > 0) {
-                    $('#command').val( data.cmd )
-                                 .autocomplete('option', 'source', data.history);
-                    $('title').text( data.cmd + ' — Re:admin' );
-                }
-            },
-            statusCode: {
-                401: function() {
-                    window.location = '/';
-                }
-            }
-        });
-    }
-
-    /**
-     * @param string icon
-     */
-    function setIcon( icon )
-    {
-        if (icon == 'loader')
-        {
-            $('#icon').attr('src', '/i/ajax-loader.gif');
-        }
-        else
-        {
-            $('#icon').attr('src', '/i/empty.png');
-        }
-    }
 });
 
+// ------ FUNCTION -------
+
+/**
+ * Ajax load data
+ *
+ * @param href      String
+ * @param params    Get params
+ */
+function loadData( href, params, type )
+{
+    setIcon('loader');
+
+    if (type==undefined)
+    {
+        type = "post";
+    }
+
+
+    $.ajax({
+        type:       type,
+        url:        href,
+        data:       params,
+        dataType:   "json",
+        success: function(data){
+            setIcon('auto');
+
+            if (data.content && data.content.length > 0)
+            {
+                $('#content').html(data.content);
+            }
+            if (data.notice && data.notice.length > 0)
+            {
+                notice(data.error);
+            }
+            if (data.error && data.error.length > 0)
+            {
+                notice(data.error);
+            }
+
+            if ( data.cmd.length > 0) {
+                $('#command').val( data.cmd )
+                             .autocomplete('option', 'source', data.history);
+                $('title').text( data.cmd + ' — Re:admin' );
+            }
+        },
+        statusCode: {
+            401: function() {
+                window.location = '/';
+            }
+        }
+    });
+}
+
+/**
+ * @param string icon
+ */
+function setIcon( icon )
+{
+    if (icon == 'loader')
+    {
+        $('#icon').attr('src', '/i/ajax-loader.gif');
+    }
+    else
+    {
+        $('#icon').attr('src', '/i/empty.png');
+    }
+}

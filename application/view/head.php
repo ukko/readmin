@@ -5,7 +5,6 @@
     <meta name="author" content="Max Kamashev">
     <link href='/favicon.ico' rel='shortcut icon'/>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
     <script src="/js/html5.js"></script>
     <![endif]-->
@@ -30,8 +29,9 @@
     <script src="/js/jquery-ui-1.8.17.custom.min.js"></script>
 
     <script src="/js/main.js"></script>
+    <script src="/js/edit.js"></script>
+    <script src="/js/keys.js"></script>
 
-    <!-- Le styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/smoothness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
     <link href="/css/main.css" rel="stylesheet" />
