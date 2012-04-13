@@ -14,4 +14,9 @@ class Command_Sets
     {
         return R::factory()->sRem( $key, $member );
     }
+
+    public static function sAdd( $key, $member )
+    {
+        return R::factory()->sAdd( $key, $member );
+    }
 }

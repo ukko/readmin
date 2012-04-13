@@ -82,4 +82,20 @@ class Controller_CommandRaw extends Controller_Base
         return htmlspecialchars( $value );
     }
 
+    public function sAdd( $args )
+    {
+        $args = explode( ' ', $args, 2 );
+        if ( count($args) >= 2 )
+        {
+            $key        = $args[0];
+            $member     = $args[1];
+        }
+
+        Command_Sets::sAdd( $key, $member );
+
+        return $member;
+    }
+
+
+
 }
