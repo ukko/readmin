@@ -161,6 +161,7 @@ class Controller_Command extends Controller_Base
         $data = array(
                         'key'   => $key,
                         'value' => Command_Sets::sMembers( $key ),
+                        'cmd'   => 'SMEMBERS ' . htmlspecialchars($key, ENT_QUOTES),
                     );
         return View::factory('tables/smembers', $data);
     }

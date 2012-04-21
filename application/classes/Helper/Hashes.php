@@ -15,7 +15,7 @@ class Helper_Hashes
         );
 
         $url    = Helper_Url::create() . '/?' . http_build_query( $params );
-        return Helper_Url::anchor($url, '<i class="icon-trash"></i> Delete', array('cmd', 'delete'));
+        return Helper_Url::anchor($url, '<i class="icon-trash"></i> Delete', array('class' => 'cmd delete'));
     }
 
     public static function anchorActionEdit( $key, $field )

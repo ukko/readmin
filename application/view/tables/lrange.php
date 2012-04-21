@@ -4,8 +4,8 @@
     <thead>
     <tr>
         <th class="span1">Index</th>
-        <th class="span9">Value</th>
-        <th class="span1">Action</th>
+        <th class="span10">Value</th>
+        <th class="action">Action</th>
     </tr>
     </thead>
     <tbody>

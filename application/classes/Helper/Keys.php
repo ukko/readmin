@@ -5,13 +5,6 @@
  */
 class Helper_Keys
 {
-    const ACTION_DELETE     = 'delete';
-    const ACTION_EXPIRE     = 'expire';
-    const ACTION_RENAME     = 'rename';
-    const ACTION_PERSIST    = 'persist';
-    const ACTION_MOVE       = 'move';
-    const ACTION_CLEAR_CACHE= 'cc';
-
     public static function getType( $key )
     {
         $types = array(
@@ -177,61 +170,56 @@ class Helper_Keys
         return '<a rel="twipsy" title="' . htmlspecialchars($key) . '" href="/?' . $url  . '" class="cmd">' . $key . '</a>';
     }
 
-
-    public static function anchorAction( $key, $type, $action )
+    public static function anchorActionDelete( $key )
     {
-        if ( $action == self::ACTION_DELETE )
-        {
-            $params = array(
-                'db'    => Request::factory()->getDb(),
-                'cmd'   => 'DEL ' . $key,
-                'back'  => Request::factory()->getBack(),
-            );
+        $params = array(
+            'db'    => Request::factory()->getDb(),
+            'cmd'   => 'DEL ' . $key,
+            'back'  => Request::factory()->getBack(),
+        );
 
-            $url = 'http://' . Request::factory()->getServerName() . '/?' . http_build_query( $params );
+        $props = array( 'class' => 'cmd delete', 'title' => 'DEL ' . $key, );
+        return Helper_Url::anchor( Helper_Url::create( $params ), '<i class="icon-trash"></i>&nbsp;Delete', $props );
+    }
 
-            return '<a class="cmd delete" href="' . $url . '" title="DEL ' . $key . '"><i class="icon-trash"></i>&nbsp;Delete</a>';
-        }
-        elseif ( $action == self::ACTION_EXPIRE )
-        {
-            $params = array(
-                'db'    => Request::factory()->getDb(),
-                'cmd'   => 'EXPIRE ' . $key,
-                'back'  => Request::factory()->getBack(),
-            );
+    public static function anchorActionExpire( $key )
+    {
+        $params = array(
+            'cmd'   => 'EXPIRE ' . $key,
+        );
 
-            return '<a class="cmd exec" href="' . 'EXPIRE ' . $key . ' " title="EXPIRE ' . $key . '"><i class="icon-time"></i>&nbsp;Expire</a>';
-        }
-        elseif ( $action == self::ACTION_RENAME )
-        {
-            $params = array(
-                'db'    => Request::factory()->getDb(),
-                'cmd'   => 'RENAME ' . $key,
-                'back'  => Request::factory()->getBack(),
-            );
+        $props = array( 'class' => 'cmd exec', 'title' => 'EXPIRE ' . $key );
+        return Helper_Url::anchor( Helper_Url::create( $params ), '<i class="icon-time"></i>&nbsp;Expire', $props);
+    }
 
-            return '<a class="cmd exec" href="' . 'RENAME ' . $key . ' " title="RENAME ' . $key . ' newKeyName"><i class="icon-retweet"></i>&nbsp;Rename</a>';
-        }
-        elseif ( $action == self::ACTION_PERSIST )
-        {
-            $params = array(
-                'db'    => Request::factory()->getDb(),
-                'cmd'   => 'PERSIST ' . $key,
-                'back'  => Request::factory()->getBack(),
-            );
+    public static function anchorActionRename( $key )
+    {
+        $params = array(
+            'cmd'   => 'RENAME ' . $key,
+        );
 
-            return '<a class="cmd exec" href="' . 'PERSIST ' . $key . ' " title="PERSIST ' . $key . '">Persist</a>';
-        }
-        elseif ( $action == self::ACTION_MOVE )
-        {
-            $params = array(
-                'db'    => Request::factory()->getDb(),
-                'cmd'   => 'MOVE ' . $key,
-                'back'  => Request::factory()->getBack(),
-            );
+        $props = array( 'class' => 'cmd exec', 'title' => 'RENAME ' . $key . ' newKeyName'  );
+        return Helper_Url::anchor( Helper_Url::create( $params ), '<i class="icon-retweet"></i>&nbsp;Rename', $props );
+    }
 
-            return '<a class="cmd exec" href="' . 'MOVE ' . $key . ' " title="MOVE ' . $key . '"><i class="icon-random"></i>&nbsp;Move</a>';
-        }
+    public static function anchorActionPersist( $key )
+    {
+        $params = array(
+            'cmd'   => 'PERSIST ' . $key,
+        );
+
+        $props = array( 'class' => 'cmd exec', 'title' => 'PERSIST ' . $key  );
+        return Helper_Url::anchor( Helper_Url::create( $params ), 'Persist', $props );
+    }
+
+    public static function anchorActionMove( $key )
+    {
+        $params = array(
+            'cmd'   => 'MOVE ' . $key,
+        );
+
+        $props = array( 'class' => 'cmd exec', 'title' => 'MOVE ' . $key );
+        return Helper_Url::anchor( Helper_Url::create( $params ), '<i class="icon-random"></i>&nbsp;Move', $props );
     }
 
     public static function anchorActionClearCache($key, $back)

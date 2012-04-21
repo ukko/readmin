@@ -7,27 +7,33 @@ class Helper_Url
 {
 
     /**
-     * Return URL on current site with query
+     * Return URL on current site with path and query
      *
-     * @param string $base
-     * @param array  $query
+     * @param   array   $query
+     * @param   string  $base
+     * @return  string
      */
-	public static function create( $base = '', array $args = array() )
-	{
-        return 'http://' . $_SERVER['SERVER_NAME'];// .  http_build_query( $args, $base );
-	}
+    public static function create(array $args = array(), $base = '')
+    {
+        return 'http://' . $_SERVER['SERVER_NAME'] . ( empty($base) ? '/?' : $base ) . http_build_query( $args );
+    }
 
     /**
      * Create anchor
      *
-     * @param string $url
-     * @param string $value
-     * @param array $classes
+     * @param string    $url
+     * @param string    $text
+     * @param array     $params
      * @return string
      */
-    public static function anchor( $url, $value, array $classes = array() )
+    public static function anchor($url, $text, array $params = array())
     {
-        return '<a href="' . $url . '"'
-                . ( ! empty( $classes ) ? ' class="' . implode(' ', $classes) . '"' : '' ) . '>' . $value . '</a>';
+        $props = '';
+        foreach ($params as $key => $value)
+        {
+            $props .= ' "' . $key . '"="' . $value . '" ';
+        }
+
+        return '<a href="' . $url . '"' . $props. '>' . $text . '</a>';
     }
 }

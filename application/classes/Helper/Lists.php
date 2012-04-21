@@ -10,7 +10,7 @@ class Helper_Lists
     {
         $params = array(
             'db'    => Request::factory()->getDb(),
-            'cmd'   => 'LREM ' . urlencode( $key ) . ' 0 ' . urlencode( $member ),
+            'cmd'   => 'LREM ' . $key . ' 0 ' . $member,
             'back'  => Request::factory()->getBack(),
         );
 

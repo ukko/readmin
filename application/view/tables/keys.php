@@ -40,12 +40,12 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_EXPIRE) ?></li>
-                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_RENAME) ?></li>
-                        <li><?php if ($item['ttl'] > 0) echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_PERSIST) ?></li>
+                        <li><?php echo Helper_Keys::anchorActionExpire( $item['key'] ) ?></li>
+                        <li><?php echo Helper_Keys::anchorActionRename( $item['key'] ) ?></li>
+                        <li><?php if ($item['ttl'] > 0) echo Helper_Keys::anchorActionPersist( $item['key'] ) ?></li>
                         <li class="divider"></li>
-                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_MOVE) ?></li>
-                        <li><?php echo Helper_Keys::anchorAction($item['key'], $item['type'], Helper_Keys::ACTION_DELETE) ?></li>
+                        <li><?php echo Helper_Keys::anchorActionMove( $item['key'] ) ?></li>
+                        <li><?php echo Helper_Keys::anchorActionDelete( $item['key'] ) ?></li>
                     </ul>
                 </div>
             </td>
