@@ -10,16 +10,16 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($value as $value => $score) : ?>
+    <?php foreach ($value as $val => $score) : ?>
     <tr>
-        <td><?php echo Command_ZSets::zRank($key, $value) ?></td>
+        <td><?php echo Command_ZSets::zRank($key, $val) ?></td>
         <td><?php echo $score ?></td>
-        <td><?php echo $value ?></td>
+        <td><?php echo $val ?></td>
         <td>
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-pencil"></i> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <?php echo Helper_ZSets::anchorActionDelete($key, $value) ?>
+                    <?php echo Helper_ZSets::anchorActionDelete($key, $val) ?>
                 </ul>
             </div>
         </td>

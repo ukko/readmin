@@ -9,8 +9,9 @@ class Helper_Url
     /**
      * Return URL on current site with path and query
      *
-     * @param   array   $query
+     * @param array $args
      * @param   string  $base
+     * @internal param array $query
      * @return  string
      */
     public static function create(array $args = array(), $base = '')

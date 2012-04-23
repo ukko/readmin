@@ -9,7 +9,7 @@ class Controller_CommandRaw extends Controller_Base
      * Get string value
      *
      * @param $key
-     * @return void
+     * @return string
      */
     public function get( $key )
     {

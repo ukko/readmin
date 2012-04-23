@@ -9,7 +9,7 @@ class Controller_Command extends Controller_Base
      * Display keys
      *
      * @param   $args
-     * @return  void
+     * @return  array
      */
     public function keys($args)
     {
@@ -302,7 +302,7 @@ class Controller_Command extends Controller_Base
     public function ping()
     {
         $ping = R::factory()->ping();
-        $this->notice = View::factory('tables/ping', array('ping' => $ping));
+        return View::factory('tables/ping', array('ping' => $ping));
     }
 
 }

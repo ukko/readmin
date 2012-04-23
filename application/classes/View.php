@@ -48,11 +48,11 @@ class View
      *
      * @param string    $view
      * @param array     $args
-     * @return void
+     * @throws ExceptionView
+     * @return string
      */
     public static function factory( $view, array $args = array() )
     {
-        $content = '';
         $file = APPPATH . '/view/' . $view . '.php';
         self::$params += $args;
 
@@ -61,6 +61,7 @@ class View
             extract(self::$params);
 
             ob_start();
+            /** @noinspection PhpIncludeInspection */
             include $file;
             return ob_get_clean();
         }

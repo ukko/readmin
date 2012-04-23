@@ -216,6 +216,10 @@ class Request
         return $this->userAgent;
     }
 
+    /**
+     * @param $back
+     * @return string
+     */
     public function setBack( $back )
     {
         if ( ! $back )

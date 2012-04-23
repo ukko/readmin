@@ -18,6 +18,7 @@ class R
     /**
      * Get instance redis
      *
+     * @throws RedisException
      * @return Redis
      */
     public static function factory()

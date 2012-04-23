@@ -14,10 +14,10 @@ class Command_Lists
                         'start'     => $start,
                         'end'       => $end,
                         'value'     => $value,
-			            'paginator' => '',
+                         'paginator' => '',
                     );
 
-	    $total = R::factory()->lLen( $key );
+        $total = R::factory()->lLen( $key );
         $data['command']    = 'LRANGE ' . $key . ' ' . $start . ' ' . $end;
 
         $re = Config::get('re_prefix') . 'log:';

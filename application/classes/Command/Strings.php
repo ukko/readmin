@@ -5,12 +5,12 @@
  */
 class Command_Strings
 {
-	public function get( $key )
+	public static function get( $key )
 	{
         return R::factory()->get( $key );
 	}
 
-    public function set( $key, $value )
+    public static function set( $key, $value )
     {
         return R::factory()->set( $key, $value );
     }

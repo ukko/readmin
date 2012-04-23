@@ -10,7 +10,7 @@ class History
      *
      * @param string $user
      * @param string $command
-     * @return void
+     * @return string | bool
      */
     public static function write( $user = '', $command = '' )
     {

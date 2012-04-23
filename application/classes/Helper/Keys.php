@@ -237,13 +237,13 @@ class Helper_Keys
 
     public static function value( $params )
     {
-        list( $size, $value ) = $params;
+        list( , $value ) = $params;
         return $value;
     }
 
     public static function size( $params )
     {
-        list( $size, $value ) = $params;
+        list( $size, ) = $params;
         return $size;
     }
 }

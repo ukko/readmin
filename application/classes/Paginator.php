@@ -8,12 +8,12 @@ class Paginator
     /**
      * Generate paginator
      *
-     * @param   int     $total      Total items
+     * @param   int     $totalItems
      * @param   int     $current    Current page
      * @param   string  $url        Template url
      * @param   int     $limit      Limit items on page
      * @param   int     $limitPages Limit pages in paginator
-     * @return string
+     * @return  string
      */
     public static function parsePaginator( $totalItems, $current, $url, $limit = 20, $limitPages = 10 )
     {
@@ -99,10 +99,11 @@ class Paginator
     /**
      * Extended output list with a manual indicating the number of items per page
      *
-     * @param int $total    Total items
-     * @param int $current  Current page
-     * @param int $url      Template url
-     * @param int $limit    Limit pages
+     * @param   int     $totalItems
+     * @param   int     $current  Current page
+     * @param   int     $url      Template url
+     * @param   int     $limit    Limit pages
+     * @internal param int $total Total items
      * @return string
      */
     public static function parseExtended( $totalItems, $current, $url, $limit = 10 )
