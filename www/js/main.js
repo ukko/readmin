@@ -45,7 +45,7 @@ $(document).ready(function ()
     );
 
     $( "#command" ).autocomplete({
-        minLength: 0,
+        minLength: 1,
         source: commands,
         select: function( event, ui ) {
             $( "#command" ).val( ui.item.value );
