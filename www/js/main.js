@@ -12,7 +12,8 @@ $(document).ready(function ()
         {
             // do nothing
         }
-        else
+        // Bind on keypress A-Za-z
+        else if( ( e.which >= 64 && e.which <= 90 ) || ( e.which >= 97 && e.which <= 122 ) )
         {
             $(window).scrollTop();
             $('#command').val('').focus();
