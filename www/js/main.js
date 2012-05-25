@@ -47,11 +47,6 @@ $(document).ready(function ()
     $( "#command" ).autocomplete({
         minLength: 0,
         source: commands,
-        focus: function( event, ui ) {
-            $( "#command" ).val( ui.item.value );
-            $( '#desc' ).text(ui.item.desc);
-            return false;
-        },
         select: function( event, ui ) {
             $( "#command" ).val( ui.item.value );
             return false;
