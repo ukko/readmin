@@ -132,6 +132,51 @@ class Helper_Keys
 
 
     /**
+     * Explode array by space, and remove empty items
+     *
+     * @param   $string
+     * @return  array
+     */
+    public static function explodeBySpace( $string )
+    {
+        $args   = array();
+
+        foreach ( explode(' ', $string ) as $arg )
+        {
+            if ( $arg !== '' )
+            {
+                $args[] = $arg;
+            }
+        }
+
+        return $args;
+    }
+
+    public static function validateInterval( $interval )
+    {
+        if ( filter_var( $interval, FILTER_VALIDATE_FLOAT ) )
+        {
+            return filter_var( $interval, FILTER_VALIDATE_FLOAT );
+        }
+        elseif ( in_array( strtoupper( $interval ), array('-INF', '+INF') ) )
+        {
+            return strtoupper( $interval );
+        }
+        elseif (
+            is_string( $interval ) && strlen( $interval ) > 1
+            && $interval[0] === '('
+            && ! is_null( filter_var( substr( $interval, 1 ), FILTER_VALIDATE_FLOAT ) ) )
+        {
+            return $interval;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
+
+
+    /**
      * Create anchor for key
      *
      * @param   string  $key

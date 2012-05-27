@@ -202,17 +202,17 @@ class Controller_Command extends Controller_Base
 
     public function zRangeByScore( $args )
     {
-        $args = explode(' ', $args);
+        $args = Helper_Keys::explodeBySpace( $args );
 
-        if ( count($args) > 3 ) {
+        if ( count($args) >= 3 ) {
             $key        = $args[0];
-            $min        = in_array(strtolower($args[1]), array('-inf', '+inf')) ? strtolower($args[1]) : (int)$args[1];
-            $max        = in_array(strtolower($args[2]), array('-inf', '+inf')) ? strtolower($args[2]) : (int)$args[2];
+            $min        = Helper_Keys::validateInterval( $args[1] );
+            $max        = Helper_Keys::validateInterval( $args[2] );
         }
 
         $withscores = FALSE;
-        $offset     = 0;
-        $limit      = 20;
+        $offset     = NULL;
+        $limit      = NULL;
 
         $command = 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max;
         if ( isset($args[3]) && strtoupper($args[3] == 'WITHSCORES') )

@@ -38,34 +38,41 @@ class Command_ZSets
         return View::factory('tables/zrange', $data);
     }
 
-    public static function zRangeByScore( $key, $min = '-inf', $max = '+inf', $limit, $offset )
+    public static function zRangeByScore( $key, $min = '-inf', $max = '+inf', $limit = NULL, $offset = NULL )
     {
         $total = R::factory()->zCard( $key );
 
-        $value = R::factory()->zRangeByScore( $key, $min, $max, array(
-                                                                        'withscores' => true,
-                                                                        'limit' => array( $offset, $limit ) )
-                                            );
+        $param = array( 'withscores' => true );
+        if ( ! is_null( $limit ) && ! is_null( $offset ) )
+        {
+            $param['limit'] = array( $offset, $limit );
+        }
+
+        $value = R::factory()->zRangeByScore( $key, $min, $max, $param );
 
         $data = array(
                         'key'   => $key,
-                        'start' => $offset,
-                        'end'   => Config::get('re_limit'),
                         'value' => $value,
                     );
+
+        if ( ! is_null( $limit ) && ! is_null( $offset ) )
+        {
+            $data['start']  = $offset;
+            $data['end']    = Config::get('re_limit');
+        }
 
         $data['paginator']  = '';
         $data['command'] = 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max;
 
-        if ( $total > Config::get('re_limit') )
+        if ( ! is_null( $limit )  && $total > $limit )
         {
-
+            Config::set( 're_limit', $limit );
             $dataUrl = array(
                             'db'        => Request::factory()->getDb(),
                             'cmd'       => 'ZRANGEBYSCORE ' . $key . ' ' . $min . ' ' . $max,
                             );
 
-            if ($limit)
+            if ( ! is_null( $limit ) && ! is_null( $offset ) )
             {
                 $dataUrl['cmd'] .= ' LIMIT';
                 $data['command'] .= ' LIMIT ' . $offset . ' ' . $limit;
