@@ -48,7 +48,7 @@ $(document).ready(function ()
         minLength: 1,
         source: commands,
         select: function( event, ui ) {
-            $( "#command" ).val( ui.item.value );
+            $( "#command" ).val( decodeURI( ui.item.value ) );
             return false;
         }
     })
@@ -61,11 +61,12 @@ $(document).ready(function ()
         .appendTo( ul );
     };
 
-    History.Adapter.bind( window, 'statechange', function()
-    {
-        var State = History.getState();
-        loadData(State.data.url);
-    });
+//    History.Adapter.bind( window, 'statechange', function()
+//    {
+//        var State = History.getState();
+//
+//        loadData(State.data.url);
+//    });
 
     $('#command').keypress(function(e){
         if ( e.which == 13 )
@@ -79,15 +80,15 @@ $(document).ready(function ()
         var href    = window.location.protocol + '//' + window.location.host;
 
         params = {
-            db:     $( '#database' ).attr('value'),
-            cmd:    $( '#command' ).val(),
-            back:   $('h5').attr('var-cmd')
+            db:     parseInt( $( '#database' ).attr('value') ),
+            cmd:    encodeURIComponent( $( '#command' ).val() ),
+            back:   encodeURIComponent( $('h5').attr('var-cmd') )
         }
 
-        href    = href + '/?' + $.param(params);
-        title   = $('#command').val() + ' — Re:admin';
-
-        History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
+//        href    = href + '/?' + $.param(params);
+//        title   = $('#command').val() + ' — Re:admin';
+        loadData(href, params);
+//        History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
         return false;
     });
 
@@ -100,7 +101,7 @@ $(document).ready(function ()
 
         if ( $(this).hasClass('exec') )
         {
-            $('#command').val( $(this).attr('href') ).focus();
+            $('#command').val( decodeURI( $(this).attr('href') ) ).focus();
             return false;
         }
 
@@ -114,8 +115,8 @@ $(document).ready(function ()
                 return false;
             }
         }
-
-        History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
+        loadData( href );
+//        History.pushState( {'url': href, 'title': title, random: Math.random() }, title, href);
         return false;
     });
 });
@@ -160,7 +161,7 @@ function loadData( href, params, type )
             }
 
             if ( data.cmd.length > 0) {
-                $('#command').val( data.cmd )
+                $('#command').val( decodeURIComponent( data.cmd ) )
                              .autocomplete('option', 'source', data.history);
                 $('title').text( data.cmd + ' — Re:admin' );
             }
@@ -186,4 +187,11 @@ function setIcon( icon )
     {
         $('#icon').attr('src', '/i/empty.png');
     }
+}
+
+function encodeUrl( url )
+{
+    console.log('escape', escape(url));
+    console.log('encodeURI', encodeURI(url));
+    console.log('encodeURIComponent', encodeURIComponent(url));
 }

@@ -23,9 +23,7 @@
     <script src="/js/bootstrap-tab.js"></script>
     <script src="/js/bootstrap-button.js"></script>
 
-    <script src="/js/jquery.history.js"></script>
     <script src="/js/jquery.autogrow.js"></script>
-
     <script src="/js/jquery-ui-1.8.17.custom.min.js"></script>
 
     <script src="/js/main.js"></script>

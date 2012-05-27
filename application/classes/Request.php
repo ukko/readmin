@@ -57,7 +57,7 @@ class Request
 
         if ( isset( $_POST['cmd'] ) )
         {
-            $this->setCmd( filter_input( INPUT_POST, 'cmd' ) );
+            $this->setCmd( urldecode( filter_input( INPUT_POST, 'cmd' ) ) );
         }
         else
         {
