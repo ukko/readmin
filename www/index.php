@@ -5,21 +5,8 @@
  */
 error_reporting(E_ALL);
 
-require_once __DIR__.'/../vendor/autoload.php';
-
-$app = new Silex\Application();
-
-$app->get('/hello/{name}', function($name) use($app) {
-
-    return 'Hello '.$app->escape($name);
-});
-
-$app->post('/feedback', function (Request $request) {
-    $message = $request->get('message');
-    mail('feedback@yoursite.com', '[YourSite] Feedback', $message);
-
-    return new Response('Thank you for your feedback!', 201);
-});
+require_once __DIR__ . '/../src/bootstrap.php';
+require_once __DIR__ . '/../src/controllers.php';
 
 $app['debug'] = 1;
 
