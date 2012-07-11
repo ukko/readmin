@@ -8,8 +8,12 @@
  * @var $app Silex\Application()
  */
 
+    
+
 $app->get( '/', function() use ( $app ) {
-	return 'INDEX';
+    return $app['twig']->render('layout.twig', array(
+        'content' => 'indexa',
+    ));    
 });
 
 $app->get( '/about', function() use ( $app ) {
