@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-{% extends 'head.twig' %}
+{% include 'head.twig' %}
 <body>
-    {% include('topbar.twig') %}
+    {% include 'topbar.twig' %}
     <script type="text/javascript">
 //        var commands = <?php echo json_encode( $history ); ?>;
     </script>
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    {{ render('footer') }}
+    {% include 'footer.twig' %}
 </div>
 </body>
 </html>

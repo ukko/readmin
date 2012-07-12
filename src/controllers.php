@@ -8,12 +8,12 @@
  * @var $app Silex\Application()
  */
 
-    
+
 
 $app->get( '/', function() use ( $app ) {
     return $app['twig']->render('layout.twig', array(
         'content' => 'indexa',
-    ));    
+    ));
 });
 
 $app->get( '/about', function() use ( $app ) {
@@ -26,7 +26,9 @@ $app->get( '/help', function() use ( $app ) {
 
 $app->get( '/hello/{name}', function($name) use($app) {
 
-    return 'Hello '.$app->escape($name);
+    return $app['twig']->render('hello.twig', array(
+        'name' => $app->escape( $name ),
+    ));
 });
 
 $app->match();
